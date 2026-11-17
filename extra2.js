@@ -1,0 +1,27 @@
+(()=>{const g=k=>{try{return localStorage.getItem(k)||''}catch(e){return ''}},s=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const bg=(p,e,n)=>p?['i','style="background-image:url('+p+')"','']:['','',e||esc((n||'+')[0])];
+window.xProfile=()=>{let ph=g('myphoto'),em=g('myemoji');const d=document.getElementById('xp')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'xp',className:'xs',onclick:e=>{if(e.target.id==='xp')e.target.classList.remove('on')}}));
+d.innerHTML='<div class="in"><h3>✨ شرّفنا بصورتك</h3><small style="color:var(--mut)">هتظهر جنب شيخك المفضل في بروفايلك</small><div class="pav" id="pv"></div><div style="text-align:center"><label class="g">📷 التقط صورة<input id="f1" type="file" accept="image/*" capture="user" hidden></label><label class="g">🖼️ من المعرض<input id="f2" type="file" accept="image/*" hidden></label></div><div class="emo">'+['🌙','🕌','📿','🌿','⭐','🤲','🕋','🌸'].map(x=>'<span>'+x+'</span>').join('')+'</div><input id="xn" placeholder="اسمك" value="'+esc(g('myname'))+'"><button class="g" id="xo">يلا نبدأ 🤍</button></div>';d.classList.add('on');
+const pv=()=>{const a=d.querySelector('#pv');a.className='pav'+(ph?' i':'');a.style.backgroundImage=ph?'url('+ph+')':'';a.textContent=ph?'':(em||esc(((d.querySelector('#xn').value||'+')[0])))};pv();d.querySelector('#xn').oninput=pv;
+d.querySelectorAll('.emo span').forEach(x=>x.onclick=()=>{em=x.textContent;ph='';pv()});
+const rd=f=>{if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=200;const m=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,200,200);ph=c.toDataURL('image/jpeg',.8);pv()};im.src=URL.createObjectURL(f)};d.querySelector('#f1').onchange=e=>rd(e.target.files[0]);d.querySelector('#f2').onchange=e=>rd(e.target.files[0]);
+d.querySelector('#xo').onclick=()=>{s('myname',d.querySelector('#xn').value.trim());s('myphoto',ph);s('myemoji',em);d.classList.remove('on');document.querySelectorAll('#me,.pcard').forEach(x=>x.remove());render()}};
+const rnd=(a,seed)=>{let x=seed;return a.map(v=>[v,(x=(x*9301+49297)%233280)/233280]).sort((p,q)=>p[1]-q[1]).map(p=>p[0])};
+const seed=Math.floor(Date.now()/36e5);
+const T={'رقائق':['🌙','رقائق دينية'],'التوبة':['🌱','للتائبين: باب التوبة مفتوح'],'قصص':['📜','قصص الأنبياء'],'تلاوات':['🎧','تلاوات خاشعة'],'الصلاة':['🕌','خشوع الصلاة'],'الدعاء':['🤲','أدعية تريّح القلب']};
+const card=v=>'<div class="rc" data-k="'+esc(v.key)+'"><div class="im">'+(v.kind==='v'&&v.id?'<img loading="lazy" alt="" src="https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg" onerror="this.remove()">':'')+'🌙</div><b>'+esc(v.title)+'</b><small>'+esc((typeof sname==='function'?sname(v.scholar):v.scholar))+'</small></div>';
+const sec=(t,l)=>l.length?'<h4>'+t+'</h4><div class="rr">'+l.slice(0,10).map(card).join('')+'</div>':'';
+const rails=(ex)=>{const V=allVideos().filter(v=>v.kind==='v'&&v.real&&v.id),F=(typeof favs!=='undefined'&&favs)||{},W=(typeof watched!=='undefined'&&watched)||{},un=V.filter(v=>!W[v.key]);let h='';
+const sug=rnd(un,seed).sort((a,b)=>(F[b.scholar]?1:0)-(F[a.scholar]?1:0));
+if(!ex)h+=sec('🎯 مقترح لك',sug);else h+=sec('🆕 لسه ماشفتوش',rnd(un,seed+7));
+const by=(f)=>rnd(un.filter(f),seed+3);
+Object.entries(T).forEach(([k,[i,t]])=>{h+=sec(i+' '+t,by(v=>v.topic&&v.topic.includes(k)))});
+h+=sec('⚡ مقاطع قصيرة',by(v=>v.short));return h};
+const R3=window.render;window.render=function(){const r=R3.apply(this,arguments);try{const A=document.getElementById('app'),t=A.querySelector('.top');if(!t||tab==='pick')return r;
+if(!A.querySelector('.pcard')){const n=g('myname'),p=g('myphoto'),e=g('myemoji'),F=(typeof favs!=='undefined'&&favs)||{},fn=Object.keys(F).find(k=>F[k]),P=window.PHOTOS||{},a=bg(p,e,n),d=document.createElement('div');d.className='pcard';
+const sh=fn?(P[fn]?'<div class="r i" style="background-image:url('+P[fn]+')"></div>':'<div class="r">'+esc(((typeof sname==='function'?sname(fn):fn)||'ش')[0])+'</div>'):'<div class="r">⭐</div>';
+d.innerHTML='<div class="r '+a[0]+'" '+a[1]+'>'+a[2]+'</div><div class="h">🤍</div>'+sh+'<div class="m"><b>'+esc(n||'ضيفنا الكريم')+(fn?' و '+esc(typeof sname==='function'?sname(fn):fn):'')+'</b>'+(fn?'شيخك المفضل':'اختار شيخك المفضل')+'<br><button>'+(fn?'تعديل':'اختار')+'</button></div>';
+d.querySelector('button').onclick=()=>{tab='pick';render(1)};d.querySelector('.r').onclick=xProfile;t.after(d)}
+if(!A.querySelector('.rails')){const ex=tab==='explore';if(tab==='home'||(ex&&!query)){const d=document.createElement('div');d.className='rails';d.innerHTML=(ex?'<button class="rnd" onclick="surprise()">🎲 فاجئني بدرس</button><div class="exg">'+[['🌙','رقائق','رقائق'],['🌱','توبة','التوبة'],['📖','تفسير','تفسير'],['🕌','سيرة','سيرة'],['🎧','تلاوات','تلاوات'],['🤲','دعاء','الدعاء']].map(([i,tt,q],k)=>'<button style="--h:'+(k*55+110)+'" onclick="xCol(\''+q+'\')"><span>'+i+'</span>'+tt+'</button>').join('')+'</div>':'')+rails(ex);const at=A.querySelector('.dk')||A.querySelector('.cols')||A.querySelector('.pcard')||t;(ex?(A.querySelector('.search')||t):at).after(d)}}}catch(e){console.error(e)}return r};
+document.addEventListener('click',e=>{const c=e.target.closest('.rc');if(c)openP(c.dataset.k)});
+setTimeout(()=>render(),2000)})();
