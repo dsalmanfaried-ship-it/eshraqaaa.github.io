@@ -4,7 +4,7 @@
 
 const yt = (q) => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
 
-// عمرو خالد ومصطفى حسني اتشالوا
+// الشيوخ المعتمدين فقط
 const SHEIKHS = [
   { key: "amgad",   name: "أمجد سمير" },
   { key: "amer",    name: "أحمد عامر" },
@@ -14,7 +14,8 @@ const SHEIKHS = [
   { key: "ali",     name: "علي قاسم" },
   { key: "samir",   name: "سمير مصطفى" },
   { key: "sherif",  name: "شريف علي" },
-  { key: "wakeel",  name: "عبد الوكيل القاضي" }
+  { key: "wakeel",  name: "عبد الوكيل القاضي" },
+  { key: "ghafoor", name: "عبد الغفور" }
 ].map(s => ({
   ...s,
   channelId: "",                        // اكتب channelId الصح هنا لو عايز دقة
@@ -40,13 +41,18 @@ const CATEGORIES = [
     { title: "لحظة الضعف", sheikh: "ghaleez", q: "محمد الغليظ التوبة", id: "" },
     { title: "ماتيأسش من رحمة ربنا", sheikh: "ali", q: "علي قاسم التوبة", id: "" },
     { title: "الندم الصادق", sheikh: "samir", q: "سمير مصطفى التوبة", id: "" },
-    { title: "ابدأ من جديد", sheikh: "sherif", q: "شريف علي التوبة", id: "" }
+    { title: "ابدأ من جديد", sheikh: "sherif", q: "شريف علي التوبة", id: "" },
+    { title: "رجوع صادق", sheikh: "ghafoor", q: "عبد الغفور التوبة", id: "" },
+    { title: "ربنا غفور رحيم", sheikh: "ghafoor", q: "عبد الغفور المغفرة", id: "" },
+    { title: "ازاي أبدأ صح", sheikh: "ghafoor", q: "عبد الغفور بداية جديدة", id: "" }
   ]},
   { key: "zaka", name: "ذكاء", icon: "🧠", videos: [
     { title: "فهم الدين بعقلك", sheikh: "amer", q: "أحمد عامر الشباب والدين", id: "" },
     { title: "ردود على الشبهات", sheikh: "samir", q: "سمير مصطفى شبهات", id: "" },
     { title: "ليه ربنا خلقنا", sheikh: "monem", q: "أحمد عبد المنعم الحكمة من الخلق", id: "" },
-    { title: "الإيمان واليقين", sheikh: "sherif", q: "شريف علي الإيمان", id: "" }
+    { title: "الإيمان واليقين", sheikh: "sherif", q: "شريف علي الإيمان", id: "" },
+    { title: "فهم القرآن", sheikh: "ghafoor", q: "عبد الغفور تدبر القرآن", id: "" },
+    { title: "اسأل واتعلم", sheikh: "ghafoor", q: "عبد الغفور أسئلة شباب", id: "" }
   ]},
   { key: "weak", name: "وقت الضعف", icon: "🔥", videos: [
     { title: "لما الكسل يغلبك", sheikh: "amgad", q: "أمجد سمير الكسل والفتور", id: "" },
@@ -55,7 +61,10 @@ const CATEGORIES = [
     { title: "اتغلب على الشهوة", sheikh: "ali", q: "علي قاسم الشهوة", id: "" },
     { title: "الصحبة الصالحة", sheikh: "ghaleez", q: "محمد الغليظ الصحبة", id: "" },
     { title: "الثبات على الطاعة", sheikh: "monem", q: "أحمد عبد المنعم الثبات", id: "" },
-    { title: "ازاي تكمل بعد الوقوع", sheikh: "samir", q: "سمير مصطفى الفتور", id: "" }
+    { title: "ازاي تكمل بعد الوقوع", sheikh: "samir", q: "سمير مصطفى الفتور", id: "" },
+    { title: "لما تضعف", sheikh: "ghafoor", q: "عبد الغفور الفتور", id: "" },
+    { title: "ثبات القلب", sheikh: "ghafoor", q: "عبد الغفور الثبات", id: "" },
+    { title: "قوّي إيمانك", sheikh: "ghafoor", q: "عبد الغفور زيادة الإيمان", id: "" }
   ]}
 ];
 
@@ -174,6 +183,9 @@ const SHORTS = [
   _sh("ali", "توبة", "ماتقنطش من رحمة ربنا"), _sh("ali", "غض بصر", "علاج الشهوة"), _sh("ali", "أمل", "فرج قريب"),
   _sh("samir", "قصص", "قصص للتأثر"), _sh("samir", "توبة", "الندم الصادق"), _sh("samir", "فتور", "ازاي تكمل"),
   _sh("sherif", "ذكاء", "الإيمان واليقين"), _sh("sherif", "شباب", "الشاب والدين"), _sh("sherif", "توبة", "ابدأ من جديد"),
+  _sh("ghafoor", "توبة", "باب الرجوع"), _sh("ghafoor", "فتور", "لما تضعف"), _sh("ghafoor", "شباب", "للشباب"),
+  _sh("ghafoor", "ذكاء", "تدبر وفهم"), _sh("ghafoor", "قصص", "قصة وعبرة"), _sh("ghafoor", "صلاة", "الصلاة"),
+  _sh("ghafoor", "غض بصر", "طهارة النظر"), _sh("ghafoor", "أمل", "رحمة ربنا"),
   _sh("wakeel", "توبة", "التوبة"), _sh("wakeel", "شباب", "كلمة للشباب"), _sh("wakeel", "أمل", "الأمل في الله")
 ];
 
@@ -186,6 +198,250 @@ const shortOpenExternal = (sh) => sh.id ? "https://www.youtube.com/shorts/" + sh
 const shortsFor = ({ sheikh, topic, favorite } = {}) => SHORTS
   .filter(x => (!sheikh || x.sheikh === sheikh) && (!topic || x.topic === topic))
   .sort((a, b) => (b.sheikh === favorite) - (a.sheikh === favorite));
+
+// ===== مصادر إضافية (يوتيوب / تيك توك / إنستجرام / تليجرام / أي موقع) =====
+// الصق هنا حسابات كل شيخ لما تعرفها (من غير @). فاضي = بيستخدم البحث.
+const ACCOUNTS = {
+  amgad:   { youtube: "", tiktok: "", instagram: "", telegram: "" },
+  amer:    { youtube: "", tiktok: "", instagram: "", telegram: "" },
+  arabi:   { youtube: "", tiktok: "", instagram: "", telegram: "" },
+  monem:   { youtube: "", tiktok: "", instagram: "", telegram: "" },
+  ghaleez: { youtube: "", tiktok: "", instagram: "", telegram: "" },
+  ali:     { youtube: "", tiktok: "", instagram: "", telegram: "" },
+  samir:   { youtube: "", tiktok: "", instagram: "", telegram: "" },
+  sherif:  { youtube: "", tiktok: "", instagram: "", telegram: "" },
+  wakeel:  { youtube: "", tiktok: "", instagram: "", telegram: "" },
+  ghafoor: { youtube: "", tiktok: "", instagram: "", telegram: "" }
+};
+
+// أي عنصر: { platform, ref }  ref = كود الفيديو/البوست حسب المنصة
+//  youtube:   كود الفيديو (بعد v= أو shorts/)
+//  tiktok:    رقم الفيديو (الأرقام الطويلة في آخر الرابط)
+//  instagram: كود الريل أو البوست (بعد /reel/ أو /p/)
+//  telegram:  "اسمالقناة/رقمالبوست"
+//  web:       رابط كامل لأي صفحة
+// الدالة دي بترجع رابط يتفتح جوه التطبيق (iframe) لكل منصة.
+const inAppUrl = (it) => {
+  if (!it || !it.ref) return "";
+  switch (it.platform || "youtube") {
+    case "youtube":   return "https://www.youtube.com/embed/" + it.ref + "?autoplay=1&playsinline=1&rel=0&modestbranding=1";
+    case "tiktok":    return "https://www.tiktok.com/embed/v2/" + it.ref;
+    case "instagram": return "https://www.instagram.com/" + (it.kind || "reel") + "/" + it.ref + "/embed";
+    case "telegram":  return "https://t.me/" + it.ref + "?embed=1&mode=tme";
+    case "playlist":  return "https://www.youtube.com/embed/videoseries?list=" + it.ref + "&autoplay=1&playsinline=1&rel=0";
+    case "web":       return it.ref; // بيشتغل بس لو الموقع مسموح يتفتح داخل iframe
+    default:          return "";
+  }
+};
+
+// رابط البحث لما ref لسه فاضي (بيتفتح برا لحد ما تملاه)
+const searchUrl = (it) => {
+  const q = encodeURIComponent(it.q || it.title || "");
+  switch (it.platform || "youtube") {
+    case "tiktok":    return "https://www.tiktok.com/search?q=" + q;
+    case "instagram": return "https://www.google.com/search?q=" + q + "+site%3Ainstagram.com";
+    case "telegram":  return "https://www.google.com/search?q=" + q + "+site%3At.me";
+    case "web":       return "https://www.google.com/search?q=" + q;
+    default:          return "https://www.youtube.com/results?search_query=" + q;
+  }
+};
+const openTarget = (it) => ({ inApp: inAppUrl(it), fallback: searchUrl(it) });
+
+// ===== فيديوهات إضافية =====
+const _v = (sheikh, title, topic) => ({
+  title, sheikh, topic, platform: "youtube", ref: "",
+  q: SHEIKHS.find(x => x.key === sheikh).name + " " + title
+});
+
+const EXTRA_VIDEOS = [
+  // سمير مصطفى: فيديوهات كتير
+  ...["قصص التوابين", "كيف تتوب من الذنب المتكرر", "الصبر على البلاء", "أمل بعد اليأس", "قصص الصحابة للشباب",
+      "قصة يوسف", "قصة موسى", "قصة إبراهيم", "قصة أيوب", "قصة يونس", "الرزق والتوكل", "بر الوالدين",
+      "الخشوع في الصلاة", "قيام الليل", "الدعاء المستجاب", "الصحبة الصالحة", "علاج الفتور", "تربية النفس"]
+    .map(t => _v("samir", t, "samir")),
+  ..."توبة|فتور|شباب|قصص|صلاة".split("|").flatMap(t => [_v("amgad", t + " (1)", t), _v("amgad", t + " (2)", t)]),
+  ..."توبة|فتور|شباب|قصص|صلاة".split("|").flatMap(t => [_v("sherif", t + " (1)", t), _v("sherif", t + " (2)", t)]),
+  ..."توبة|فتور|شباب|قصص|صلاة".split("|").flatMap(t => [_v("arabi", t + " (1)", t), _v("arabi", t + " (2)", t)]),
+  ..."توبة|فتور|شباب|قصص|صلاة".split("|").flatMap(t => [_v("amer", t + " (1)", t), _v("amer", t + " (2)", t)]),
+  ..."توبة|فتور|شباب|قصص|صلاة".split("|").flatMap(t => [_v("wakeel", t + " (1)", t), _v("wakeel", t + " (2)", t)]),
+  ..."توبة|فتور|شباب|قصص|صلاة".split("|").flatMap(t => [_v("ghaleez", t + " (1)", t), _v("ghaleez", t + " (2)", t)])
+];
+
+// ===== شورتس إضافية من منصات مختلفة =====
+const _sx = (platform, sheikh, topic, title) => ({
+  platform, sheikh, topic, title, ref: "",
+  q: SHEIKHS.find(x => x.key === sheikh).name + " " + title
+});
+const PLATFORMS = ["youtube", "tiktok", "instagram", "telegram"];
+const SHORT_TITLES = ["كلمة قصيرة", "موعظة", "نصيحة", "سؤال وجواب", "قصة سريعة", "تذكير"];
+
+const EXTRA_SHORTS = [];
+SHEIKHS.forEach(sh => {
+  const n = sh.key === "samir" ? 4 : 2; // سمير مصطفى أكتر
+  PLATFORMS.forEach(pl => {
+    for (let i = 0; i < n; i++) {
+      const t = SHORT_TITLES[(i + PLATFORMS.indexOf(pl)) % SHORT_TITLES.length];
+      EXTRA_SHORTS.push(_sx(pl, sh.key, SHORT_TOPICS[(i + PLATFORMS.indexOf(pl)) % SHORT_TOPICS.length], t));
+    }
+  });
+});
+
+// كل الشورتس (القديمة + الإضافية) في قائمة واحدة، المفضل أول
+const allShorts = ({ sheikh, topic, platform, favorite } = {}) =>
+  [...SHORTS.map(x => ({ platform: "youtube", ref: x.id || "", ...x })), ...EXTRA_SHORTS]
+    .filter(x => (!sheikh || x.sheikh === sheikh) && (!topic || x.topic === topic) && (!platform || x.platform === platform))
+    .sort((a, b) => (b.sheikh === favorite) - (a.sheikh === favorite));
+
+// الشيوخ الأساسيين (للترتيب والتوصيات)
+const CORE_SHEIKHS = ["amgad", "sherif", "arabi", "amer", "samir", "wakeel", "ghaleez"];
+
+// ===== داتا حقيقية (اتجمعت من نتائج بحث، ومش متجرّبة جوه تطبيقك) =====
+// بعض الفيديوهات ممكن صاحبها يمنع التضمين، ساعتها هتفتح برا تلقائي.
+const REAL_CHANNELS = {
+  samir:   { channelId: "UCch6Y4YgssEzMa4Q5zw4xjw", youtube: "samirmoustafa" },
+  arabi:   { channelId: "UCyc-c-r8RTLNsp1Uv2DNrSg" },
+  amgad:   { channelId: "UCoFflcHXUS78RlNMQJDbNGw", youtube: "amgad_samir", telegram: "amgadsamir" },
+  amer:    { channelId: "UCAPzspa_3QnQwk56Sv-qm-Q" },
+  ghaleez: { youtube: "mohelghaleez" }
+};
+Object.entries(REAL_CHANNELS).forEach(([k, v]) => {
+  const sh = SHEIKHS.find(x => x.key === k); if (sh && v.channelId) sh.channelId = v.channelId;
+  if (ACCOUNTS[k]) Object.assign(ACCOUNTS[k], { youtube: v.youtube || ACCOUNTS[k].youtube, telegram: v.telegram || ACCOUNTS[k].telegram });
+});
+
+const _r = (sheikh, title, ref, extra = {}) => ({ sheikh, title, ref, platform: "youtube", q: title, ...extra });
+
+const REAL_VIDEOS = [
+  // سمير مصطفى
+  _r("samir", "شرح صحيح مسلم: كتاب التوبة (المجلس الأول)", "RqX11tiPuTg", { topic: "توبة" }),
+  _r("samir", "قصة توبة شاب أسرف على نفسه", "7pXT3EA5oqQ", { topic: "قصص" }),
+  _r("samir", "التوبة (يوم عرفة)", "6evB0hHEUxw", { topic: "توبة" }),
+  _r("samir", "التوبة", "IlZCJ5za_i0", { topic: "توبة" }),
+  _r("samir", "الصدق في إرادة التوبة", "vE_E3IC61Go", { topic: "توبة" }),
+  _r("samir", "من يسألني فأعطيه؟ ومن يتوب اليوم فأغفر له؟", "GhCy5yqHhd4", { topic: "أمل" }),
+  _r("samir", "متى تقف بالباب؟ (موعظة عن التوبة)", "HmiDAZnY2ms", { topic: "توبة" }),
+  // أحمد العربي (سلسلة فاهم)
+  _r("arabi", "فاهم 36: أول ما يحاسب به العبد الصلاة", "63_AOCldyXo", { topic: "صلاة" }),
+  _r("arabi", "فاهم 37: القرآن", "hK-9Be0prrA", { topic: "ذكاء" }),
+  _r("arabi", "فاهم 38: الاعتزال", "si994Z9BAr8", { topic: "فتور" }),
+  _r("arabi", "كيف نصل إلى القلب السليم؟", "ZWraKKwNfpE", { topic: "فتور" }),
+  // شريف علي وأحمد عامر
+  _r("sherif", "التوبة: بودكاست وعي (مع أحمد عامر)", "uL2grlrvSdI", { topic: "توبة", also: "amer" }),
+  // أمجد سمير (من قناته على تليجرام)
+  _r("amgad", "فيديو من قناة أمجد سمير", "9RaJ8Ln-IQQ", { topic: "شباب" }),
+  _r("amgad", "فيديو من قناة أمجد سمير", "SG0OTWDOYbY", { topic: "شباب" }),
+  _r("amgad", "فيديو من قناة أمجد سمير", "f0AHyAhNulc", { topic: "شباب" }),
+  _r("amgad", "عقلٌ سليم: كيف نفكر وقت الأزمات؟", "dATujS_41YU", { topic: "ذكاء" }),
+  // محمد الغليظ
+  _r("ghaleez", "القرآن: مقطع مؤثر", "gtKC6Xa_RnU", { topic: "قصص" }),
+  _r("ghaleez", "كلمة مؤثرة (بث مباشر)", "06_UhSRTxEg", { topic: "شباب" })
+];
+
+const REAL_SHORTS = [
+  _r("amgad", "شورت من قناة أمجد سمير", "juZ-w5Lb-rY", { topic: "شباب" }),
+  _r("amgad", "شورت من قناة أمجد سمير", "3H7_G_hnLeE", { topic: "توبة" }),
+  _r("amgad", "شورت من قناة أمجد سمير", "Hxz9g5Z6MMg", { topic: "ذكاء" }),
+  _r("amgad", "شورت من قناة أمجد سمير", "YNwIV93Knx0", { topic: "فتور" }),
+  _r("ghaleez", "أول خطبة للشيخ محمد الغليظ", "odBtR8KfDFw", { topic: "شباب" })
+];
+
+// ===== تعبئة الأماكن الفاضية تلقائيًا (من غير مفتاح) =====
+// أي شيخ عنده channelId: بنشغّل قائمة فيديوهاته الكاملة وقائمة شورتساته جوه التطبيق.
+const playlistItems = () => SHEIKHS.filter(x => x.channelId).flatMap(x => ([
+  { sheikh: x.key, platform: "playlist", ref: "UU" + x.channelId.slice(2),   title: "كل فيديوهات " + x.name, topic: "عام", q: x.name, kind: "videos" },
+  { sheikh: x.key, platform: "playlist", ref: "UUSH" + x.channelId.slice(2), title: "شورتس " + x.name,       topic: "عام", q: x.name, kind: "shorts" }
+]));
+
+// الأولوية: عنصر حقيقي قابل للتشغيل > قائمة الشيخ > (آخر حاجة) بحث
+// playable:true بيمنع ظهور القمر المستني (عناصر من غير ref)
+const shortsQueue = ({ sheikh, topic, platform, favorite, playable = true } = {}) => {
+  const base = [...REAL_SHORTS, ...SHORTS.filter(x => x.id).map(x => ({ platform: "youtube", ref: x.id, ...x })),
+                ...playlistItems().filter(x => x.kind === "shorts"), ...EXTRA_SHORTS, ...SHORTS.filter(x => !x.id)];
+  const seen = new Set();
+  return base
+    .filter(x => (!playable || x.ref))
+    .filter(x => (!sheikh || x.sheikh === sheikh || x.also === sheikh) && (!topic || x.topic === topic || x.topic === "عام") && (!platform || x.platform === platform))
+    .filter(x => { const k = x.platform + ":" + x.ref + ":" + x.title; if (x.ref && seen.has(k)) return false; seen.add(k); return true; })
+    .sort((a, b) => (b.sheikh === favorite) - (a.sheikh === favorite));
+};
+const videosQueue = ({ sheikh, topic, favorite, playable = true } = {}) =>
+  [...REAL_VIDEOS, ...playlistItems().filter(x => x.kind === "videos"), ...EXTRA_VIDEOS]
+    .filter(x => (!playable || x.ref))
+    .filter(x => (!sheikh || x.sheikh === sheikh || x.also === sheikh) && (!topic || x.topic === topic || x.topic === "عام"))
+    .sort((a, b) => (b.sheikh === favorite) - (a.sheikh === favorite));
+
+// ===== تسريع الشورتس =====
+// المشكلة: تحميل مشغّل كامل لكل شورت بيبطّأ. الحل: صورة مصغرة فورية + تحميل المشغّل لما تضغط + تجهيز اللي بعده.
+const SHORTS_PERF = {
+  thumbFirst: true,   // اعرض shortThumb(ref) الأول، وحمّل iframe لما المستخدم يوقف عليه
+  preloadAhead: 1,    // جهّز شورت واحد بس قدّام
+  keepMounted: 2,     // ما تسيبش غير 2 iframe شغالين في نفس الوقت
+  nocookieHost: "https://www.youtube-nocookie.com/embed/", // أخف وأسرع في التحميل
+  lazy: true          // loading="lazy" على كل iframe
+};
+const fastEmbed = (it) => it && it.platform === "youtube" && it.ref
+  ? SHORTS_PERF.nocookieHost + it.ref + "?autoplay=1&playsinline=1&rel=0&modestbranding=1&loop=1&playlist=" + it.ref
+  : inAppUrl(it);
+
+// ===== الواجهة الرئيسية: الدواير + الاقتراحات (داتا بس) =====
+// الأولوية في الوش: أحمد العربي، أمجد سمير، سمير مصطفى (الوزن = نصيبه من الاقتراحات)
+const HOME_PRIORITY = { arabi: 3, amgad: 3, samir: 3 };   // الباقي وزنه 1
+const HOME_TOP_SHARE = 0.7;                                // 70% من الاقتراحات للتلاتة دول
+
+// ألوان الدواير لو مفيش صورة (نفس فكرة الدواير الملونة بحرف الاسم في التصميم التاني)
+const CIRCLE_COLORS = {
+  arabi:   ["#c9a227", "#7a5c00"], amgad:   ["#1f8a5b", "#0d4a30"], samir:   ["#3b5bdb", "#1b2a6b"],
+  amer:    ["#a33b6b", "#5a1a38"], sherif:  ["#d9701f", "#6b3208"], ghaleez: ["#2b8aa8", "#0f3f50"],
+  ali:     ["#7a4bb8", "#3b1f60"], monem:   ["#5b8f2a", "#2a4510"], wakeel:  ["#b8453b", "#5c1c16"],
+  ghafoor: ["#3f7f8f", "#173e48"]
+};
+
+// صورة الدايرة: صورة مصغرة من أول فيديو حقيقي للشيخ، وإلا صورته المرفوعة، وإلا حرف ملون
+const circleImage = (key) => {
+  const v = [...REAL_VIDEOS, ...REAL_SHORTS].find(x => x.sheikh === key && x.ref);
+  if (v) return shortThumb(v.ref);
+  const sh = SHEIKHS.find(x => x.key === key);
+  return sh ? sh.photo : "";
+};
+const circleFallback = (key) => {
+  const sh = SHEIKHS.find(x => x.key === key) || { name: "؟" };
+  const c = CIRCLE_COLORS[key] || ["#c9a227", "#5c4a00"];
+  return { gradient: `linear-gradient(135deg, ${c[0]}, ${c[1]})`, letter: sh.name.trim().charAt(0) };
+};
+
+// ترتيب الدواير: الكل، المفضل (بنجمة)، التلاتة الأساسيين، وبعدهم الباقي
+const homeCircles = (favorite) => {
+  const top = Object.keys(HOME_PRIORITY);
+  const order = [...new Set([favorite, ...top, ...SHEIKHS.map(x => x.key)].filter(Boolean))];
+  return [{ key: "all", name: "الكل", icon: "✦" }].concat(order.map(k => ({
+    key: k,
+    name: SHEIKHS.find(x => x.key === k).name,
+    image: circleImage(k),
+    fallback: circleFallback(k),
+    star: k === favorite
+  })));
+};
+
+// اقتراحات الوش: بتوزّع بالتبادل (واحد من كل شيخ) عشان ما يطلعش شيخ واحد ورا بعض
+const homeFeed = ({ favorite, count = 24 } = {}) => {
+  const w = (k) => (HOME_PRIORITY[k] || 1) + (k === favorite ? 2 : 0);
+  const keys = SHEIKHS.map(x => x.key);
+  const pool = {};
+  keys.forEach(k => { pool[k] = [...videosQueue({ sheikh: k }), ...shortsQueue({ sheikh: k })].filter(x => x.ref); });
+  const out = [], used = {};
+  let guard = 0;
+  while (out.length < count && guard++ < count * 20) {
+    const top = keys.filter(k => HOME_PRIORITY[k] || k === favorite);
+    const rest = keys.filter(k => !top.includes(k));
+    const group = Math.random() < HOME_TOP_SHARE || !rest.length ? top : rest;
+    const bag = group.flatMap(k => Array(w(k)).fill(k));
+    const k = bag[Math.floor(Math.random() * bag.length)];
+    const i = used[k] || 0;
+    if (pool[k] && pool[k][i]) { out.push(pool[k][i]); used[k] = i + 1; }
+    else if (group === top && top.every(t => !pool[t] || (used[t] || 0) >= pool[t].length)) break;
+  }
+  return out;
+};
 
 // ===== جلب تلقائي من يوتيوب (داتا بس، من غير واجهة) =====
 // حط مفتاحك في YT_KEY
