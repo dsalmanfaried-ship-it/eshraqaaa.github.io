@@ -259,6 +259,13 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .xs a.g{text-decoration:none;display:inline-block;border-radius:12px;padding:10px 16px;background:var(--gold);color:#1a1405;font-weight:800;margin:4px 4px 4px 0}
 .qa{height:150px;border-radius:16px;margin:10px 0;display:grid;place-items:center;font-size:64px;animation:fl 3s ease-in-out infinite}
 
+
+#qm{position:fixed;left:8px;right:8px;bottom:76px;z-index:60;border-radius:16px;overflow:hidden;background:#111;border:1px solid #d9b86c;display:none;box-shadow:0 10px 30px #000a}#qm.on{display:block;animation:up .4s both}
+#qm .qh{display:flex;justify-content:space-between;align-items:center;padding:6px 12px;color:#f6e3a1;font-size:13px}#qm .qh button{border:0;background:none;color:#fff;font-size:16px;padding:2px 8px}
+#qm iframe{width:100%;height:300px;border:0;display:block}#qm.min iframe{height:0}
+.qk{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0;padding:10px;border-radius:16px;background:linear-gradient(135deg,hsl(var(--h) 45% 22%),hsl(calc(var(--h) + 40) 50% 10%));border:1px solid var(--line)}
+.qk b{flex:1;min-width:120px}.qa2{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:24px;background:#0006;animation:pls 2.4s infinite}
+
 </style>
 </head>
 <body>
@@ -5961,5 +5968,36 @@ d.classList.add('on');d.querySelector('#xl').onclick=()=>{d.classList.remove('on
 
 </script>
 <script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>
+<script>
+// روابط ساوند كلاود للقرّاء: الصق رابط صفحة القارئ (soundcloud.com/اسم-الحساب) أو قائمة تشغيل أو تلاوة بعينها
+// صفحة الحساب بتشغّل كل تلاواته كقائمة. سيبه فاضي وهتلاقي زرار بحث + زرار «ضيف الرابط» في التطبيق.
+window.QURAN={
+ 'محمد عبادة':'https://soundcloud.com/mohoobada',
+ 'أحمد نصر':'https://soundcloud.com/elnasr1990',
+ 'دكتور أحمد العربي':'https://soundcloud.com/trateel_mans/sets/aelarby',
+ 'أحمد النفيس':'https://soundcloud.com/ahmad_alnufais',
+ 'عبدالله القرافي':'https://soundcloud.com/tvquran22/alqr',
+ 'ياسر الدوسري':'https://soundcloud.com/tvquran22/sets/yaser',
+ 'عمر بن نصر':'',
+ 'عمر ضياء الدين':'https://soundcloud.com/omar-ebrahim-565006892/rlm6erqddvtl',
+ 'بلال سيف':'https://soundcloud.com/ttejcjk820wj'
+};
+
+</script>
+<script>
+(()=>{const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));let U={};try{U=JSON.parse(localStorage.getItem('qurl')||'{}')}catch(e){}
+const ok=u=>/^https?:\/\/(on\.|m\.)?soundcloud\.com\/\S+/i.test(u||''),url=n=>U[n]||(window.QURAN||{})[n]||'';
+const sv=()=>{try{localStorage.setItem('qurl',JSON.stringify(U))}catch(e){}};
+function mini(n,u){let m=document.getElementById('qm');if(!m){m=document.createElement('div');m.id='qm';document.body.appendChild(m)}
+m.innerHTML='<div class="qh"><b>🎧 '+esc(n)+'</b><span><button class="qc">▾</button><button class="qx">✕</button></span></div><iframe allow="autoplay" src="https://w.soundcloud.com/player/?url='+encodeURIComponent(u)+'&auto_play=true&visual=false&show_comments=false&hide_related=true&show_teaser=false"></iframe>';m.className='on';
+m.querySelector('.qx').onclick=()=>{m.className='';m.innerHTML=''};m.querySelector('.qc').onclick=e=>{m.classList.toggle('min');e.target.textContent=m.classList.contains('min')?'▴':'▾'};
+try{if('mediaSession'in navigator)navigator.mediaSession.metadata=new MediaMetadata({title:n,artist:'اسمع دين'})}catch(e){}}
+window.xQuran=()=>{let d=document.getElementById('qr');if(!d){d=document.createElement('div');d.id='qr';d.className='xs';d.onclick=e=>{if(e.target===d)d.classList.remove('on')};document.body.appendChild(d)}
+const names=Object.keys(window.QURAN||{}),draw=()=>{d.innerHTML='<div class="in"><h3>🎧 تلاوات القرآن</h3><small style="color:var(--mut)">المشغّل بيفضل شغّال وانت بتتنقل في التطبيق. للتشغيل مع قفل الشاشة ثبّته على الموبايل كتطبيق.</small>'+names.map((n,i)=>{const u=url(n),h=(i*43+130)%360;return'<div class="qk" style="--h:'+h+'"><div class="qa2">'+(u?'🎙️':'🔎')+'</div><b>'+esc(n)+'</b>'+(u?'<button class="g" data-p="'+i+'">▶ شغّل</button><button class="g" data-e="'+i+'">✎</button>':'<a class="g" target="_blank" rel="noopener" href="https://soundcloud.com/search?q='+encodeURIComponent(n+' تلاوة')+'">🔎 دوّر في ساوند كلاود</a><button class="g" data-e="'+i+'">🔗 ضيف الرابط</button>')+'</div>'}).join('')+'</div>';
+d.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{const n=names[b.dataset.p];mini(n,url(n));d.classList.remove('on')});
+d.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>{const n=names[b.dataset.e],u=prompt('الصق رابط ساوند كلاود لـ '+n+' (صفحة الحساب أو قائمة أو تلاوة)',url(n));if(u===null)return;if(u&&!ok(u.trim())){alert('الرابط لازم يبدأ بـ soundcloud.com');return}U[n]=u.trim();sv();draw()})};draw();d.classList.add('on')};
+const R6=window.render;window.render=function(){const r=R6.apply(this,arguments);try{const c=document.querySelector('#app .cols');if(c&&!c.querySelector('.qbt')){const b=document.createElement('button');b.className='shb qbt';b.style.background='linear-gradient(120deg,#ff7a1a,#ffb067,#ff7a1a)';b.innerHTML='<span>🎧</span>قرآن';b.onclick=()=>{location.href='quran.html'};c.prepend(b)}}catch(e){}return r};setTimeout(()=>render(),2300)})();
+
+</script>
 </body>
 </html>
