@@ -1,0 +1,5602 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0f0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>اسمع دين</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f0d;--card:#141b18;--line:#232d29;--gold:#d9b86c;--txt:#f3efe4;--mut:#8fa39b;--ok:#5fcf8f;--red:#ff5d6c}
+*{box-sizing:border-box;margin:0;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--txt);max-width:620px;margin:auto;padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+button{cursor:pointer;color:inherit;background:none;border:0;font-size:inherit}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;gap:8px}
+.logo{font-family:Amiri,serif;font-size:30px;font-weight:700;line-height:1.2;background:linear-gradient(90deg,#d9b86c,#fff3c4,#d9b86c);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 5s linear infinite}
+@keyframes sh{to{background-position:200% 0}}
+@media (prefers-reduced-motion:reduce){.logo{animation:none}}
+.inst{background:#d4af37;color:#07100d;font-weight:700;border-radius:12px;padding:8px 12px;font-size:13px}
+.stories,.chips{display:flex;overflow-x:auto;scrollbar-width:none}
+.stories::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
+.stories{gap:14px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.st{flex:none;width:68px;text-align:center;font-size:11px;color:var(--mut);cursor:pointer}
+.ring{width:64px;height:64px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#d9b86c,#5fcf8f);margin:auto}
+.ring.seen{background:#2a3631}
+.st.on .ring{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--gold)}
+.av{position:relative;width:100%;height:100%;border-radius:50%;border:3px solid var(--bg);background:#1c2b25;color:var(--gold);display:grid;place-items:center;font-size:22px;font-weight:700;overflow:hidden}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.st span{display:block;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chips{gap:8px;padding:10px 14px}
+.chip{flex:none;padding:7px 13px;border-radius:18px;background:var(--card);border:1px solid var(--line);font-size:13px;cursor:pointer}
+.chip.on{background:var(--gold);color:#17140a;border-color:var(--gold);font-weight:700}
+.post{border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:6px}
+.ph{display:flex;align-items:center;gap:10px;padding:10px 14px}
+.ph .ring{width:38px;height:38px;padding:2px;margin:0}.ph .av{font-size:15px;border-width:2px}
+.pn b{font-size:14px;display:block}.pn small{color:var(--gold);font-size:12px}
+.th{position:relative;aspect-ratio:16/9;background:#18231f;cursor:pointer;overflow:hidden}
+.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.th .pl{position:absolute;inset:0;display:grid;place-items:center;font-size:44px;color:#fff;text-shadow:0 2px 12px #000a}
+.bd{position:absolute;top:8px;right:8px;background:#000b;color:#fff;font-size:11px;padding:3px 8px;border-radius:10px;z-index:3}
+.bd.w{right:auto;left:8px;background:var(--ok);color:#0b2417;font-weight:700}
+.post.done .th img{opacity:.45}
+.ac{display:flex;gap:6px;padding:8px 10px 0}
+.ac button{font-size:24px;padding:4px 8px}.ac button.on.s{color:var(--red)}.ac button.on.w{color:var(--ok)}
+.tt{padding:2px 14px;font-size:15px;line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.gi{position:relative;aspect-ratio:1;background:#18231f;overflow:hidden;cursor:pointer}
+.gi img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gi.done img{opacity:.4}
+.gt{position:absolute;inset:auto 0 0;padding:14px 5px 5px;font-size:10.5px;line-height:1.35;background:linear-gradient(transparent,#000c);text-align:center}
+.search{margin:10px 14px;display:block;width:calc(100% - 28px);padding:11px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);color:var(--txt);font-size:15px}
+.nav{position:fixed;bottom:0;left:0;right:0;max-width:620px;margin:auto;background:#0b0f0def;border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom);z-index:30}
+.nav button{flex:1;padding:11px 0 9px;font-size:11px;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:2px}
+.nav i{font-style:normal;font-size:22px}.nav button.on{color:var(--gold)}
+.empty{text-align:center;color:var(--mut);padding:50px 20px;line-height:1.9}
+.sec{padding:14px}.sec h2{font-size:16px;color:var(--gold);margin-bottom:10px}
+.stat{display:flex;gap:10px;margin-bottom:14px}.stat div{flex:1;background:var(--card);border-radius:14px;padding:14px 6px;text-align:center}
+.stat b{display:block;font-size:22px;color:var(--gold)}.stat small{color:var(--mut);font-size:12px}
+.row{display:block;width:100%;text-align:right;background:var(--card);border-radius:14px;padding:14px;margin-bottom:8px;font-size:15px}
+.gold{background:var(--gold);color:#17140a;font-weight:700;border-radius:12px;padding:12px;width:100%;margin-top:6px;display:block;text-align:center}
+.gold.o{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.more{display:block;margin:14px auto;padding:11px 26px;border:1px solid var(--gold);border-radius:14px;color:var(--gold);font-weight:700}
+.back{font-size:22px;padding:4px 10px}
+#ov{position:fixed;inset:0;background:var(--bg);z-index:50;display:none;overflow-y:auto}
+#ov .bar{display:flex;align-items:center;gap:6px;padding:8px;padding-top:calc(8px + env(safe-area-inset-top));position:sticky;top:0;background:var(--bg);z-index:2}
+#pbox{position:relative;aspect-ratio:16/9;background:#000;max-width:620px;margin:auto}
+#pbox iframe,#pbox>div{position:absolute;inset:0;width:100%;height:100%;border:0}
+#ov .in{max-width:620px;margin:auto}
+.nx{display:flex;gap:10px;padding:8px 14px;align-items:center;cursor:pointer}
+.nm{position:relative;width:120px;aspect-ratio:16/9;border-radius:8px;overflow:hidden;flex:none;background:#18231f}
+.nm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.nx .t{font-size:14px;line-height:1.6}.nx small{color:var(--mut);display:block;font-size:12px}
+.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:var(--ok);color:#0b2417;padding:9px 18px;border-radius:20px;font-weight:700;display:none;z-index:99;font-size:14px;white-space:nowrap}
+/* ===== حركات ===== */
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{40%{transform:scale(1.5)}100%{transform:scale(1)}}
+@keyframes shim{to{background-position:-200% 0}}
+.pg>*{animation:up .38s cubic-bezier(.2,.8,.2,1) both}
+.pg>*:nth-child(2){animation-delay:.05s}.pg>*:nth-child(3){animation-delay:.1s}.pg>*:nth-child(n+4){animation-delay:.15s}
+.th,.gi,.nm{background:linear-gradient(100deg,#18231f 30%,#233029 50%,#18231f 70%) 0 0/200% 100%;animation:shim 1.6s linear infinite}
+.th img,.gi img,.nm img{opacity:0;transition:opacity .45s}.th img.ok,.gi img.ok,.nm img.ok{opacity:1}
+.post.done .th img.ok,.gi.done img.ok{opacity:.4}
+.ac button{transition:transform .15s}.ac button:active,.chip:active,.st:active,.row:active,.gold:active{transform:scale(.92)}
+.pop{animation:pop .4s ease}
+.chip,.ring,.st{transition:all .25s}
+.nav button i{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}.nav button.on i{transform:translateY(-3px) scale(1.15)}
+.post{transition:opacity .3s}
+#ov{display:block;visibility:hidden;transform:translateY(100%);opacity:0;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s,visibility 0s .4s}
+#ov.show{visibility:visible;transform:none;opacity:1;transition-delay:0s}
+.toast{display:block;opacity:0;transform:translate(-50%,16px);transition:.3s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+.ring.fav{background:linear-gradient(135deg,#ffd76a,#d9b86c,#fff3c4)}
+.fv{position:absolute;bottom:-2px;left:-2px;font-size:13px;background:var(--bg);border-radius:50%;width:20px;height:20px;display:grid;place-items:center;z-index:2}
+.hd{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 14px;text-align:center}
+.hd .ring{width:104px;height:104px;padding:4px;position:relative}.hd .av{font-size:40px}
+.hd .row2{display:flex;gap:8px}.hd .row2 button{border:1px solid var(--gold);color:var(--gold);border-radius:12px;padding:8px 14px;font-size:14px;transition:.2s}.hd .row2 button.on{background:var(--gold);color:#17140a;font-weight:700}
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px}
+.pk .c{text-align:center;font-size:12px;cursor:pointer;transition:transform .2s}.pk .c .ring{width:84px;height:84px}.pk .c.on .ring{box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--gold);transform:scale(1.06)}
+.pk .c.on::after{content:"⭐"}
+.cvr{position:absolute;inset:0;display:grid;place-items:center;font-size:40px;opacity:.9}
+.so input{margin:6px 0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ===== مرحلة ٣: حركات بسيطة كتير ===== */
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes spin{to{--a:360deg}}@keyframes sp{0%{opacity:1}70%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes lg{from{opacity:0;transform:scale(.6) translateY(10px);letter-spacing:8px}to{opacity:1;transform:none}}
+@keyframes pls{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}@keyframes bh{0%{transform:translate(-50%,-50%) scale(0);opacity:1}40%{transform:translate(-50%,-50%) scale(1.5)}100%{transform:translate(-50%,-90%) scale(1.1);opacity:0}}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes kb{to{transform:scale(1.12)}}
+#splash{position:fixed;inset:0;z-index:99;background:var(--bg);display:grid;place-items:center;animation:sp 1.7s forwards;pointer-events:none}
+#splash .logo{font-size:56px;animation:lg .9s cubic-bezier(.2,.9,.3,1.2) both}
+.stories .ring:not(.seen):not(.fav){background:conic-gradient(from var(--a),#d9b86c,#5fcf8f,#d9b86c);animation:spin 4s linear infinite}
+.th .pl,.hero .pl{animation:pls 2s ease-in-out infinite}
+.post.rv{opacity:0;transform:translateY(28px) scale(.98)}.post.rv.in{opacity:1;transform:none;transition:opacity .55s,transform .55s cubic-bezier(.2,.8,.2,1)}
+.pg>.post{animation:none}
+.th:active img{transform:scale(1.06)}.th img{transition:opacity .45s,transform .5s}
+.bh{position:absolute;left:50%;top:50%;font-size:80px;font-style:normal;z-index:5;pointer-events:none;animation:bh .9s ease-out forwards}
+.pbar{height:3px;background:var(--line)}.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--ok));transition:width 1s cubic-bezier(.2,.8,.2,1);animation:grow 1.2s ease-out}
+@keyframes grow{from{width:0}}
+.fab{position:fixed;bottom:calc(84px + env(safe-area-inset-bottom));left:16px;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#d9b86c,#b8923f);font-size:26px;box-shadow:0 6px 18px #0008;z-index:25;animation:fl 3s ease-in-out infinite}
+.fab:active{transform:scale(.85) rotate(180deg)}
+.hero{position:relative;margin:12px 14px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#18231f;cursor:pointer}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s;animation:kb 9s ease-in-out infinite alternate}.hero>img.ok{opacity:1}
+.hero .cvr{font-size:60px}.hero .pl{position:absolute;inset:0;display:grid;place-items:center;font-size:52px;color:#fff;text-shadow:0 2px 14px #000a}
+.hg{position:absolute;inset:auto 0 0;padding:34px 14px 12px;background:linear-gradient(transparent,#000d);z-index:2;display:flex;flex-direction:column;gap:3px}
+.hg small{color:var(--gold);font-size:12px}.hg b{font-size:16px;line-height:1.5}.hg span{font-size:12px;color:var(--mut)}
+.tcs{padding:10px 14px}.tc{flex:none;position:relative;width:96px;height:64px;border-radius:12px;overflow:hidden;background:var(--card);border:2px solid transparent;display:grid;place-items:end center;cursor:pointer;transition:.25s}
+.tc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}.tc img.ok{opacity:.75}
+.tc span,.tc b{position:relative;z-index:2;font-size:11px;padding:14px 4px 4px;width:100%;text-align:center;background:linear-gradient(transparent,#000c)}.tc b{position:absolute;top:8px;font-size:20px;background:none;color:var(--gold);padding:0}
+.tc.on{border-color:var(--gold);transform:translateY(-3px)}.tc:active{transform:scale(.93)}
+/* ===== تائب ===== */
+@keyframes rise{from{transform:translate(-50%,70px)}to{transform:translate(-50%,0)}}@keyframes rot{to{transform:translateX(-50%) rotate(360deg)}}
+@keyframes flt{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-260px) rotate(200deg);opacity:0}}
+@keyframes vq{0%,3%{opacity:0;transform:translateY(8px)}8%,30%{opacity:1;transform:none}36%,100%{opacity:0}}
+@keyframes bth{0%,100%{transform:scale(.6)}50%{transform:scale(1.15)}}@keyframes bt1{0%,45%{opacity:1}50%,95%{opacity:0}100%{opacity:1}}@keyframes bt2{0%,45%{opacity:0}50%,95%{opacity:1}100%{opacity:0}}
+@keyframes rg{from{--p:0deg}}@keyframes wig{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg) scale(1.1)}75%{transform:rotate(12deg) scale(1.1)}}
+@keyframes rpl{to{transform:translate(-50%,-50%) scale(14);opacity:0}}@keyframes cf{from{transform:translate(0,-20px) rotate(0)}to{transform:translate(var(--x),100vh) rotate(720deg);opacity:.2}}
+@keyframes sosp{0%{box-shadow:0 0 0 0 #ff5d6c88}100%{box-shadow:0 0 0 22px #ff5d6c00}}
+@property --p{syntax:'<angle>';initial-value:0deg;inherits:false}
+.tw{position:relative;height:290px;overflow:hidden;background:linear-gradient(#0b1a2b,#1d3a3a 55%,#d9b86c);display:grid;place-items:start center}
+.sun{position:absolute;bottom:-40px;left:50%;width:150px;height:150px;border-radius:50%;background:radial-gradient(#fff6cf,#ffd76a 60%,#d9b86c);box-shadow:0 0 70px 30px #ffd76a77;animation:rise 2.4s cubic-bezier(.2,.8,.2,1) both,pls 4s 2.4s ease-in-out infinite;transform:translateX(-50%)}
+.rays{position:absolute;bottom:-190px;left:50%;width:420px;height:420px;border-radius:50%;background:repeating-conic-gradient(#ffd76a33 0 8deg,transparent 8deg 22deg);transform:translateX(-50%);animation:rot 30s linear infinite}
+.lf{position:absolute;bottom:0;font-style:normal;animation:flt 6s ease-in infinite;opacity:0}
+.twt{position:relative;z-index:2;text-align:center;padding:26px 14px}.twt h1{font-family:Amiri,serif;font-size:32px;color:#fff3c4;animation:up .8s .3s both}
+.vq{position:relative;height:50px;margin-top:10px}.vq p{position:absolute;inset:0;font-family:Amiri,serif;font-size:19px;color:#fff;opacity:0;animation:vq 15s infinite}.vq p:nth-child(2){animation-delay:5s}.vq p:nth-child(3){animation-delay:10s}
+.sosb{position:relative;display:block;width:calc(100% - 28px);margin:14px;padding:16px;border-radius:16px;background:linear-gradient(135deg,#ff5d6c,#d93b4d);color:#fff;font-weight:700;font-size:17px;animation:sosp 1.8s infinite}.sosb:active{transform:scale(.96)}
+.dnc{display:flex;gap:14px;align-items:center;margin:0 14px 6px;padding:14px;background:var(--card);border-radius:18px}
+.dr{flex:none;width:116px;height:116px;border-radius:50%;background:conic-gradient(var(--gold) var(--p),var(--line) 0);display:grid;place-items:center;animation:rg 1.6s ease-out}
+.dr>div{width:96px;height:96px;border-radius:50%;background:var(--card);display:grid;place-items:center;align-content:center}.dr b{font-size:34px;color:var(--gold)}.dr small{font-size:11px;color:var(--mut)}
+.dt{flex:1;display:grid;gap:6px;font-size:14px;line-height:1.7}.dt small{color:var(--mut)}.dt .gold{margin-top:2px;padding:9px;font-size:13px}
+.stp{display:flex;gap:12px;align-items:center;background:var(--card);border-radius:14px;padding:12px;margin-bottom:8px}.stp i{font-style:normal;font-size:30px;animation:wig 3s ease-in-out infinite}.stp b{display:block;color:var(--gold)}.stp small{color:var(--mut);font-size:13px;line-height:1.6}
+.sols{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.sol{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 8px;text-align:center;font-size:14px;cursor:pointer;transition:.25s}.sol i{display:block;font-style:normal;font-size:28px;margin-bottom:4px}.sol.on{background:var(--gold);color:#17140a;font-weight:700;border-color:var(--gold)}.sol:active{transform:scale(.93)}
+.dnc.rv,.stp.rv,.sol.rv{opacity:0;transform:translateY(24px)}.dnc.in,.stp.in,.sol.in{opacity:1;transform:none;transition:.5s}
+#sos{position:fixed;inset:0;z-index:70;background:radial-gradient(#10302a,#06100d);visibility:hidden;opacity:0;transform:scale(1.08);transition:.4s;overflow:auto}#sos.show{visibility:visible;opacity:1;transform:none}
+.sc{display:grid;justify-items:center;gap:16px;padding:10px 20px 40px;text-align:center}.sc h2{font-family:Amiri,serif;color:var(--gold);font-size:24px}.sc p{font-family:Amiri,serif;font-size:20px}
+.br{position:relative;width:150px;height:150px;border-radius:50%;background:radial-gradient(#5fcf8f55,#d9b86c22);border:2px solid var(--gold);display:grid;place-items:center;animation:bth 8s ease-in-out infinite}.br span{position:absolute;font-size:20px;color:#fff3c4}.b1{animation:bt1 8s infinite}.b2{animation:bt2 8s infinite}
+.tsb{position:relative;overflow:hidden;width:190px;height:190px;border-radius:50%;background:linear-gradient(135deg,#d9b86c,#b8923f);color:#17140a;display:grid;place-items:center;align-content:center;box-shadow:0 10px 40px #d9b86c55;user-select:none}.tsb b{font-size:52px}.tsb small{font-weight:700}.tsb:active{transform:scale(.95)}
+.rp{position:absolute;width:20px;height:20px;border-radius:50%;background:#fff8;transform:translate(-50%,-50%);animation:rpl .7s ease-out forwards;pointer-events:none}
+.cf{position:fixed;inset:0;z-index:95;pointer-events:none;overflow:hidden}.cf i{position:absolute;top:0;width:9px;height:14px;border-radius:2px;animation:cf 2s ease-in forwards}
+/* ===== قصص: مشاهد ===== */
+@keyframes wl{to{transform:translateX(-72px)}}@keyframes wr{to{transform:translateX(72px)}}@keyframes pth{from{opacity:0;transform:scaleY(0)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-8px) rotate(5deg)}}@keyframes rn{to{background-position:-40px 80px}}
+@keyframes wv{to{transform:translateX(-50px)}}@keyframes fr{0%,100%{transform:scale(1)}50%{transform:scale(1.2,.9)}}@keyframes cool{to{filter:hue-rotate(170deg) saturate(.8) brightness(1.25)}}
+@keyframes snw{from{transform:translateY(-30px) rotate(0);opacity:0}30%{opacity:1}to{transform:translateY(160px) rotate(300deg);opacity:0}}
+@keyframes swim{0%{transform:translateX(130%)}100%{transform:translateX(-130%)}}@keyframes bbl{from{transform:translateY(40px);opacity:0}30%{opacity:.9}to{transform:translateY(-150px);opacity:0}}
+@keyframes cap{0%,50%{opacity:0;transform:translateY(8px)}70%,100%{opacity:1;transform:none}}@keyframes twk{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.2)}}
+@keyframes zz{from{transform:translate(0,0);opacity:0}30%{opacity:1}to{transform:translate(20px,-50px);opacity:0}}@keyframes orb{to{transform:rotate(360deg)}}
+@keyframes cd{to{transform:translateX(-380px)}}@keyframes fly{0%{transform:translate(380px,110px) scale(.7)}50%{transform:translate(160px,30px) scale(1.1) rotate(-8deg)}100%{transform:translate(-60px,90px) scale(.8)}}
+@keyframes spk{to{transform:translate(var(--x),var(--y)) scale(1.4);opacity:0}}
+.qc{margin:0 14px 18px}.qc.rv{opacity:0;transform:translateY(24px)}.qc.in{opacity:1;transform:none;transition:.6s}
+.scn{position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;cursor:pointer;background:#10302a;isolation:isolate;box-shadow:0 8px 24px #0006}.scn *{animation-play-state:paused}.scn.go *{animation-play-state:running}.scn.nr *{animation:none!important}
+.scn i,.scn u,.scn p{position:absolute;font-style:normal;text-decoration:none;margin:0}
+.qt{position:absolute;inset:auto 0 0;z-index:5;padding:30px 14px 10px;background:linear-gradient(transparent,#000d)}.qt b{font-family:Amiri,serif;font-size:21px;color:#fff3c4;display:block}.qt small{color:var(--gold);font-size:12px}
+.qp{position:absolute;z-index:6;top:10px;left:10px;width:44px;height:44px;border-radius:50%;background:var(--gold);color:#17140a;font-size:18px;animation:pls 2s infinite}
+.ay{font-family:Amiri,serif;font-size:18px;line-height:1.9;color:var(--gold);padding:10px 4px 4px}.nov{color:var(--mut);display:block;padding:4px}
+.spk{position:absolute;z-index:9;pointer-events:none;animation:spk .9s ease-out forwards}
+.s-sea{background:linear-gradient(#78c6e8,#1b6fa8)}.s-sea .wall{top:0;bottom:0;width:50%;background:linear-gradient(#0e4d85,#07264a);border-radius:0 0 40% 40%/0 0 22px 22px;animation:wl 2.4s .3s cubic-bezier(.3,.7,.3,1) forwards}.s-sea .wall.l{left:0;border-radius:0 0 22px 0}.s-sea .wall.r{right:0;border-radius:0 0 0 22px;animation-name:wr}.s-sea .pth{left:40%;width:20%;bottom:0;top:30%;background:linear-gradient(#e8d29a,#b9965a);transform-origin:bottom;opacity:0;animation:pth 1.6s 1.2s forwards;z-index:0}.s-sea .sun{top:8px;right:16px;font-size:30px;animation:pls 4s infinite}.s-sea .fsh{top:30%;font-size:20px;z-index:2;animation:swim 6s linear infinite}.s-sea .f2{top:60%;animation-duration:8s;animation-delay:1s}
+.s-ark{background:linear-gradient(#37475a,#1a2430)}.s-ark .rain{inset:0;background:repeating-linear-gradient(105deg,transparent 0 6px,#9fd0ff66 6px 7px);background-size:40px 80px;animation:rn .5s linear infinite}.s-ark .cld{font-size:42px;top:6px;animation:cd 14s linear infinite}.s-ark .c1{right:-30px}.s-ark .c2{right:140px;animation-duration:20s}.s-ark .ark{font-size:64px;left:36%;top:30%;animation:bob 3s ease-in-out infinite;z-index:2}.s-ark .wav{left:-10%;right:-10%;height:40px;bottom:-10px;border-radius:50% 50% 0 0;background:#2a6fa5cc;animation:wv 3s ease-in-out infinite alternate}.s-ark .w2{bottom:-22px;background:#1b4f7c;animation-duration:2.2s}
+.s-fire{background:radial-gradient(#5a2a12,#1c0d08)}.s-fire .fire{font-size:76px;left:42%;top:30%;animation:fr 1s infinite,cool 4s 1s forwards}.s-fire .f2{font-size:50px;left:30%;top:46%;animation-delay:.3s,1.6s}.s-fire .snw{font-size:24px;top:0;animation:snw 3.5s ease-in infinite}.s-fire .s1{left:25%}.s-fire .s2{left:50%;animation-delay:1s}.s-fire .s3{left:70%;animation-delay:2s}
+.s-whale{background:linear-gradient(#06182c,#010710)}.s-whale .glow{left:50%;top:20%;width:90px;height:90px;border-radius:50%;background:radial-gradient(#fff3c488,transparent 70%);transform:translateX(-50%);animation:pls 3s infinite}.s-whale .whl{font-size:80px;top:28%;left:0;animation:swim 11s linear infinite reverse}.s-whale .bub{font-size:18px;bottom:0;animation:bbl 4s ease-in infinite}.s-whale .b1{left:20%}.s-whale .b2{left:55%;animation-delay:1.4s}.s-whale .b3{left:80%;animation-delay:2.4s}.s-whale .cap{top:12px;width:100%;text-align:center;color:#fff3c4;font-family:Amiri,serif;font-size:22px;animation:cap 5s infinite}
+.s-cave{background:linear-gradient(#0a1030,#1b2b55)}.s-cave .moon{top:10px;right:20px;font-size:34px;animation:bob 6s infinite}.s-cave .tw{font-size:14px;animation:twk 2s infinite}.s-cave .t1{top:16%;left:20%}.s-cave .t2{top:30%;left:45%;animation-delay:.7s}.s-cave .t3{top:12%;left:68%;animation-delay:1.3s}.s-cave .cav{left:22%;right:22%;bottom:0;top:38%;border-radius:50% 50% 0 0;background:radial-gradient(#ffd76a55,#05060c 70%);border:6px solid #2b2f3d}.s-cave .zz{left:50%;bottom:28%;font-size:26px;animation:zz 3s infinite}
+.s-yusuf{background:radial-gradient(#26305e,#0a0d22)}.s-yusuf .sun{top:12px;right:18px;font-size:34px;animation:pls 3s infinite}.s-yusuf .moon{top:12px;left:18px;font-size:34px;animation:pls 3.4s infinite}.s-yusuf .orb{position:absolute;left:50%;top:50%;width:0;height:0;animation:orb 16s linear infinite}.s-yusuf .st{font-size:20px;left:0;top:0;transform:rotate(var(--a)) translateY(-64px);animation:twk 2s infinite}
+.s-bird{background:linear-gradient(#7cc5f0,#e9f6ff)}.s-bird .sun{top:8px;right:16px;font-size:34px;animation:pls 4s infinite}.s-bird .cld{font-size:44px;top:14%;animation:cd 16s linear infinite}.s-bird .c1{right:-30px}.s-bird .c2{right:120px;top:40%;animation-duration:24s}.s-bird .brd{font-size:36px;left:0;top:0;animation:fly 6s ease-in-out infinite;z-index:2}
+
+#me{display:flex;align-items:center;gap:6px;background:none;border:0;color:var(--gold);font:700 12px inherit}
+#me .pf{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:700 17px Amiri,serif;color:#1a1405;background:conic-gradient(from var(--a),#d9b86c,#5fcf8f,#d9b86c);animation:spin 4s linear infinite;overflow:hidden;border:2px solid transparent}
+#me .pf img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+#me .nm span{display:inline-block;animation:nw 2.4s ease-in-out infinite}@keyframes nw{50%{transform:translateY(-3px);color:#fff}}
+#ask{position:fixed;bottom:84px;left:14px;z-index:40;border:0;border-radius:99px;padding:11px 16px;background:linear-gradient(120deg,#a9741a,#d9b86c,#fff1b8,#a9741a);background-size:300% 100%;animation:sh 5s linear infinite;color:#1a1405;font-weight:800}
+.xs{position:fixed;inset:0;z-index:120;background:#000a;display:none;align-items:flex-end}.xs.on{display:flex}
+.xs .in{width:100%;max-width:620px;margin:auto;max-height:85vh;overflow:auto;background:var(--bg);border-radius:22px 22px 0 0;padding:16px;border-top:1px solid var(--gold)}
+.xs input{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--txt);font:inherit;margin:6px 0}
+.xs button.g{border:0;border-radius:12px;padding:10px 16px;background:var(--gold);color:#1a1405;font-weight:800;margin:4px 4px 4px 0}
+.xs .ans{white-space:pre-wrap;line-height:1.9;background:var(--card);border-radius:14px;padding:12px;margin:10px 0}
+.cols{display:flex;gap:10px;overflow-x:auto;padding:4px 14px 12px;scrollbar-width:none}
+.cols button{flex:none;border:0;border-radius:16px;padding:14px 16px;color:#fff;font-weight:800;background:linear-gradient(135deg,hsl(var(--h) 55% 32%),hsl(calc(var(--h) + 40) 60% 14%))}
+.cols button span{display:block;font-size:28px;animation:fl 3s ease-in-out infinite}
+.post.tw,.gi.tw{position:relative;overflow:hidden}
+.post.tw::after,.gi.tw::after{content:"🍃 🌱 🍃";position:absolute;top:-20px;right:10px;font-size:18px;pointer-events:none;animation:twf 6s linear infinite}
+@keyframes twf{to{transform:translateY(330px) rotate(25deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(2px 2px at 20% 30%,#f6e3a1 50%,transparent),radial-gradient(1.5px 1.5px at 70% 20%,#fff 50%,transparent),radial-gradient(2px 2px at 85% 65%,#f6e3a1 50%,transparent),radial-gradient(1.5px 1.5px at 35% 80%,#fff 50%,transparent),radial-gradient(2px 2px at 55% 55%,#d9b86c 50%,transparent);animation:tw2 4s ease-in-out infinite alternate}
+@keyframes tw2{from{opacity:.15}to{opacity:.7}}
+#app{position:relative;z-index:1}
+.post,.gi{transition:transform .25s,box-shadow .25s}.post:hover,.gi:hover{transform:translateY(-3px);box-shadow:0 10px 28px #d9b86c33}.post:active,.gi:active{transform:scale(.98)}
+.top .logo{background:linear-gradient(90deg,#d9b86c,#fff6cf,#5fcf8f,#d9b86c);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 5s linear infinite}
+.pl,.ph .ring{filter:drop-shadow(0 0 8px #d9b86c88)}
+.dk{margin:2px 14px 12px;border-radius:20px;padding:14px;text-align:center;color:#fff;background:linear-gradient(120deg,#0f3d2e,#1d6b4d,#0f3d2e);background-size:250% 100%;animation:sh 8s linear infinite;border:1px solid #d9b86c88}
+.dk b{display:block;font:700 19px Amiri,serif;color:#f6e3a1;min-height:30px;animation:up .6s}
+.dk button{margin-top:8px;border:0;border-radius:99px;padding:9px 20px;font-weight:800;background:radial-gradient(circle at 35% 30%,#fff3bf,#d9b86c);color:#1a1405;animation:pu 2.5s infinite}.dk button:active{transform:scale(.92)}
+.dk small{display:block;color:#cfe8dc;margin-top:6px}
+.fx{position:fixed;z-index:130;pointer-events:none;font-size:22px;animation:rs 1.3s ease-out forwards}
+.cols button{transition:transform .2s}.cols button:active{transform:scale(.92)}
+.ask,#ask{box-shadow:0 8px 24px #d9b86c55}
+#me .nm{white-space:nowrap;max-width:64px;overflow:hidden;text-overflow:ellipsis;background:linear-gradient(90deg,#d9b86c,#fff,#5fcf8f,#d9b86c);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 3s linear infinite}.top .logo{white-space:nowrap;font-size:26px}
+.pcard{display:flex;align-items:center;justify-content:center;gap:10px;margin:2px 14px 12px;padding:12px;border-radius:20px;background:linear-gradient(135deg,#12342a,#0d241b);border:1px solid #d9b86c66}
+.pcard .r{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font:700 26px Amiri,serif;color:#1a1405;background:conic-gradient(from var(--a),#d9b86c,#5fcf8f,#d9b86c);animation:spin 4s linear infinite;overflow:hidden;background-size:cover}
+.pcard .r.i{background-size:cover;background-position:center;animation:none;border:2px solid #d9b86c}
+.pcard .m{text-align:center;color:#f4f0e6;font-size:12px;flex:1}.pcard .m b{display:block;color:#f6e3a1;font-size:14px}
+.pcard .h{font-size:26px;animation:pls 1.6s infinite}
+.pcard button{border:0;border-radius:99px;padding:6px 14px;background:#d9b86c;color:#1a1405;font-weight:800;margin-top:4px}
+.rails h4{margin:14px 14px 8px;color:var(--gold);font-size:15px;display:flex;justify-content:space-between}
+.rr{display:flex;gap:12px;overflow-x:auto;padding:0 14px 6px;scrollbar-width:none}
+.rc{flex:none;width:176px;border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--line);position:relative;animation:up .5s both;transition:transform .2s}.rc:active{transform:scale(.95)}
+.rc .im{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#12342a,#06150f);display:grid;place-items:center;font-size:34px;overflow:hidden}
+.rc .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rc .im::after{content:"▶";position:absolute;right:8px;bottom:8px;width:30px;height:30px;border-radius:50%;background:#000a;color:#fff;display:grid;place-items:center;font-size:12px;animation:pu 2.2s infinite}
+.rc b{display:block;padding:8px 10px 0;font-size:12.5px;line-height:1.5;height:46px;overflow:hidden}.rc small{display:block;padding:0 10px 10px;color:var(--mut);font-size:11px}
+.pav{width:120px;height:120px;border-radius:50%;margin:10px auto;display:grid;place-items:center;font-size:56px;background:conic-gradient(from var(--a),#d9b86c,#5fcf8f,#d9b86c);animation:spin 4s linear infinite;background-size:cover;background-position:center}
+.pav.i{animation:none;border:3px solid #d9b86c}
+.emo{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0}.emo span{font-size:26px;padding:6px 8px;border-radius:12px;background:var(--card);border:1px solid var(--line)}.emo span:active{transform:scale(.9)}
+.xs label.g{display:inline-block;cursor:pointer}
+.exg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 14px 6px}.exg button{border:0;border-radius:14px;padding:12px 4px;color:#fff;font-weight:800;font-size:12px;background:linear-gradient(135deg,hsl(var(--h) 55% 30%),hsl(calc(var(--h) + 40) 60% 14%))}.exg button span{display:block;font-size:24px;animation:fl 3s ease-in-out infinite}
+.rnd{display:block;width:calc(100% - 28px);margin:6px 14px 10px;border:0;border-radius:16px;padding:13px;font-weight:800;background:linear-gradient(120deg,#a9741a,#d9b86c,#fff1b8,#a9741a);background-size:300% 100%;animation:sh 5s linear infinite;color:#1a1405}
+#sf{position:fixed;inset:0;z-index:150;background:#000;display:none}#sf.on{display:block;animation:up .35s both}
+#sf .sl{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none}
+.si{height:100vh;height:100dvh;scroll-snap-align:start;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 50% 30%,#12342a,#000 70%)}
+.si .sv{position:relative;width:min(100vw,calc(100dvh*.5625));height:100%;background:#000}.si iframe{width:100%;height:100%;border:0}
+.si .em{position:absolute;inset:0;display:grid;place-items:center;font-size:64px;animation:fl 3s ease-in-out infinite;pointer-events:none}
+.si .sm{position:absolute;bottom:26px;right:14px;left:84px;color:#fff;text-shadow:0 2px 10px #000;pointer-events:none}.si.act .sm{animation:up .6s both}
+.si .sm b{display:block;font-size:15px;line-height:1.6}.si .sm small{color:#f6e3a1}.si .sm i{font-style:normal;background:#d9b86c;color:#1a1405;border-radius:99px;padding:1px 9px;font-size:11px;font-weight:800;margin-inline-end:6px}
+.si .ac{position:absolute;bottom:30px;left:12px;display:flex;flex-direction:column;gap:14px;z-index:3}
+.si .ac button{width:48px;height:48px;border-radius:50%;border:0;background:#0009;color:#fff;font-size:22px;backdrop-filter:blur(6px);animation:fl 3.5s ease-in-out infinite}.si .ac button.on{background:#d6455a}.si .ac button:active{transform:scale(.85)}
+#sf .x{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:5;width:40px;height:40px;border-radius:50%;border:0;background:#000a;color:#fff;font-size:18px}
+#sf .tt{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));left:0;right:0;text-align:center;z-index:4;color:#f6e3a1;font:700 18px Amiri,serif;pointer-events:none}
+.hb{position:absolute;font-size:90px;z-index:6;pointer-events:none;animation:bh .8s ease-out forwards}
+.shb{flex:none;border:0;border-radius:16px;padding:14px 16px;color:#1a1405;font-weight:800;background:linear-gradient(120deg,#d9b86c,#fff1b8,#d9b86c);background-size:300% 100%;animation:sh 4s linear infinite}.shb span{display:block;font-size:28px;animation:pls 1.6s infinite}
+.xf h4{margin:16px 14px 4px;color:var(--gold);font-size:16px}.xf>small{display:block;margin:0 14px 10px;color:var(--mut)}
+.vb{margin:0 14px 14px;border-radius:18px;overflow:hidden;background:var(--card);border:1px solid var(--line);animation:up .5s both;transition:transform .2s,box-shadow .2s}.vb:active{transform:scale(.98)}
+.vb .im{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#12342a,#06150f);display:grid;place-items:center;font-size:44px;overflow:hidden}
+.vb .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vb .im::after{content:"▶";position:absolute;inset:auto auto 10px 10px;width:40px;height:40px;border-radius:50%;background:#000b;color:#fff;display:grid;place-items:center;animation:pu 2.2s infinite}
+.vb .im i{position:absolute;top:8px;right:8px;font-style:normal;z-index:2;background:linear-gradient(120deg,#d6455a,#ff9a5a);color:#fff;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:800;animation:pls 2s infinite}
+.vb .t{padding:10px 12px 0;font-weight:800;line-height:1.6}.vb .s{padding:0 12px 12px;color:var(--gold);font-size:12px}
+.xf .more2{display:block;margin:0 14px 18px;width:calc(100% - 28px);border:1px solid var(--gold);background:none;color:var(--gold);border-radius:14px;padding:12px;font-weight:800}
+.cvr,.rc .im,.vb .im{background-size:cover;background-position:center}
+.th .cvr[data-a]~.pl{position:absolute!important;inset:auto auto 10px 10px!important;transform:none!important;width:38px!important;height:38px!important;font-size:17px!important;margin:0!important}
+.xs a.g{text-decoration:none;display:inline-block;border-radius:12px;padding:10px 16px;background:var(--gold);color:#1a1405;font-weight:800;margin:4px 4px 4px 0}
+.qa{height:150px;border-radius:16px;margin:10px 0;display:grid;place-items:center;font-size:64px;animation:fl 3s ease-in-out infinite}
+
+
+#qm{position:fixed;left:8px;right:8px;bottom:76px;z-index:60;border-radius:16px;overflow:hidden;background:#111;border:1px solid #d9b86c;display:none;box-shadow:0 10px 30px #000a}#qm.on{display:block;animation:up .4s both}
+#qm .qh{display:flex;justify-content:space-between;align-items:center;padding:6px 12px;color:#f6e3a1;font-size:13px}#qm .qh button{border:0;background:none;color:#fff;font-size:16px;padding:2px 8px}
+#qm iframe{width:100%;height:300px;border:0;display:block}#qm.min iframe{height:0}
+.qk{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0;padding:10px;border-radius:16px;background:linear-gradient(135deg,hsl(var(--h) 45% 22%),hsl(calc(var(--h) + 40) 50% 10%));border:1px solid var(--line)}
+.qk b{flex:1;min-width:120px}.qa2{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:24px;background:#0006;animation:pls 2.4s infinite}
+
+
+/* ===== نظام الحركة الموحّد ===== */
+:root{--fast:180ms;--base:320ms;--slow:520ms;--ease:cubic-bezier(.22,.8,.3,1);--spring:cubic-bezier(.34,1.4,.5,1);--stagger:55ms}
+/* زخارف دايرية/لامعة بتشتغل مرة واحدة بدل ما تلف للأبد (توفير بطارية) */
+#me .pf,.pcard .r,.pav,.stories .ring:not(.seen):not(.fav){animation:spin 14s linear infinite}
+#me .nm,#me .nm span,#ask,.rnd,.shb,.dk,.top .logo,.logo{animation-iteration-count:2!important}
+.cols button span,.exg button span,.si .em,.si .ac button,.qa,.fab{animation:none!important}
+body::before{animation:none!important;opacity:.35}
+.hero>img{animation-duration:16s!important}
+.post.tw::after,.gi.tw::after{animation-iteration-count:2!important}
+/* ظهور متدرّج للكروت */
+.post,.gi,.rc,.vb{animation:up var(--base) var(--ease) both}
+:is(.post,.gi,.rc,.vb):nth-child(2){animation-delay:55ms}:is(.post,.gi,.rc,.vb):nth-child(3){animation-delay:110ms}
+:is(.post,.gi,.rc,.vb):nth-child(4){animation-delay:165ms}:is(.post,.gi,.rc,.vb):nth-child(n+5){animation-delay:220ms}
+/* ضغطة موحّدة */
+:is(button,.post,.gi,.rc,.vb,.chip,.nav>*):active{transform:scale(.96)}
+:is(button,.post,.gi,.rc,.vb){transition:transform var(--fast) var(--ease),box-shadow var(--fast) var(--ease)}
+:focus-visible{outline:2px solid var(--gold,#d9b86c);outline-offset:2px}
+.xs.on .in{animation:pop var(--slow) var(--spring)}
+/* تجميد كل الحركة لو التبويب مخفي */
+html.idle *,html.idle *::before,html.idle *::after{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="splash"><div class="logo">اسمع دين</div></div>
+<div id="app"></div>
+<div id="ov"><div class="bar"><button class="back" onclick="closePlayer()" aria-label="رجوع">→</button><b id="ovt" style="font-size:15px"></b></div>
+<div id="pbox"><div id="yt"></div></div><div class="in" id="oi"></div></div>
+<div class="toast" id="toast"></div>
+<nav class="nav" id="nav"></nav>
+<script>
+// بيانات اسمع دين — url = فيديو/قائمة تشغيل يوتيوب، q = كلمات بحث (درس لسه ملوش فيديو)، short = مقطع قصير، g = رقم القسم لو مختلف عن قسم الشيخ
+const DATA = {
+ "groups": [
+  [
+   0,
+   "شباب"
+  ],
+  [
+   1,
+   "دعاة ومحاضرون"
+  ],
+  [
+   2,
+   "تلاوات"
+  ],
+  [
+   3,
+   "منوّعات"
+  ]
+ ],
+ "scholars": [
+  {
+   "name": "دكتور أحمد العربي",
+   "g": 0,
+   "sections": [
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "كيف نصل إلى القلب السليم؟",
+       "url": "https://www.youtube.com/watch?v=ZWraKKwNfpE"
+      },
+      {
+       "title": "الأخلاء يومئذ بعضهم لبعض عدو إلا المتقين",
+       "url": "https://www.youtube.com/watch?v=xwywIkJF6HE"
+      },
+      {
+       "title": "هذا هو القلب — مقطع مؤثر",
+       "url": "https://www.youtube.com/watch?v=sAbgN3H32bw"
+      },
+      {
+       "title": "لمثل هذا فأعدوا",
+       "url": "https://www.youtube.com/watch?v=ZRFrXCvydog",
+       "short": 1
+      },
+      {
+       "title": "فاهم 38 — اعتزال إبراهيم عليه السلام",
+       "url": "https://www.youtube.com/watch?v=si994Z9BAr8"
+      }
+     ]
+    },
+    {
+     "title": "القرآن",
+     "videos": [
+      {
+       "title": "أنا صاحبك القرآن.. كيف يكون القرآن صاحبي؟",
+       "url": "https://www.youtube.com/watch?v=lkX6mcCD3CI"
+      },
+      {
+       "title": "فاهم 37 — عن القرآن الكريم",
+       "url": "https://www.youtube.com/watch?v=hK-9Be0prrA"
+      },
+      {
+       "title": "هذا هو القرآن — مقطع رائع",
+       "url": "https://www.youtube.com/watch?v=XC-JV2342ic"
+      },
+      {
+       "title": "تأثير القرآن",
+       "url": "https://www.youtube.com/watch?v=8jlOpkjCNzM",
+       "short": 1
+      },
+      {
+       "title": "كذلك لنثبت به فؤادك",
+       "url": "https://www.youtube.com/watch?v=ssao8w-8_Pg",
+       "short": 1
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "فاهم 36 — أول ما يحاسب به العبد الصلاة",
+       "url": "https://www.youtube.com/watch?v=63_AOCldyXo"
+      },
+      {
+       "title": "ماذا أريد من رمضان؟",
+       "url": "https://www.youtube.com/watch?v=9TjlLsX9iA0"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "دعاء يذيب قساوة القلب",
+       "url": "https://www.youtube.com/watch?v=ZFXEXTRhOTQ",
+       "short": 1
+      },
+      {
+       "title": "نفر إليك منا فاعف عنا",
+       "url": "https://www.youtube.com/watch?v=dTiPXjPwj-4",
+       "short": 1
+      },
+      {
+       "title": "أنت أحق من ذُكر",
+       "url": "https://www.youtube.com/watch?v=U6L4ZeIuCu4",
+       "short": 1
+      },
+      {
+       "title": "مناجاة الله عز وجل والأُنس به",
+       "url": "https://www.youtube.com/watch?v=Tr9eZ-M6mUk"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "أحمد العربي الإخلاص لله",
+       "g": 3
+      },
+      {
+       "title": "الصبر",
+       "q": "أحمد العربي الصبر",
+       "g": 3
+      },
+      {
+       "title": "الشكر",
+       "q": "أحمد العربي الشكر",
+       "g": 3
+      },
+      {
+       "title": "التوكل على الله",
+       "q": "أحمد العربي التوكل على الله",
+       "g": 3
+      },
+      {
+       "title": "خطبة وموعظة",
+       "q": "أحمد العربي خطبة وموعظة",
+       "g": 3
+      },
+      {
+       "title": "دروس ومحاضرات",
+       "q": "أحمد العربي دروس ومحاضرات",
+       "g": 3
+      },
+      {
+       "title": "الاستغفار",
+       "q": "أحمد العربي الاستغفار",
+       "g": 3
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "أحمد العربي الصدق",
+       "g": 3
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "أحمد العربي حسن الخلق",
+       "g": 3
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "الخشوع في الصلاة",
+       "q": "أحمد العربي الخشوع في الصلاة",
+       "g": 3
+      },
+      {
+       "title": "أحكام الزكاة",
+       "q": "أحمد العربي أحكام الزكاة",
+       "g": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "أمجد سمير",
+   "g": 0,
+   "sections": [
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "اجعل يقينك قوياً.. يريك الله المعجزات",
+       "url": "https://www.youtube.com/watch?v=AjipD2d2rWo"
+      },
+      {
+       "title": "حقيقة الدنيا؟",
+       "url": "https://www.youtube.com/watch?v=pqOdVMSO_xE"
+      },
+      {
+       "title": "كيف تهرب من ظلمات الدنيا؟",
+       "url": "https://www.youtube.com/watch?v=TlAzTpwh2Cw"
+      },
+      {
+       "title": "من هم الصالحين؟",
+       "url": "https://www.youtube.com/watch?v=e0yMlaICASA"
+      },
+      {
+       "title": "كيف سرقت المقارنة سعادتك دون أن تشعر؟",
+       "url": "https://www.youtube.com/watch?v=5uMX_lW1Myw"
+      },
+      {
+       "title": "سبب الخمول والكسل والتشتت وإدمان التليفون",
+       "url": "https://www.youtube.com/watch?v=YcT0yM_fHeU"
+      },
+      {
+       "title": "كيف يوازن المسلم بين العمل والعبادة؟",
+       "url": "https://www.youtube.com/watch?v=b5_sznU0Pm4"
+      },
+      {
+       "title": "ليلة رأس السنة",
+       "url": "https://www.youtube.com/watch?v=EC4esPiVeVw"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "قصة توبتي",
+       "url": "https://www.youtube.com/watch?v=X18eDcft4G4"
+      },
+      {
+       "title": "رسالة لكل من أرهقته العودة للمعاصي بعد التوبة",
+       "url": "https://www.youtube.com/watch?v=LELh3kHmyTw"
+      },
+      {
+       "title": "كلمتين هيطمنوك ويريحوا قلبك",
+       "url": "https://www.youtube.com/watch?v=kwRY_bleW2w"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "أسرار الصلاة",
+       "url": "https://www.youtube.com/watch?v=1473X0E1Cqk"
+      }
+     ]
+    },
+    {
+     "title": "قصص",
+     "videos": [
+      {
+       "title": "قصة غريبة",
+       "url": "https://www.youtube.com/watch?v=Rmp0Azp7OAo",
+       "short": 1
+      },
+      {
+       "title": "تأملات في قصة أصحاب السبت",
+       "url": "https://www.youtube.com/watch?v=wyXbLGlynbQ"
+      },
+      {
+       "title": "واجه الدنيا بقلب لا يخاف — أبو ذر الغفاري",
+       "url": "https://www.youtube.com/watch?v=lsZrPXB7VsE"
+      },
+      {
+       "title": "قصة سليمان عليه السلام مع الهدهد",
+       "url": "https://www.youtube.com/watch?v=oThH4gXdW0k"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "سمير مصطفى",
+   "g": 0,
+   "sections": [
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "من يسألني فأعطيه؟ ومن يتوب اليوم فأغفر له؟",
+       "url": "https://www.youtube.com/watch?v=GhCy5yqHhd4"
+      },
+      {
+       "title": "موعظة تهز القلوب",
+       "url": "https://www.youtube.com/watch?v=090VEfM9LOw"
+      },
+      {
+       "title": "أحسن الظن بالله ولا تستسلم",
+       "url": "https://www.youtube.com/watch?v=jrffu7M7Uk0"
+      },
+      {
+       "title": "كيف نتخفف من ذنوبنا؟",
+       "url": "https://www.youtube.com/watch?v=S5_3QUFkZV0"
+      }
+     ]
+    },
+    {
+     "title": "قصص",
+     "videos": [
+      {
+       "title": "مسجد الصحابة — وصية راهب",
+       "url": "https://www.youtube.com/watch?v=m6S4vPy0P54"
+      },
+      {
+       "title": "أبصر طريقك ج1",
+       "url": "https://www.youtube.com/watch?v=y2ZDAIyxzNM"
+      }
+     ]
+    },
+    {
+     "title": "الموت والآخرة",
+     "videos": [
+      {
+       "title": "من مشاعر الموت وألم الفراق",
+       "url": "https://www.youtube.com/watch?v=oUFSYNcNEMU"
+      },
+      {
+       "title": "خطبة النذير العريان (ذكر الموت)",
+       "url": "https://www.youtube.com/watch?v=bhFBiMrQA2o"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "اقف انتباه",
+       "url": "https://www.youtube.com/watch?v=-FSkQOm1PDA"
+      },
+      {
+       "title": "ستعشق الصلاة — الخشوع وقوة التوحيد",
+       "url": "https://www.youtube.com/watch?v=TInVMFxX2PI"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "موعظة مؤثرة",
+       "q": "سمير مصطفى موعظة مؤثرة"
+      },
+      {
+       "title": "الموت والآخرة",
+       "q": "سمير مصطفى الموت والآخرة"
+      },
+      {
+       "title": "القلب والتوبة",
+       "q": "سمير مصطفى القلب والتوبة"
+      },
+      {
+       "title": "الصلاة والخشوع",
+       "q": "سمير مصطفى الصلاة والخشوع"
+      },
+      {
+       "title": "الدعاء",
+       "q": "سمير مصطفى الدعاء"
+      },
+      {
+       "title": "الصبر",
+       "q": "سمير مصطفى الصبر"
+      },
+      {
+       "title": "حسن الخاتمة",
+       "q": "سمير مصطفى حسن الخاتمة"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "سمير مصطفى الاستغفار"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ محمد الغليظ",
+   "g": 0,
+   "sections": [
+    {
+     "title": "القرآن",
+     "videos": [
+      {
+       "title": "القرآن — مقطع مؤثر",
+       "url": "https://www.youtube.com/watch?v=gtKC6Xa_RnU"
+      },
+      {
+       "title": "كل يوم آية (18)",
+       "url": "https://www.youtube.com/watch?v=yhgqGgXTbfI"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "مهما وقعت أو انتكست افتكر إنه يبدأ ويعيد",
+       "url": "https://www.youtube.com/watch?v=NnvG_Ahz-Vk"
+      },
+      {
+       "title": "مشكلته في الدين المؤثر في الحياة",
+       "url": "https://www.youtube.com/watch?v=uGWRj9-N3BU"
+      },
+      {
+       "title": "من أين أبدأ؟ (1)",
+       "url": "https://www.youtube.com/watch?v=Bgjz1VxODjY"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "إنها الصلاة — أستحي من الله",
+       "url": "https://www.youtube.com/watch?v=mH1RMAhwDa8"
+      },
+      {
+       "title": "لو مبتصليش أو بتقطع في الصلاة",
+       "url": "https://www.youtube.com/watch?v=LUhi8GoeBGw"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "روشتة ابن القيم لاستجابة الدعاء",
+       "url": "https://www.youtube.com/watch?v=wvU6jCXKdv4"
+      },
+      {
+       "title": "أنا مش لوحدي — معك الملك",
+       "url": "https://www.youtube.com/watch?v=S_FXjpy2FVk"
+      },
+      {
+       "title": "دعاء فيه كل اللي نفسك فيه",
+       "url": "https://www.youtube.com/watch?v=7zwh51ysJts"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وزواج",
+     "videos": [
+      {
+       "title": "هل مبدأ حقي وحقك ينفع في الزواج؟",
+       "url": "https://www.youtube.com/watch?v=PkOmS0EYEhw"
+      },
+      {
+       "title": "نصيحة لكل زوجة صاحب رسالة حقيقية",
+       "url": "https://www.youtube.com/watch?v=VBWZMrxkJxk"
+      },
+      {
+       "title": "إيه صفات الزوج الصالح؟",
+       "url": "https://www.youtube.com/watch?v=dlByIzPPRR0"
+      }
+     ]
+    },
+    {
+     "title": "قصص",
+     "videos": [
+      {
+       "title": "بيده الأمر — قصة مع مادة السيوتيكال",
+       "url": "https://www.youtube.com/watch?v=3m3Nb7O7vgs"
+      },
+      {
+       "title": "الله يراك — قصة هادفة",
+       "url": "https://www.youtube.com/watch?v=fl5gzROdu0Q"
+      },
+      {
+       "title": "مفيش تاني",
+       "url": "https://www.youtube.com/watch?v=MRfO8IfuFE8"
+      }
+     ]
+    },
+    {
+     "title": "قوائم تشغيل",
+     "videos": [
+      {
+       "title": "فيديوهات مميزة للشيخ محمد الغليظ",
+       "url": "https://www.youtube.com/playlist?list=PL2Sst6o2QU5ShcUdVN6WmSOeCF1ijGfLb"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ياسر ممدوح",
+   "g": 0,
+   "sections": [
+    {
+     "title": "أسرة وزواج",
+     "videos": [
+      {
+       "title": "خش هتجيبك!",
+       "url": "https://www.youtube.com/watch?v=M7ZqHNnTQs0"
+      },
+      {
+       "title": "اتطلقتي يا فالحة",
+       "url": "https://www.youtube.com/watch?v=34_Bj67N6Fk"
+      },
+      {
+       "title": "الخديعة",
+       "url": "https://www.youtube.com/watch?v=mIA00ifqbSg",
+       "short": 1
+      },
+      {
+       "title": "مش مقتنعة بالحجاب",
+       "url": "https://www.youtube.com/watch?v=qm-63nnpA6g"
+      }
+     ]
+    },
+    {
+     "title": "إيمان وعقيدة",
+     "videos": [
+      {
+       "title": "بدأت أشك في الدين",
+       "url": "https://www.youtube.com/watch?v=RIaaFH6d6tA"
+      },
+      {
+       "title": "لو بصلي بس!",
+       "url": "https://www.youtube.com/watch?v=byJfW3Wb5ms"
+      },
+      {
+       "title": "العكاك والملاك",
+       "url": "https://www.youtube.com/watch?v=OY5uHXTnCxQ"
+      },
+      {
+       "title": "هو ده قرآن؟؟",
+       "url": "https://www.youtube.com/watch?v=O--nWTmxNd4"
+      },
+      {
+       "title": "الذين يظنون أنهم ملاقوا ربهم",
+       "url": "https://www.youtube.com/watch?v=xNufizcaMFQ",
+       "short": 1
+      }
+     ]
+    },
+    {
+     "title": "قصص",
+     "videos": [
+      {
+       "title": "تعرف يعني إيه ست بجد — السيدة عائشة",
+       "url": "https://www.youtube.com/watch?v=zT4PXuZJdxw"
+      }
+     ]
+    },
+    {
+     "title": "قوائم تشغيل",
+     "videos": [
+      {
+       "title": "فيديو الجمعة — كل الحلقات",
+       "url": "https://www.youtube.com/playlist?list=PLVdjsGOClzyHqLF_bgbxdPxAKHpGdkqx2"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "حازم شومان",
+   "g": 0,
+   "sections": [
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "أسباب النجاح في الدنيا والدين — طريقة تفكيرك",
+       "url": "https://www.youtube.com/watch?v=-pmRKYcbFI4"
+      },
+      {
+       "title": "أكتر فيديو تحفيزي ممكن تشوفه",
+       "url": "https://www.youtube.com/watch?v=J71rHj7gyCU",
+       "short": 1
+      },
+      {
+       "title": "حزنك وهم",
+       "url": "https://www.youtube.com/watch?v=4t3_HOTG0JY"
+      },
+      {
+       "title": "حقيقة الدنيا",
+       "url": "https://www.youtube.com/watch?v=DFCrbwzTp4Q"
+      },
+      {
+       "title": "الثقة في الله",
+       "url": "https://www.youtube.com/watch?v=5VQUEPuDYok"
+      }
+     ]
+    },
+    {
+     "title": "قصص",
+     "videos": [
+      {
+       "title": "﴿وينقلب إلى أهله مسرورًا﴾ — قصة أبي سلمة وأم سلمة",
+       "url": "https://www.youtube.com/watch?v=Mw_xZ101Xps"
+      },
+      {
+       "title": "شفيعًا لأصحابه — حكاية آية",
+       "url": "https://www.youtube.com/watch?v=RcIs_XYBDws"
+      },
+      {
+       "title": "قصة مؤثرة في فضل قراءة القرآن",
+       "url": "https://www.youtube.com/watch?v=lJivOl23G6U"
+      },
+      {
+       "title": "عجائب الصلاة على رسول الله ﷺ — ج2",
+       "url": "https://www.youtube.com/watch?v=wcroQmXWtGM"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "والله هنقدر نتوب يا شباب",
+       "url": "https://www.youtube.com/watch?v=-63VeI1gKXg"
+      },
+      {
+       "title": "مهما بعدت — الرجوع إلى الله",
+       "url": "https://www.youtube.com/watch?v=nCNooKzdfA0"
+      },
+      {
+       "title": "فيديو تحفيزي عن التوبة والندم",
+       "url": "https://www.youtube.com/watch?v=2JkQUvroXRc"
+      },
+      {
+       "title": "التوبة — مقطع جميل",
+       "url": "https://www.youtube.com/watch?v=YZebJPi9Qo8"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وزواج",
+     "videos": [
+      {
+       "title": "الفجوة بين الآباء والأبناء",
+       "url": "https://www.youtube.com/watch?v=l9j708-JDIE"
+      },
+      {
+       "title": "كلمة مؤثرة عن الحياة الزوجية",
+       "url": "https://www.youtube.com/watch?v=lVVahYXUlsU"
+      }
+     ]
+    },
+    {
+     "title": "قوائم تشغيل",
+     "videos": [
+      {
+       "title": "مقاطع الصلاة",
+       "url": "https://www.youtube.com/playlist?list=PLVPp4tYPys9O-Vlcp8dnmaShe6eZ2Y3Uq"
+      },
+      {
+       "title": "خطب الجمعة",
+       "url": "https://www.youtube.com/playlist?list=PLVPp4tYPys9MxsCWyA5z60h55qMTheKjz"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "شريف علي",
+   "g": 0,
+   "sections": [
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "٥- ثمرات الخوف",
+       "url": "https://www.youtube.com/watch?v=mQxALzCnlNU"
+      },
+      {
+       "title": "٢٦- حُب الدنيا",
+       "url": "https://www.youtube.com/watch?v=xtBD4GoaYtE"
+      },
+      {
+       "title": "٧- الذكر يدفع الهم والغم",
+       "url": "https://www.youtube.com/watch?v=2VHpBxoBwNE"
+      },
+      {
+       "title": "مُعاملة الكريم",
+       "url": "https://www.youtube.com/watch?v=_8q-7fyCyyU"
+      },
+      {
+       "title": "لا تفتحه!",
+       "url": "https://www.youtube.com/watch?v=jXgwAEfAsVw"
+      },
+      {
+       "title": "أين المفر…؟",
+       "url": "https://www.youtube.com/watch?v=VZbnsz1M8Es"
+      },
+      {
+       "title": "﴿ثُمَّ يَتُوبُونَ مِن قَرِيبٍ﴾",
+       "url": "https://www.youtube.com/watch?v=yLGZvdlggWY"
+      },
+      {
+       "title": "علمني نوحٌ عليه السلام",
+       "url": "https://www.youtube.com/watch?v=dKxkqEFYuUU"
+      },
+      {
+       "title": "شفاء القلب في زمن الفتن — من سورة يوسف",
+       "url": "https://www.youtube.com/watch?v=StsGAgA37fY"
+      }
+     ]
+    },
+    {
+     "title": "القرآن",
+     "videos": [
+      {
+       "title": "﴿قَدْ أَفْلَحَ الْمُؤْمِنُونَ﴾",
+       "url": "https://www.youtube.com/watch?v=kUcfwqp_2gg"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "نعمة التوبة — تخيّل حياتك بلا توبة",
+       "url": "https://www.youtube.com/watch?v=oZ6Paggql-A"
+      },
+      {
+       "title": "رسالة لكل من أرهقته ذنوب الخلوات",
+       "url": "https://www.youtube.com/watch?v=DXlyygjcRA8"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "عبد العزيز الطريفي",
+   "g": 0,
+   "sections": [
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "الصحابة.. الجيل الذي غيّر العالم",
+       "url": "https://www.youtube.com/watch?v=-2nKpmmaS6I"
+      },
+      {
+       "title": "الدنيا ليست لك (الابتلاء)",
+       "url": "https://www.youtube.com/watch?v=M4JC2uvYBYs"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "كيف تحافظ على الصلاة؟",
+       "url": "https://www.youtube.com/watch?v=z9MMPhdIe2U"
+      },
+      {
+       "title": "المحافظة على الصلاة",
+       "url": "https://www.youtube.com/watch?v=RmdjSW8_Rl4"
+      },
+      {
+       "title": "حكم تارك الصلاة",
+       "url": "https://www.youtube.com/watch?v=feF28UkkJLs"
+      }
+     ]
+    },
+    {
+     "title": "إيمان وعقيدة",
+     "videos": [
+      {
+       "title": "الإيمان قول وعمل واعتقاد",
+       "url": "https://www.youtube.com/watch?v=eNPCx1VXzuw"
+      },
+      {
+       "title": "الزيغ موجود في القلب قبل النظر",
+       "url": "https://www.youtube.com/watch?v=HzJZxOiBN20"
+      },
+      {
+       "title": "الصراع بين الكفر والإيمان",
+       "url": "https://www.youtube.com/watch?v=o9NEC6ijrSw",
+       "short": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الدكتور عمرو خالد",
+   "g": 1,
+   "sections": [
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصة سيدنا صالح في 6 مشاهد",
+       "url": "https://www.youtube.com/watch?v=BUP0XEH3VTI"
+      },
+      {
+       "title": "قصة نوح عليه السلام: الصبر وحب الناس",
+       "url": "https://www.youtube.com/watch?v=TCFv79OOeR0"
+      },
+      {
+       "title": "قصة سيدنا إبراهيم مع أبيه",
+       "url": "https://www.youtube.com/watch?v=kxAHJhqPAFY"
+      },
+      {
+       "title": "قصة نوح: مشاهد من الطوفان",
+       "url": "https://www.youtube.com/watch?v=_K32nsRuIrE"
+      },
+      {
+       "title": "قصة حب آدم وحواء في 7 خطوات",
+       "url": "https://www.youtube.com/watch?v=M-mqNh5Mssc"
+      },
+      {
+       "title": "معجزات الله مع آدم ونوح وإبراهيم وصالح وهود",
+       "url": "https://www.youtube.com/watch?v=mVr4D1i4iDw"
+      },
+      {
+       "title": "قصة نوح عليه السلام (ج1)",
+       "url": "https://www.youtube.com/watch?v=it-2et_8prA"
+      },
+      {
+       "title": "خلق آدم في 7 خطوات",
+       "url": "https://www.youtube.com/watch?v=VmUzRRX5l-o"
+      },
+      {
+       "title": "قصة آدم عليه السلام (ج1)",
+       "url": "https://www.youtube.com/watch?v=4QPxDDa56TM"
+      },
+      {
+       "title": "قصص الأنبياء",
+       "q": "عمرو خالد قصص الأنبياء"
+      }
+     ]
+    },
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "قصص الصحابة",
+       "q": "عمرو خالد قصص الصحابة"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "كيف تحب الله",
+       "q": "عمرو خالد كيف تحب الله"
+      },
+      {
+       "title": "السكينة والطمأنينة",
+       "q": "عمرو خالد السكينة والطمأنينة"
+      },
+      {
+       "title": "تجديد الإيمان",
+       "q": "عمرو خالد تجديد الإيمان"
+      },
+      {
+       "title": "الأمل بعد اليأس",
+       "q": "عمرو خالد الأمل بعد اليأس"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "عمرو خالد الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "عمرو خالد الصدق"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ مصطفى حسني",
+   "g": 1,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "التفاؤل وحسن الظن بالله",
+       "q": "مصطفى حسني التفاؤل وحسن الظن بالله"
+      },
+      {
+       "title": "الرضا بالقدر",
+       "q": "مصطفى حسني الرضا بالقدر"
+      },
+      {
+       "title": "البداية من جديد",
+       "q": "مصطفى حسني البداية من جديد"
+      },
+      {
+       "title": "حب الله",
+       "q": "مصطفى حسني حب الله"
+      },
+      {
+       "title": "الثقة بالله",
+       "q": "مصطفى حسني الثقة بالله"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "مصطفى حسني الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "مصطفى حسني الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — مصطفى حسني",
+       "q": "مصطفى حسني أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — مصطفى حسني",
+       "q": "مصطفى حسني أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — مصطفى حسني",
+       "q": "مصطفى حسني التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — مصطفى حسني",
+       "q": "مصطفى حسني التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — مصطفى حسني",
+       "q": "مصطفى حسني التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — مصطفى حسني",
+       "q": "مصطفى حسني الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — مصطفى حسني",
+       "q": "مصطفى حسني الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — مصطفى حسني",
+       "q": "مصطفى حسني الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — مصطفى حسني",
+       "q": "مصطفى حسني الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — مصطفى حسني",
+       "q": "مصطفى حسني الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — مصطفى حسني",
+       "q": "مصطفى حسني الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — مصطفى حسني",
+       "q": "مصطفى حسني قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — مصطفى حسني",
+       "q": "مصطفى حسني قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — مصطفى حسني",
+       "q": "مصطفى حسني قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ محمد حسان",
+   "g": 1,
+   "sections": [
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "مراحل تدوين السيرة النبوية (حلقة 7)",
+       "url": "https://www.youtube.com/watch?v=U37g4Gitd6E"
+      },
+      {
+       "title": "كيف وصلت إلينا السيرة النبوية (حلقة 3)",
+       "url": "https://www.youtube.com/watch?v=Tkey2mfnTjc"
+      },
+      {
+       "title": "السيرة النبوية (1): من هو صاحب السيرة؟",
+       "url": "https://www.youtube.com/watch?v=MPl8tjef11M"
+      },
+      {
+       "title": "السيرة النبوية (8): حضانة النبي ﷺ",
+       "url": "https://www.youtube.com/watch?v=mAX3ILvQa7E"
+      },
+      {
+       "title": "السيرة النبوية (11): زواج النبي ﷺ بخديجة",
+       "url": "https://www.youtube.com/watch?v=qe1f6iL6qu4"
+      },
+      {
+       "title": "السيرة النبوية (33): حصار شعب أبي طالب",
+       "url": "https://www.youtube.com/watch?v=p-_Aj8TWpFg"
+      },
+      {
+       "title": "الجيل القرآني الفريد (لقاء 17)",
+       "url": "https://www.youtube.com/watch?v=hdv0geUWE0Q"
+      },
+      {
+       "title": "وفاة الرسول ﷺ (الدرس 209)",
+       "url": "https://www.youtube.com/watch?v=sJ3nis0GeTM"
+      },
+      {
+       "title": "كان وعداً كريماً وبشارة صادقة ﷺ",
+       "url": "https://www.youtube.com/watch?v=1c5SEI8namg"
+      },
+      {
+       "title": "سيرة النبي ﷺ",
+       "q": "محمد حسان سيرة النبي ﷺ"
+      },
+      {
+       "title": "أخلاق النبي ﷺ",
+       "q": "محمد حسان أخلاق النبي ﷺ"
+      },
+      {
+       "title": "قصص الصحابة",
+       "q": "محمد حسان قصص الصحابة"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "التوبة إلى الله",
+       "q": "محمد حسان التوبة إلى الله"
+      },
+      {
+       "title": "سكرات الموت",
+       "q": "محمد حسان سكرات الموت"
+      },
+      {
+       "title": "أهوال يوم القيامة",
+       "q": "محمد حسان أهوال يوم القيامة"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "محمد حسان الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "فضل الصلاة",
+       "q": "محمد حسان فضل الصلاة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "بر الوالدين",
+       "q": "محمد حسان بر الوالدين"
+      },
+      {
+       "title": "حقوق الزوجين",
+       "q": "محمد حسان حقوق الزوجين"
+      },
+      {
+       "title": "الصدق",
+       "q": "محمد حسان الصدق"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ محمد متولي الشعراوي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "تفسير",
+     "videos": [
+      {
+       "title": "تفسير سورة الكهف (84–87) – الحلقة 13",
+       "url": "https://www.youtube.com/watch?v=rbAf-GnhvUQ"
+      },
+      {
+       "title": "تفسير سورة الكهف (102–110) – الحلقة 15",
+       "url": "https://www.youtube.com/watch?v=4kDrNZZMM3w"
+      },
+      {
+       "title": "تفسير سورة الكهف (12–21) – الحلقة 3",
+       "url": "https://www.youtube.com/watch?v=OjwJadvZ9CA"
+      },
+      {
+       "title": "تفسير سورة الكهف (40–46) – الحلقة 8",
+       "url": "https://www.youtube.com/watch?v=RDXaUE4D7jQ"
+      },
+      {
+       "title": "تفسير سورة الكهف – الآيات 39–46",
+       "url": "https://www.youtube.com/watch?v=e3PupPDmVsw"
+      },
+      {
+       "title": "تفسير سورة الكهف – الآيات 54–63",
+       "url": "https://www.youtube.com/watch?v=TFONfQ4mzf4"
+      },
+      {
+       "title": "تفسير سورة الكهف – الآيات 83–87",
+       "url": "https://www.youtube.com/watch?v=98GXT_QH_co"
+      },
+      {
+       "title": "تفسير سورة الكهف كاملة",
+       "url": "https://www.youtube.com/watch?v=v8RngNifd2A"
+      },
+      {
+       "title": "تفسير سورة الفاتحة",
+       "q": "محمد متولي الشعراوي تفسير سورة الفاتحة"
+      },
+      {
+       "title": "تفسير سورة الكهف",
+       "q": "محمد متولي الشعراوي تفسير سورة الكهف"
+      },
+      {
+       "title": "تفسير سورة يوسف",
+       "q": "محمد متولي الشعراوي تفسير سورة يوسف"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصة سيدنا إبراهيم عليه السلام",
+       "q": "محمد متولي الشعراوي قصة سيدنا إبراهيم عليه السلام"
+      },
+      {
+       "title": "قصة سيدنا موسى عليه السلام",
+       "q": "محمد متولي الشعراوي قصة سيدنا موسى عليه السلام"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الصبر على البلاء",
+       "q": "محمد متولي الشعراوي الصبر على البلاء"
+      },
+      {
+       "title": "الرزق والتوكل على الله",
+       "q": "محمد متولي الشعراوي الرزق والتوكل على الله"
+      },
+      {
+       "title": "خواطر عن الصلاة",
+       "q": "محمد متولي الشعراوي خواطر عن الصلاة"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "محمد متولي الشعراوي الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "الإسراء والمعراج",
+       "q": "محمد متولي الشعراوي الإسراء والمعراج"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "خواطر عن الحج",
+       "q": "محمد متولي الشعراوي خواطر عن الحج"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "محمد متولي الشعراوي الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "محمد متولي الشعراوي حسن الخلق"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ إياد قنيبي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "عقيدة",
+     "videos": [
+      {
+       "title": "الرد على الإلحاد",
+       "q": "إياد قنيبي الرد على الإلحاد"
+      },
+      {
+       "title": "الأسئلة الوجودية والإيمان",
+       "q": "إياد قنيبي الأسئلة الوجودية والإيمان"
+      }
+     ]
+    },
+    {
+     "title": "تفسير",
+     "videos": [
+      {
+       "title": "تدبر القرآن",
+       "q": "إياد قنيبي تدبر القرآن"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "إياد قنيبي الإخلاص لله"
+      },
+      {
+       "title": "رقائق — إياد قنيبي",
+       "q": "إياد قنيبي رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — إياد قنيبي",
+       "q": "إياد قنيبي رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "إياد قنيبي الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "إياد قنيبي حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — إياد قنيبي",
+       "q": "إياد قنيبي التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — إياد قنيبي",
+       "q": "إياد قنيبي التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — إياد قنيبي",
+       "q": "إياد قنيبي التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — إياد قنيبي",
+       "q": "إياد قنيبي الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — إياد قنيبي",
+       "q": "إياد قنيبي الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — إياد قنيبي",
+       "q": "إياد قنيبي الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — إياد قنيبي",
+       "q": "إياد قنيبي الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — إياد قنيبي",
+       "q": "إياد قنيبي الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — إياد قنيبي",
+       "q": "إياد قنيبي الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — إياد قنيبي",
+       "q": "إياد قنيبي قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — إياد قنيبي",
+       "q": "إياد قنيبي قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — إياد قنيبي",
+       "q": "إياد قنيبي قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ خالد الجندي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "تفسير",
+     "videos": [
+      {
+       "title": "خواطر قرآنية",
+       "q": "خالد الجندي خواطر قرآنية"
+      }
+     ]
+    },
+    {
+     "title": "عقيدة",
+     "videos": [
+      {
+       "title": "شرح الأسماء الحسنى",
+       "q": "خالد الجندي شرح الأسماء الحسنى"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "أحاديث في الأخلاق",
+       "q": "خالد الجندي أحاديث في الأخلاق"
+      },
+      {
+       "title": "الصدق",
+       "q": "خالد الجندي الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "خالد الجندي حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "فقه المعاملات",
+       "q": "خالد الجندي فقه المعاملات"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "خالد الجندي الإخلاص لله"
+      },
+      {
+       "title": "رقائق — خالد الجندي",
+       "q": "خالد الجندي رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — خالد الجندي",
+       "q": "خالد الجندي رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — خالد الجندي",
+       "q": "خالد الجندي التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — خالد الجندي",
+       "q": "خالد الجندي التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — خالد الجندي",
+       "q": "خالد الجندي التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — خالد الجندي",
+       "q": "خالد الجندي الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — خالد الجندي",
+       "q": "خالد الجندي الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — خالد الجندي",
+       "q": "خالد الجندي الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — خالد الجندي",
+       "q": "خالد الجندي الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — خالد الجندي",
+       "q": "خالد الجندي الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — خالد الجندي",
+       "q": "خالد الجندي الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — خالد الجندي",
+       "q": "خالد الجندي قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — خالد الجندي",
+       "q": "خالد الجندي قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — خالد الجندي",
+       "q": "خالد الجندي قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ نبيل العوضي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "السيرة النبوية",
+       "q": "نبيل العوضي السيرة النبوية"
+      },
+      {
+       "title": "قصص الصحابة",
+       "q": "نبيل العوضي قصص الصحابة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "أخلاق المسلم",
+       "q": "نبيل العوضي أخلاق المسلم"
+      },
+      {
+       "title": "الصدق",
+       "q": "نبيل العوضي الصدق"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "قصص التائبين",
+       "q": "نبيل العوضي قصص التائبين"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "نبيل العوضي الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — نبيل العوضي",
+       "q": "نبيل العوضي التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — نبيل العوضي",
+       "q": "نبيل العوضي التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — نبيل العوضي",
+       "q": "نبيل العوضي التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — نبيل العوضي",
+       "q": "نبيل العوضي الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — نبيل العوضي",
+       "q": "نبيل العوضي الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — نبيل العوضي",
+       "q": "نبيل العوضي الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — نبيل العوضي",
+       "q": "نبيل العوضي الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — نبيل العوضي",
+       "q": "نبيل العوضي الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — نبيل العوضي",
+       "q": "نبيل العوضي الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — نبيل العوضي",
+       "q": "نبيل العوضي قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — نبيل العوضي",
+       "q": "نبيل العوضي قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — نبيل العوضي",
+       "q": "نبيل العوضي قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ عمر عبد الكافي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "عذاب القبر",
+       "q": "عمر عبد الكافي عذاب القبر"
+      },
+      {
+       "title": "قصص التائبين",
+       "q": "عمر عبد الكافي قصص التائبين"
+      },
+      {
+       "title": "الجنة والنار",
+       "q": "عمر عبد الكافي الجنة والنار"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "عمر عبد الكافي الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصة يوسف عليه السلام",
+       "q": "عمر عبد الكافي قصة يوسف عليه السلام"
+      },
+      {
+       "title": "قصص الأنبياء — عمر عبد الكافي",
+       "q": "عمر عبد الكافي قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — عمر عبد الكافي",
+       "q": "عمر عبد الكافي قصص الأنبياء محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "عمر عبد الكافي الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — عمر عبد الكافي",
+       "q": "عمر عبد الكافي أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — عمر عبد الكافي",
+       "q": "عمر عبد الكافي أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — عمر عبد الكافي",
+       "q": "عمر عبد الكافي التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — عمر عبد الكافي",
+       "q": "عمر عبد الكافي التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — عمر عبد الكافي",
+       "q": "عمر عبد الكافي التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — عمر عبد الكافي",
+       "q": "عمر عبد الكافي الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — عمر عبد الكافي",
+       "q": "عمر عبد الكافي الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — عمر عبد الكافي",
+       "q": "عمر عبد الكافي الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — عمر عبد الكافي",
+       "q": "عمر عبد الكافي الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — عمر عبد الكافي",
+       "q": "عمر عبد الكافي الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — عمر عبد الكافي",
+       "q": "عمر عبد الكافي الدعاء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ محمد العريفي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "استمتع بحياتك",
+       "q": "محمد العريفي استمتع بحياتك"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "محمد العريفي الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "أسرار الصلاة",
+       "q": "محمد العريفي أسرار الصلاة"
+      }
+     ]
+    },
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "قصص الصحابة",
+       "q": "محمد العريفي قصص الصحابة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "محمد العريفي الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — محمد العريفي",
+       "q": "محمد العريفي أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — محمد العريفي",
+       "q": "محمد العريفي أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — محمد العريفي",
+       "q": "محمد العريفي التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — محمد العريفي",
+       "q": "محمد العريفي التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — محمد العريفي",
+       "q": "محمد العريفي التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — محمد العريفي",
+       "q": "محمد العريفي الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — محمد العريفي",
+       "q": "محمد العريفي الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — محمد العريفي",
+       "q": "محمد العريفي الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — محمد العريفي",
+       "q": "محمد العريفي الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — محمد العريفي",
+       "q": "محمد العريفي الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — محمد العريفي",
+       "q": "محمد العريفي الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — محمد العريفي",
+       "q": "محمد العريفي قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — محمد العريفي",
+       "q": "محمد العريفي قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — محمد العريفي",
+       "q": "محمد العريفي قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الدكتور محمد راتب النابلسي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "فقه الأولويات",
+       "url": "https://www.youtube.com/watch?v=850dQvFrLcs"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "حجاب المرأة",
+       "url": "https://www.youtube.com/watch?v=N_dL2FzyTqA"
+      },
+      {
+       "title": "الأخلاق الإسلامية",
+       "q": "محمد راتب النابلسي الأخلاق الإسلامية"
+      },
+      {
+       "title": "تربية الأبناء في الإسلام",
+       "q": "محمد راتب النابلسي تربية الأبناء في الإسلام"
+      },
+      {
+       "title": "الصدق",
+       "q": "محمد راتب النابلسي الصدق"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "أحداث ما بعد الموت",
+       "url": "https://www.youtube.com/watch?v=ra25trzfacM"
+      },
+      {
+       "title": "ما يحدث للإنسان قبل الموت بأربعين يوماً",
+       "url": "https://www.youtube.com/watch?v=O5GMeA4nMh8"
+      },
+      {
+       "title": "بالعلم والإيمان تنهض الأوطان",
+       "url": "https://www.youtube.com/watch?v=cQvzyUXQvxk"
+      },
+      {
+       "title": "رمضان نقطة تحول",
+       "url": "https://www.youtube.com/watch?v=N1i3F5Bexxg"
+      },
+      {
+       "title": "أنواع الصبر",
+       "q": "محمد راتب النابلسي أنواع الصبر"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "محمد راتب النابلسي الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "الهجرة النبوية",
+       "url": "https://www.youtube.com/watch?v=9s-eN4bcwos"
+      },
+      {
+       "title": "السيرة النبوية",
+       "q": "محمد راتب النابلسي السيرة النبوية"
+      }
+     ]
+    },
+    {
+     "title": "عقيدة",
+     "videos": [
+      {
+       "title": "الإعجاز العلمي في القرآن",
+       "q": "محمد راتب النابلسي الإعجاز العلمي في القرآن"
+      },
+      {
+       "title": "أسماء الله الحسنى",
+       "q": "محمد راتب النابلسي أسماء الله الحسنى"
+      },
+      {
+       "title": "الإيمان والتوحيد",
+       "q": "محمد راتب النابلسي الإيمان والتوحيد"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الدكتور طارق السويدان",
+   "g": 1,
+   "sections": [
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "السيرة النبوية",
+       "q": "طارق السويدان السيرة النبوية"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء",
+       "q": "طارق السويدان قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — طارق السويدان",
+       "q": "طارق السويدان قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — طارق السويدان",
+       "q": "طارق السويدان قصص الأنبياء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "طارق السويدان الإخلاص لله"
+      },
+      {
+       "title": "رقائق — طارق السويدان",
+       "q": "طارق السويدان رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — طارق السويدان",
+       "q": "طارق السويدان رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "طارق السويدان الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — طارق السويدان",
+       "q": "طارق السويدان أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — طارق السويدان",
+       "q": "طارق السويدان أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — طارق السويدان",
+       "q": "طارق السويدان التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — طارق السويدان",
+       "q": "طارق السويدان التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — طارق السويدان",
+       "q": "طارق السويدان التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — طارق السويدان",
+       "q": "طارق السويدان الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — طارق السويدان",
+       "q": "طارق السويدان الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — طارق السويدان",
+       "q": "طارق السويدان الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — طارق السويدان",
+       "q": "طارق السويدان الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — طارق السويدان",
+       "q": "طارق السويدان الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — طارق السويدان",
+       "q": "طارق السويدان الدعاء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الدكتور راغب السرجاني",
+   "g": 1,
+   "sections": [
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "قصة الإسلام",
+       "q": "راغب السرجاني قصة الإسلام"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء",
+       "q": "راغب السرجاني قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — راغب السرجاني",
+       "q": "راغب السرجاني قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — راغب السرجاني",
+       "q": "راغب السرجاني قصص الأنبياء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "راغب السرجاني الإخلاص لله"
+      },
+      {
+       "title": "رقائق — راغب السرجاني",
+       "q": "راغب السرجاني رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — راغب السرجاني",
+       "q": "راغب السرجاني رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "راغب السرجاني الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — راغب السرجاني",
+       "q": "راغب السرجاني أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — راغب السرجاني",
+       "q": "راغب السرجاني أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — راغب السرجاني",
+       "q": "راغب السرجاني التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — راغب السرجاني",
+       "q": "راغب السرجاني التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — راغب السرجاني",
+       "q": "راغب السرجاني التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — راغب السرجاني",
+       "q": "راغب السرجاني الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — راغب السرجاني",
+       "q": "راغب السرجاني الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — راغب السرجاني",
+       "q": "راغب السرجاني الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — راغب السرجاني",
+       "q": "راغب السرجاني الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — راغب السرجاني",
+       "q": "راغب السرجاني الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — راغب السرجاني",
+       "q": "راغب السرجاني الدعاء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ صالح المغامسي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "تفسير",
+     "videos": [
+      {
+       "title": "تفسير جزء عم",
+       "q": "صالح المغامسي تفسير جزء عم"
+      },
+      {
+       "title": "تفسير سورة الكهف",
+       "q": "صالح المغامسي تفسير سورة الكهف"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص القرآن",
+       "q": "صالح المغامسي قصص القرآن"
+      },
+      {
+       "title": "قصص الأنبياء — صالح المغامسي",
+       "q": "صالح المغامسي قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — صالح المغامسي",
+       "q": "صالح المغامسي قصص الأنبياء محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "صالح المغامسي الإخلاص لله"
+      },
+      {
+       "title": "رقائق — صالح المغامسي",
+       "q": "صالح المغامسي رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — صالح المغامسي",
+       "q": "صالح المغامسي رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "صالح المغامسي الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — صالح المغامسي",
+       "q": "صالح المغامسي أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — صالح المغامسي",
+       "q": "صالح المغامسي أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — صالح المغامسي",
+       "q": "صالح المغامسي التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — صالح المغامسي",
+       "q": "صالح المغامسي التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — صالح المغامسي",
+       "q": "صالح المغامسي التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — صالح المغامسي",
+       "q": "صالح المغامسي الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — صالح المغامسي",
+       "q": "صالح المغامسي الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — صالح المغامسي",
+       "q": "صالح المغامسي الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — صالح المغامسي",
+       "q": "صالح المغامسي الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — صالح المغامسي",
+       "q": "صالح المغامسي الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — صالح المغامسي",
+       "q": "صالح المغامسي الدعاء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ سلمان العودة",
+   "g": 1,
+   "sections": [
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء",
+       "q": "سلمان العودة قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — سلمان العودة",
+       "q": "سلمان العودة قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — سلمان العودة",
+       "q": "سلمان العودة قصص الأنبياء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "تفسير",
+     "videos": [
+      {
+       "title": "تدبر القرآن",
+       "q": "سلمان العودة تدبر القرآن"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "سلمان العودة الإخلاص لله"
+      },
+      {
+       "title": "رقائق — سلمان العودة",
+       "q": "سلمان العودة رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — سلمان العودة",
+       "q": "سلمان العودة رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "سلمان العودة الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — سلمان العودة",
+       "q": "سلمان العودة أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — سلمان العودة",
+       "q": "سلمان العودة أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — سلمان العودة",
+       "q": "سلمان العودة التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — سلمان العودة",
+       "q": "سلمان العودة التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — سلمان العودة",
+       "q": "سلمان العودة التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — سلمان العودة",
+       "q": "سلمان العودة الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — سلمان العودة",
+       "q": "سلمان العودة الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — سلمان العودة",
+       "q": "سلمان العودة الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — سلمان العودة",
+       "q": "سلمان العودة الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — سلمان العودة",
+       "q": "سلمان العودة الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — سلمان العودة",
+       "q": "سلمان العودة الدعاء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ خالد الراشد",
+   "g": 1,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "التوبة وحلاوة الإيمان",
+       "q": "خالد الراشد التوبة وحلاوة الإيمان"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "خالد الراشد الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "الخشوع في الصلاة",
+       "q": "خالد الراشد الخشوع في الصلاة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "خالد الراشد الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — خالد الراشد",
+       "q": "خالد الراشد أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — خالد الراشد",
+       "q": "خالد الراشد أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — خالد الراشد",
+       "q": "خالد الراشد التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — خالد الراشد",
+       "q": "خالد الراشد التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — خالد الراشد",
+       "q": "خالد الراشد التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — خالد الراشد",
+       "q": "خالد الراشد الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — خالد الراشد",
+       "q": "خالد الراشد الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — خالد الراشد",
+       "q": "خالد الراشد الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — خالد الراشد",
+       "q": "خالد الراشد الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — خالد الراشد",
+       "q": "خالد الراشد الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — خالد الراشد",
+       "q": "خالد الراشد الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — خالد الراشد",
+       "q": "خالد الراشد قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — خالد الراشد",
+       "q": "خالد الراشد قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — خالد الراشد",
+       "q": "خالد الراشد قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ عائض القرني",
+   "g": 1,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "لا تحزن",
+       "q": "عائض القرني لا تحزن"
+      },
+      {
+       "title": "السعادة الحقيقية",
+       "q": "عائض القرني السعادة الحقيقية"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "عائض القرني الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "عائض القرني الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "عائض القرني حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — عائض القرني",
+       "q": "عائض القرني التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — عائض القرني",
+       "q": "عائض القرني التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — عائض القرني",
+       "q": "عائض القرني التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — عائض القرني",
+       "q": "عائض القرني الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — عائض القرني",
+       "q": "عائض القرني الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — عائض القرني",
+       "q": "عائض القرني الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — عائض القرني",
+       "q": "عائض القرني الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — عائض القرني",
+       "q": "عائض القرني الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — عائض القرني",
+       "q": "عائض القرني الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — عائض القرني",
+       "q": "عائض القرني قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — عائض القرني",
+       "q": "عائض القرني قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — عائض القرني",
+       "q": "عائض القرني قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الدكتور عثمان الخميس",
+   "g": 1,
+   "sections": [
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "التاريخ الإسلامي",
+       "q": "عثمان الخميس التاريخ الإسلامي"
+      },
+      {
+       "title": "سيرة الصحابة",
+       "q": "عثمان الخميس سيرة الصحابة"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "عثمان الخميس الإخلاص لله"
+      },
+      {
+       "title": "رقائق — عثمان الخميس",
+       "q": "عثمان الخميس رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — عثمان الخميس",
+       "q": "عثمان الخميس رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "عثمان الخميس الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — عثمان الخميس",
+       "q": "عثمان الخميس أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — عثمان الخميس",
+       "q": "عثمان الخميس أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — عثمان الخميس",
+       "q": "عثمان الخميس التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — عثمان الخميس",
+       "q": "عثمان الخميس التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — عثمان الخميس",
+       "q": "عثمان الخميس التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — عثمان الخميس",
+       "q": "عثمان الخميس الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — عثمان الخميس",
+       "q": "عثمان الخميس الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — عثمان الخميس",
+       "q": "عثمان الخميس الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — عثمان الخميس",
+       "q": "عثمان الخميس الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — عثمان الخميس",
+       "q": "عثمان الخميس الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — عثمان الخميس",
+       "q": "عثمان الخميس الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — عثمان الخميس",
+       "q": "عثمان الخميس قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — عثمان الخميس",
+       "q": "عثمان الخميس قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — عثمان الخميس",
+       "q": "عثمان الخميس قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ محمود المصري (أبو عمار)",
+   "g": 1,
+   "sections": [
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "قصص الصحابة",
+       "q": "محمود المصري (أبو عمار) قصص الصحابة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء",
+       "q": "محمود المصري (أبو عمار) قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — محمود المصري",
+       "q": "محمود المصري قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — محمود المصري",
+       "q": "محمود المصري قصص الأنبياء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "محمود المصري (أبو عمار) الإخلاص لله"
+      },
+      {
+       "title": "رقائق — محمود المصري",
+       "q": "محمود المصري رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — محمود المصري",
+       "q": "محمود المصري رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "محمود المصري (أبو عمار) الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — محمود المصري",
+       "q": "محمود المصري أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — محمود المصري",
+       "q": "محمود المصري أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — محمود المصري",
+       "q": "محمود المصري التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — محمود المصري",
+       "q": "محمود المصري التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — محمود المصري",
+       "q": "محمود المصري التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — محمود المصري",
+       "q": "محمود المصري الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — محمود المصري",
+       "q": "محمود المصري الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — محمود المصري",
+       "q": "محمود المصري الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — محمود المصري",
+       "q": "محمود المصري الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — محمود المصري",
+       "q": "محمود المصري الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — محمود المصري",
+       "q": "محمود المصري الدعاء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ عبد الحميد كشك",
+   "g": 1,
+   "sections": [
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "خطبة عيد الفطر",
+       "url": "https://www.youtube.com/watch?v=JQqDiTAc4xU"
+      },
+      {
+       "title": "خطبة عيد الأضحى",
+       "url": "https://www.youtube.com/watch?v=kPrPYEc6CU8"
+      }
+     ]
+    },
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "خطبة عاشوراء: استشهاد الحسين",
+       "url": "https://www.youtube.com/watch?v=7woQzv4baV0"
+      },
+      {
+       "title": "دار الندوة وهجرة الرسول ﷺ",
+       "url": "https://www.youtube.com/watch?v=RnGOdpchqug"
+      },
+      {
+       "title": "من دروس الهجرة",
+       "url": "https://www.youtube.com/watch?v=Ojd9iLKZk3o"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "خطبة الموت",
+       "url": "https://www.youtube.com/watch?v=MtiKSw4fcDE"
+      },
+      {
+       "title": "أعظم عمل تتقرب به إلى الله",
+       "url": "https://www.youtube.com/watch?v=sZkPGprW12s"
+      },
+      {
+       "title": "سفينة النجاة",
+       "url": "https://www.youtube.com/watch?v=aKRiXGisbfE"
+      },
+      {
+       "title": "أجمل وأقوى خطب الشيخ كشك",
+       "url": "https://www.youtube.com/watch?v=QyW18GfEuns"
+      },
+      {
+       "title": "الإخلاص لله",
+       "q": "عبد الحميد كشك الإخلاص لله"
+      },
+      {
+       "title": "الصبر",
+       "q": "عبد الحميد كشك الصبر"
+      },
+      {
+       "title": "الشكر",
+       "q": "عبد الحميد كشك الشكر"
+      },
+      {
+       "title": "التوكل على الله",
+       "q": "عبد الحميد كشك التوكل على الله"
+      },
+      {
+       "title": "خطبة وموعظة",
+       "q": "عبد الحميد كشك خطبة وموعظة"
+      },
+      {
+       "title": "دروس ومحاضرات",
+       "q": "عبد الحميد كشك دروس ومحاضرات"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "عبد الحميد كشك الاستغفار"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "مدرسة أيوب عليه السلام",
+       "url": "https://www.youtube.com/watch?v=FpZHnltukcQ"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "عبد الحميد كشك الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "عبد الحميد كشك حسن الخلق"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ أبو إسحاق الحويني",
+   "g": 1,
+   "sections": [
+    {
+     "title": "سيرة",
+     "videos": [
+      {
+       "title": "قصص السلف",
+       "q": "أبو إسحاق الحويني قصص السلف"
+      }
+     ]
+    },
+    {
+     "title": "حديث",
+     "videos": [
+      {
+       "title": "شرح الأحاديث",
+       "q": "أبو إسحاق الحويني شرح الأحاديث"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "أبو إسحاق الحويني الإخلاص لله"
+      },
+      {
+       "title": "رقائق — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "أبو إسحاق الحويني الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — أبو إسحاق الحويني",
+       "q": "أبو إسحاق الحويني قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ محمد الغزالي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "خلق المسلم",
+       "q": "محمد الغزالي خلق المسلم"
+      },
+      {
+       "title": "الصدق",
+       "q": "محمد الغزالي الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "محمد الغزالي حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "محمد الغزالي الإخلاص لله"
+      },
+      {
+       "title": "رقائق — محمد الغزالي",
+       "q": "محمد الغزالي رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — محمد الغزالي",
+       "q": "محمد الغزالي رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — محمد الغزالي",
+       "q": "محمد الغزالي التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — محمد الغزالي",
+       "q": "محمد الغزالي التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — محمد الغزالي",
+       "q": "محمد الغزالي التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — محمد الغزالي",
+       "q": "محمد الغزالي الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — محمد الغزالي",
+       "q": "محمد الغزالي الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — محمد الغزالي",
+       "q": "محمد الغزالي الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — محمد الغزالي",
+       "q": "محمد الغزالي الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — محمد الغزالي",
+       "q": "محمد الغزالي الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — محمد الغزالي",
+       "q": "محمد الغزالي الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — محمد الغزالي",
+       "q": "محمد الغزالي قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — محمد الغزالي",
+       "q": "محمد الغزالي قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — محمد الغزالي",
+       "q": "محمد الغزالي قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ ابن عثيمين",
+   "g": 1,
+   "sections": [
+    {
+     "title": "حديث",
+     "videos": [
+      {
+       "title": "شرح صحيح مسلم: المساجد ومواضع الصلاة (11)",
+       "url": "https://www.youtube.com/watch?v=KQXp4ypQfg0"
+      },
+      {
+       "title": "شرح حديث: لا تزال طائفة من أمتي ظاهرين على الحق",
+       "url": "https://www.youtube.com/watch?v=CBGK7OY6BgE"
+      },
+      {
+       "title": "شرح البيقونية: البيت الثالث",
+       "url": "https://www.youtube.com/watch?v=pJWMyr8tzwg"
+      },
+      {
+       "title": "شرح البيقونية: أقسام علم الحديث",
+       "url": "https://www.youtube.com/watch?v=WOtLT2ySaGA"
+      },
+      {
+       "title": "شرح رياض الصالحين",
+       "q": "ابن عثيمين شرح رياض الصالحين"
+      },
+      {
+       "title": "شرح الأربعين النووية",
+       "q": "ابن عثيمين شرح الأربعين النووية"
+      },
+      {
+       "title": "شرح بلوغ المرام",
+       "q": "ابن عثيمين شرح بلوغ المرام"
+      }
+     ]
+    },
+    {
+     "title": "عقيدة",
+     "videos": [
+      {
+       "title": "شرح كشف الشبهات – الشريط الأول",
+       "url": "https://www.youtube.com/watch?v=XOyvbjhRMig"
+      },
+      {
+       "title": "لقاء 180: شرح تفصيلي لمعنى الإيمان",
+       "url": "https://www.youtube.com/watch?v=Ao0qLR0nw0U"
+      },
+      {
+       "title": "لقاء 174: مختصر شرح أركان الإيمان",
+       "url": "https://www.youtube.com/watch?v=d2pxp2edCGQ"
+      },
+      {
+       "title": "شرح كتاب التوحيد",
+       "q": "ابن عثيمين شرح كتاب التوحيد"
+      },
+      {
+       "title": "شرح الأصول الثلاثة",
+       "q": "ابن عثيمين شرح الأصول الثلاثة"
+      },
+      {
+       "title": "شرح العقيدة الواسطية",
+       "q": "ابن عثيمين شرح العقيدة الواسطية"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "لقاء الباب المفتوح",
+       "q": "ابن عثيمين لقاء الباب المفتوح"
+      },
+      {
+       "title": "أحكام الزكاة",
+       "q": "ابن عثيمين أحكام الزكاة"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "ابن عثيمين الإخلاص لله"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "ابن عثيمين الصدق"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ ابن باز",
+   "g": 1,
+   "sections": [
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "فتاوى نور على الدرب",
+       "q": "ابن باز فتاوى نور على الدرب"
+      },
+      {
+       "title": "أحكام الصلاة",
+       "q": "ابن باز أحكام الصلاة"
+      },
+      {
+       "title": "أحكام الصيام",
+       "q": "ابن باز أحكام الصيام"
+      },
+      {
+       "title": "أحكام الحج والعمرة",
+       "q": "ابن باز أحكام الحج والعمرة"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "ابن باز الإخلاص لله"
+      },
+      {
+       "title": "رقائق — ابن باز",
+       "q": "ابن باز رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — ابن باز",
+       "q": "ابن باز رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "ابن باز الصدق"
+      },
+      {
+       "title": "أسرة وأخلاق — ابن باز",
+       "q": "ابن باز أسرة وأخلاق"
+      },
+      {
+       "title": "محاضرة أسرة وأخلاق — ابن باز",
+       "q": "ابن باز أسرة وأخلاق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — ابن باز",
+       "q": "ابن باز التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — ابن باز",
+       "q": "ابن باز التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — ابن باز",
+       "q": "ابن باز التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — ابن باز",
+       "q": "ابن باز الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — ابن باز",
+       "q": "ابن باز الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — ابن باز",
+       "q": "ابن باز الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — ابن باز",
+       "q": "ابن باز الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — ابن باز",
+       "q": "ابن باز الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — ابن باز",
+       "q": "ابن باز الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — ابن باز",
+       "q": "ابن باز قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — ابن باز",
+       "q": "ابن باز قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — ابن باز",
+       "q": "ابن باز قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ الألباني",
+   "g": 1,
+   "sections": [
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "صفة صلاة النبي ﷺ",
+       "q": "الألباني صفة صلاة النبي ﷺ"
+      },
+      {
+       "title": "سلسلة الهدى والنور",
+       "q": "الألباني سلسلة الهدى والنور"
+      }
+     ]
+    },
+    {
+     "title": "عقيدة",
+     "videos": [
+      {
+       "title": "منهج السلف",
+       "q": "الألباني منهج السلف"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "الألباني الإخلاص لله"
+      },
+      {
+       "title": "رقائق — الألباني",
+       "q": "الألباني رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — الألباني",
+       "q": "الألباني رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "الألباني الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "الألباني حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — الألباني",
+       "q": "الألباني التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — الألباني",
+       "q": "الألباني التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — الألباني",
+       "q": "الألباني التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — الألباني",
+       "q": "الألباني الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — الألباني",
+       "q": "الألباني الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — الألباني",
+       "q": "الألباني الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — الألباني",
+       "q": "الألباني الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — الألباني",
+       "q": "الألباني الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — الألباني",
+       "q": "الألباني الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — الألباني",
+       "q": "الألباني قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — الألباني",
+       "q": "الألباني قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — الألباني",
+       "q": "الألباني قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ محمد صالح المنجد",
+   "g": 1,
+   "sections": [
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "فتاوى وأحكام الأسرة",
+       "q": "محمد صالح المنجد فتاوى وأحكام الأسرة"
+      },
+      {
+       "title": "الصدق",
+       "q": "محمد صالح المنجد الصدق"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "سلسلة الأحكام الفقهية",
+       "q": "محمد صالح المنجد سلسلة الأحكام الفقهية"
+      }
+     ]
+    },
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "محمد صالح المنجد الإخلاص لله"
+      },
+      {
+       "title": "رقائق — محمد صالح المنجد",
+       "q": "محمد صالح المنجد رقائق"
+      },
+      {
+       "title": "محاضرة رقائق — محمد صالح المنجد",
+       "q": "محمد صالح المنجد رقائق محاضرة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — محمد صالح المنجد",
+       "q": "محمد صالح المنجد التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — محمد صالح المنجد",
+       "q": "محمد صالح المنجد التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — محمد صالح المنجد",
+       "q": "محمد صالح المنجد التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — محمد صالح المنجد",
+       "q": "محمد صالح المنجد الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — محمد صالح المنجد",
+       "q": "محمد صالح المنجد الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — محمد صالح المنجد",
+       "q": "محمد صالح المنجد الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — محمد صالح المنجد",
+       "q": "محمد صالح المنجد الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — محمد صالح المنجد",
+       "q": "محمد صالح المنجد الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — محمد صالح المنجد",
+       "q": "محمد صالح المنجد الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — محمد صالح المنجد",
+       "q": "محمد صالح المنجد قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — محمد صالح المنجد",
+       "q": "محمد صالح المنجد قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — محمد صالح المنجد",
+       "q": "محمد صالح المنجد قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ أحمد ديدات",
+   "g": 1,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "أحمد ديدات الإخلاص لله"
+      },
+      {
+       "title": "الصبر",
+       "q": "أحمد ديدات الصبر"
+      },
+      {
+       "title": "الشكر",
+       "q": "أحمد ديدات الشكر"
+      },
+      {
+       "title": "التوكل على الله",
+       "q": "أحمد ديدات التوكل على الله"
+      },
+      {
+       "title": "خطبة وموعظة",
+       "q": "أحمد ديدات خطبة وموعظة"
+      },
+      {
+       "title": "دروس ومحاضرات",
+       "q": "أحمد ديدات دروس ومحاضرات"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "أحمد ديدات الاستغفار"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "أحمد ديدات الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "أحمد ديدات حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — أحمد ديدات",
+       "q": "أحمد ديدات التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — أحمد ديدات",
+       "q": "أحمد ديدات التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — أحمد ديدات",
+       "q": "أحمد ديدات التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — أحمد ديدات",
+       "q": "أحمد ديدات الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — أحمد ديدات",
+       "q": "أحمد ديدات الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — أحمد ديدات",
+       "q": "أحمد ديدات الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — أحمد ديدات",
+       "q": "أحمد ديدات الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — أحمد ديدات",
+       "q": "أحمد ديدات الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — أحمد ديدات",
+       "q": "أحمد ديدات الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — أحمد ديدات",
+       "q": "أحمد ديدات قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — أحمد ديدات",
+       "q": "أحمد ديدات قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — أحمد ديدات",
+       "q": "أحمد ديدات قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الحبيب علي الجفري",
+   "g": 1,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "الحبيب علي الجفري الإخلاص لله"
+      },
+      {
+       "title": "الصبر",
+       "q": "الحبيب علي الجفري الصبر"
+      },
+      {
+       "title": "الشكر",
+       "q": "الحبيب علي الجفري الشكر"
+      },
+      {
+       "title": "التوكل على الله",
+       "q": "الحبيب علي الجفري التوكل على الله"
+      },
+      {
+       "title": "خطبة وموعظة",
+       "q": "الحبيب علي الجفري خطبة وموعظة"
+      },
+      {
+       "title": "دروس ومحاضرات",
+       "q": "الحبيب علي الجفري دروس ومحاضرات"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "الحبيب علي الجفري الاستغفار"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "الحبيب علي الجفري الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "الحبيب علي الجفري حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "الخشوع في الصلاة",
+       "q": "الحبيب علي الجفري الخشوع في الصلاة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — علي الجفري",
+       "q": "علي الجفري التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — علي الجفري",
+       "q": "علي الجفري التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — علي الجفري",
+       "q": "علي الجفري التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — علي الجفري",
+       "q": "علي الجفري الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — علي الجفري",
+       "q": "علي الجفري الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — علي الجفري",
+       "q": "علي الجفري الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — علي الجفري",
+       "q": "علي الجفري الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — علي الجفري",
+       "q": "علي الجفري الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — علي الجفري",
+       "q": "علي الجفري الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — علي الجفري",
+       "q": "علي الجفري قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — علي الجفري",
+       "q": "علي الجفري قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — علي الجفري",
+       "q": "علي الجفري قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ عبد الباسط عبد الصمد",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة يس",
+       "url": "https://www.youtube.com/watch?v=dyUWjQs9mis"
+      },
+      {
+       "title": "سورة يس كاملة",
+       "url": "https://www.youtube.com/watch?v=XIVW9BlfXaI"
+      },
+      {
+       "title": "سورة الواقعة كاملة",
+       "url": "https://www.youtube.com/watch?v=_99UN40NcY8"
+      },
+      {
+       "title": "سورة البقرة",
+       "url": "https://www.youtube.com/watch?v=tQsRG23FIsw"
+      },
+      {
+       "title": "خواتيم البقرة والإخلاص والمعوذتان",
+       "url": "https://www.youtube.com/watch?v=RGEfxnAnvc0"
+      },
+      {
+       "title": "سورتا يس والواقعة",
+       "url": "https://www.youtube.com/watch?v=urAkpzVvgUs"
+      },
+      {
+       "title": "سورة هود كاملة",
+       "url": "https://www.youtube.com/watch?v=zhLp6DmfCWQ"
+      },
+      {
+       "title": "سورة البقرة (تلاوة خاشعة)",
+       "url": "https://www.youtube.com/watch?v=iEKq_UJ78fA"
+      },
+      {
+       "title": "يس والرحمن والواقعة والملك",
+       "url": "https://www.youtube.com/watch?v=WOehfo590cg"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ محمود خليل الحصري",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "تلاوة سورة الزمر",
+       "url": "https://www.youtube.com/watch?v=Vv-lMJvP8bI"
+      },
+      {
+       "title": "تلاوة تهدئ النفس وتطمئن الروح",
+       "url": "https://www.youtube.com/watch?v=qLdzHcktdX4"
+      },
+      {
+       "title": "تلاوة خاشعة تملأ القلب نوراً",
+       "url": "https://www.youtube.com/watch?v=LhssDCbxFh4"
+      },
+      {
+       "title": "تلاوة الراحة والسكينة",
+       "url": "https://www.youtube.com/watch?v=Jb336fCcb00"
+      },
+      {
+       "title": "قرآن الصباح",
+       "url": "https://www.youtube.com/watch?v=or0-fjmNnPw"
+      },
+      {
+       "title": "إن شعرت بالضيق استمع بقلبك",
+       "url": "https://www.youtube.com/watch?v=7sW9REArg5A"
+      },
+      {
+       "title": "تلاوة تملأ القلوب نوراً وسكينة",
+       "url": "https://www.youtube.com/watch?v=fpdVPNGETS8"
+      },
+      {
+       "title": "تلاوة هادئة لمن ضاق صدره",
+       "url": "https://www.youtube.com/watch?v=QzBPIvEz3Rs"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ مشاري العفاسي",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة الملك كاملة",
+       "url": "https://www.youtube.com/watch?v=gmT69eG-UZo"
+      },
+      {
+       "title": "سورة الرحمن كاملة",
+       "url": "https://www.youtube.com/watch?v=L0R00MVrubU"
+      },
+      {
+       "title": "سورة الكهف كاملة",
+       "url": "https://www.youtube.com/watch?v=gf-XpPNrJfM"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ محمد صديق المنشاوي",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة يس مجودة",
+       "url": "https://www.youtube.com/watch?v=btRbYnRxxcA"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ ماهر المعيقلي",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة يس كاملة",
+       "url": "https://www.youtube.com/watch?v=u0qSMYkmlHc"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ سعد الغامدي",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة الكهف كاملة",
+       "url": "https://www.youtube.com/watch?v=CieCtrkDFco"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ ياسر الدوسري",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة الكهف كاملة",
+       "url": "https://www.youtube.com/watch?v=YDB4icfB0DQ"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ محمد رفعت",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة الكهف",
+       "url": "https://www.youtube.com/watch?v=M-GE3viD8yQ"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ مصطفى إسماعيل",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة يس كاملة",
+       "url": "https://www.youtube.com/watch?v=PU-7N-PCGJs"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ عبد الرحمن السديس",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة يس كاملة",
+       "url": "https://www.youtube.com/watch?v=H1IkFdXNFYo"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ سعود الشريم",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة الملك كاملة",
+       "url": "https://www.youtube.com/watch?v=XUUzJWz_VUU"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ ناصر القطامي",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة يس كاملة",
+       "url": "https://www.youtube.com/watch?v=dadtSb-eAnA"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "القارئ أحمد العجمي",
+   "g": 2,
+   "sections": [
+    {
+     "title": "تلاوات",
+     "videos": [
+      {
+       "title": "سورة يس كاملة",
+       "url": "https://www.youtube.com/watch?v=b3_5oXUf818"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ محمد عبده",
+   "g": 3,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "محمد عبده الإخلاص لله"
+      },
+      {
+       "title": "الصبر",
+       "q": "محمد عبده الصبر"
+      },
+      {
+       "title": "الشكر",
+       "q": "محمد عبده الشكر"
+      },
+      {
+       "title": "التوكل على الله",
+       "q": "محمد عبده التوكل على الله"
+      },
+      {
+       "title": "خطبة وموعظة",
+       "q": "محمد عبده خطبة وموعظة"
+      },
+      {
+       "title": "دروس ومحاضرات",
+       "q": "محمد عبده دروس ومحاضرات"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "محمد عبده الاستغفار"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "محمد عبده الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "محمد عبده حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "الخشوع في الصلاة",
+       "q": "محمد عبده الخشوع في الصلاة"
+      },
+      {
+       "title": "أحكام الزكاة",
+       "q": "محمد عبده أحكام الزكاة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — محمد عبده",
+       "q": "محمد عبده التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — محمد عبده",
+       "q": "محمد عبده التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — محمد عبده",
+       "q": "محمد عبده التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — محمد عبده",
+       "q": "محمد عبده الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — محمد عبده",
+       "q": "محمد عبده الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — محمد عبده",
+       "q": "محمد عبده الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — محمد عبده",
+       "q": "محمد عبده الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — محمد عبده",
+       "q": "محمد عبده الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — محمد عبده",
+       "q": "محمد عبده الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — محمد عبده",
+       "q": "محمد عبده قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — محمد عبده",
+       "q": "محمد عبده قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — محمد عبده",
+       "q": "محمد عبده قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ أحمد نصر",
+   "g": 3,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "أحمد نصر الإخلاص لله"
+      },
+      {
+       "title": "الصبر",
+       "q": "أحمد نصر الصبر"
+      },
+      {
+       "title": "الشكر",
+       "q": "أحمد نصر الشكر"
+      },
+      {
+       "title": "التوكل على الله",
+       "q": "أحمد نصر التوكل على الله"
+      },
+      {
+       "title": "خطبة وموعظة",
+       "q": "أحمد نصر خطبة وموعظة"
+      },
+      {
+       "title": "دروس ومحاضرات",
+       "q": "أحمد نصر دروس ومحاضرات"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "أحمد نصر الاستغفار"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "أحمد نصر الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "أحمد نصر حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "الخشوع في الصلاة",
+       "q": "أحمد نصر الخشوع في الصلاة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — أحمد نصر",
+       "q": "أحمد نصر التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — أحمد نصر",
+       "q": "أحمد نصر التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — أحمد نصر",
+       "q": "أحمد نصر التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — أحمد نصر",
+       "q": "أحمد نصر الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — أحمد نصر",
+       "q": "أحمد نصر الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — أحمد نصر",
+       "q": "أحمد نصر الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — أحمد نصر",
+       "q": "أحمد نصر الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — أحمد نصر",
+       "q": "أحمد نصر الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — أحمد نصر",
+       "q": "أحمد نصر الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — أحمد نصر",
+       "q": "أحمد نصر قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — أحمد نصر",
+       "q": "أحمد نصر قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — أحمد نصر",
+       "q": "أحمد نصر قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ النفيس",
+   "g": 3,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "النفيس الإخلاص لله"
+      },
+      {
+       "title": "الصبر",
+       "q": "النفيس الصبر"
+      },
+      {
+       "title": "الشكر",
+       "q": "النفيس الشكر"
+      },
+      {
+       "title": "التوكل على الله",
+       "q": "النفيس التوكل على الله"
+      },
+      {
+       "title": "خطبة وموعظة",
+       "q": "النفيس خطبة وموعظة"
+      },
+      {
+       "title": "دروس ومحاضرات",
+       "q": "النفيس دروس ومحاضرات"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "النفيس الاستغفار"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "النفيس الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "النفيس حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "الخشوع في الصلاة",
+       "q": "النفيس الخشوع في الصلاة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — النفيس",
+       "q": "النفيس التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — النفيس",
+       "q": "النفيس التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — النفيس",
+       "q": "النفيس التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — النفيس",
+       "q": "النفيس الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — النفيس",
+       "q": "النفيس الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — النفيس",
+       "q": "النفيس الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — النفيس",
+       "q": "النفيس الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — النفيس",
+       "q": "النفيس الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — النفيس",
+       "q": "النفيس الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — النفيس",
+       "q": "النفيس قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — النفيس",
+       "q": "النفيس قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — النفيس",
+       "q": "النفيس قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ الأواني",
+   "g": 3,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "الأواني الإخلاص لله"
+      },
+      {
+       "title": "الصبر",
+       "q": "الأواني الصبر"
+      },
+      {
+       "title": "الشكر",
+       "q": "الأواني الشكر"
+      },
+      {
+       "title": "التوكل على الله",
+       "q": "الأواني التوكل على الله"
+      },
+      {
+       "title": "خطبة وموعظة",
+       "q": "الأواني خطبة وموعظة"
+      },
+      {
+       "title": "دروس ومحاضرات",
+       "q": "الأواني دروس ومحاضرات"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "الأواني الاستغفار"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "الأواني الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "الأواني حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "الخشوع في الصلاة",
+       "q": "الأواني الخشوع في الصلاة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — الأواني",
+       "q": "الأواني التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — الأواني",
+       "q": "الأواني التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — الأواني",
+       "q": "الأواني التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — الأواني",
+       "q": "الأواني الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — الأواني",
+       "q": "الأواني الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — الأواني",
+       "q": "الأواني الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — الأواني",
+       "q": "الأواني الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — الأواني",
+       "q": "الأواني الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — الأواني",
+       "q": "الأواني الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — الأواني",
+       "q": "الأواني قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — الأواني",
+       "q": "الأواني قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — الأواني",
+       "q": "الأواني قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ القرافي",
+   "g": 3,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "الإخلاص لله",
+       "q": "القرافي الإخلاص لله"
+      },
+      {
+       "title": "الصبر",
+       "q": "القرافي الصبر"
+      },
+      {
+       "title": "الشكر",
+       "q": "القرافي الشكر"
+      },
+      {
+       "title": "التوكل على الله",
+       "q": "القرافي التوكل على الله"
+      },
+      {
+       "title": "خطبة وموعظة",
+       "q": "القرافي خطبة وموعظة"
+      },
+      {
+       "title": "دروس ومحاضرات",
+       "q": "القرافي دروس ومحاضرات"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "القرافي الاستغفار"
+      }
+     ]
+    },
+    {
+     "title": "أسرة وأخلاق",
+     "videos": [
+      {
+       "title": "الصدق",
+       "q": "القرافي الصدق"
+      },
+      {
+       "title": "حسن الخلق",
+       "q": "القرافي حسن الخلق"
+      }
+     ]
+    },
+    {
+     "title": "فقه",
+     "videos": [
+      {
+       "title": "الخشوع في الصلاة",
+       "q": "القرافي الخشوع في الصلاة"
+      }
+     ]
+    },
+    {
+     "title": "التوبة",
+     "videos": [
+      {
+       "title": "التوبة — القرافي",
+       "q": "القرافي التوبة"
+      },
+      {
+       "title": "محاضرة التوبة — القرافي",
+       "q": "القرافي التوبة محاضرة"
+      },
+      {
+       "title": "مؤثرة التوبة — القرافي",
+       "q": "القرافي التوبة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الصلاة",
+     "videos": [
+      {
+       "title": "الصلاة — القرافي",
+       "q": "القرافي الصلاة"
+      },
+      {
+       "title": "محاضرة الصلاة — القرافي",
+       "q": "القرافي الصلاة محاضرة"
+      },
+      {
+       "title": "مؤثرة الصلاة — القرافي",
+       "q": "القرافي الصلاة مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "الدعاء",
+     "videos": [
+      {
+       "title": "الدعاء — القرافي",
+       "q": "القرافي الدعاء"
+      },
+      {
+       "title": "محاضرة الدعاء — القرافي",
+       "q": "القرافي الدعاء محاضرة"
+      },
+      {
+       "title": "مؤثرة الدعاء — القرافي",
+       "q": "القرافي الدعاء مؤثرة"
+      }
+     ]
+    },
+    {
+     "title": "قصص الأنبياء",
+     "videos": [
+      {
+       "title": "قصص الأنبياء — القرافي",
+       "q": "القرافي قصص الأنبياء"
+      },
+      {
+       "title": "محاضرة قصص الأنبياء — القرافي",
+       "q": "القرافي قصص الأنبياء محاضرة"
+      },
+      {
+       "title": "مؤثرة قصص الأنبياء — القرافي",
+       "q": "القرافي قصص الأنبياء مؤثرة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "م. أيمن عبد الرحيم",
+   "g": 0,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "رقائق تريح القلب",
+       "q": "م. أيمن عبد الرحيم رقائق تريح القلب"
+      },
+      {
+       "title": "الخشوع في الصلاة",
+       "q": "م. أيمن عبد الرحيم الخشوع في الصلاة"
+      }
+     ]
+    },
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "حلاوة الإيمان",
+       "q": "م. أيمن عبد الرحيم حلاوة الإيمان"
+      },
+      {
+       "title": "محاسبة النفس",
+       "q": "م. أيمن عبد الرحيم محاسبة النفس"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "أمير منير",
+   "g": 0,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "رقائق مؤثرة",
+       "q": "أمير منير رقائق مؤثرة"
+      },
+      {
+       "title": "الرضا بقضاء الله",
+       "q": "أمير منير الرضا بقضاء الله"
+      }
+     ]
+    },
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "تزكية النفس",
+       "q": "أمير منير تزكية النفس"
+      },
+      {
+       "title": "الإخلاص",
+       "q": "أمير منير الإخلاص"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "إبراهيم إمام",
+   "g": 0,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "رقائق وتأملات",
+       "q": "إبراهيم إمام رقائق وتأملات"
+      },
+      {
+       "title": "الدنيا والآخرة",
+       "q": "إبراهيم إمام الدنيا والآخرة"
+      }
+     ]
+    },
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "الثبات على الطاعة",
+       "q": "إبراهيم إمام الثبات على الطاعة"
+      },
+      {
+       "title": "التوبة",
+       "q": "إبراهيم إمام التوبة"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "الشيخ عبد الوكيل القاضي",
+   "g": 1,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "رقائق للقلوب",
+       "q": "الشيخ عبد الوكيل القاضي رقائق للقلوب"
+      },
+      {
+       "title": "الخوف والرجاء",
+       "q": "الشيخ عبد الوكيل القاضي الخوف والرجاء"
+      }
+     ]
+    },
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "تزكية",
+       "q": "الشيخ عبد الوكيل القاضي تزكية"
+      },
+      {
+       "title": "حسن الظن بالله",
+       "q": "الشيخ عبد الوكيل القاضي حسن الظن بالله"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "أحمد عامر",
+   "g": 0,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "رقائق مؤثرة",
+       "q": "أحمد عامر رقائق مؤثرة"
+      },
+      {
+       "title": "القلب السليم",
+       "q": "أحمد عامر القلب السليم"
+      }
+     ]
+    },
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "الإيمان والعمل",
+       "q": "أحمد عامر الإيمان والعمل"
+      },
+      {
+       "title": "الاستغفار",
+       "q": "أحمد عامر الاستغفار"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "أحمد عبد المنعم",
+   "g": 0,
+   "sections": [
+    {
+     "title": "رقائق",
+     "videos": [
+      {
+       "title": "رقائق وعظات",
+       "q": "أحمد عبد المنعم رقائق وعظات"
+      },
+      {
+       "title": "طريق الله",
+       "q": "أحمد عبد المنعم طريق الله"
+      }
+     ]
+    },
+    {
+     "title": "تزكية وإيمان",
+     "videos": [
+      {
+       "title": "تزكية النفس",
+       "q": "أحمد عبد المنعم تزكية النفس"
+      },
+      {
+       "title": "الصبر",
+       "q": "أحمد عبد المنعم الصبر"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+};
+
+</script>
+<script src="extra-data.js"></script>
+<script>
+/* ===== YouTube جوه الموقع ===== */
+let apiReady=false,pending=null,player=null;
+window.onYouTubeIframeAPIReady=()=>{apiReady=true;if(pending){const p=pending;pending=null;p()}};
+(()=>{const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';s.onerror=()=>{};document.head.appendChild(s)})();
+const ls={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let watched=ls.get('watched',{}),saved=ls.get('saved',{}),last=ls.get('last',null),favs=ls.get('favs',null),links=ls.get('links',{}),photos=ls.get('photos',{});
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),1800)}
+function imgErr(i){if(i.src.includes('hqdefault')){i.src=i.src.replace('hqdefault','mqdefault')}else i.remove()}
+const GR=Object.fromEntries(DATA.groups);
+/* ===== البيانات ===== */
+function parse(u){u=(u||'').trim();const v=u.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);if(v&&!/playlist\?/.test(u))return{kind:'v',id:v[1],key:'v:'+v[1]};const l=u.match(/[?&]list=([\w-]+)/);return l?{kind:'p',id:l[1],key:'p:'+l[1]}:null}
+let _all=null;
+function allVideos(){if(_all)return _all;const out=[];let o=0;
+ DATA.scholars.forEach((s,si)=>s.sections.forEach(sec=>sec.videos.forEach(v=>{
+  const g=v.g!=null?v.g:s.g;let p,key,q='';
+  if(v.url){p=parse(v.url);if(!p)return;key=p.key}else{key='q:'+s.name+'|'+v.title;q=v.q||s.name+' '+v.title;p=parse(links[key])}
+  out.push({key,kind:p?p.kind:'s',id:p?p.id:'',title:v.title,scholar:s.name,topic:sec.title,short:!!v.short,g,si,q,real:!!p,ord:o++})})));
+ const f=n=>favs&&favs[n]?0:1;
+ return _all=out.sort((a,b)=>f(a.scholar)-f(b.scholar)||a.g-b.g||a.si-b.si||b.real-a.real||a.ord-b.ord)}
+const reset=()=>{_all=null},byKey=k=>allVideos().find(v=>v.key===k);
+const sname=n=>n.replace(/^(الدكتور|دكتور|الشيخ|القارئ|الحبيب) /,''),sch=n=>DATA.scholars.find(s=>s.name===n);
+DATA.scholars.forEach(s=>{const p=s.sections.flatMap(x=>x.videos).map(x=>parse(x.url)).find(p=>p&&p.kind==='v');s.th=p?'https://i.ytimg.com/vi/'+p.id+'/hqdefault.jpg':''});
+const avatar=n=>{const s=sch(n);return photos[n]?`<img class="ok" src="${photos[n]}" alt="">`:`${sname(n)[0]}<img src="${esc(s.photo)}" alt="" onload="this.classList.add('ok')" onerror="this.onerror=function(){this.remove()};this.src='${s.th}'">`}
+const secImg=(n,t)=>{const v=allVideos().find(x=>x.scholar===n&&x.topic===t&&x.kind==='v');return v?`<img loading="lazy" src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" onload="this.classList.add('ok')" onerror="imgErr(this)">`:''};
+const days=ls.get('days',[]),dk=d=>d.toISOString().slice(0,10);
+function streak(){let n=0;const d=new Date();if(!days.includes(dk(d)))d.setDate(d.getDate()-1);while(days.includes(dk(d))){n++;d.setDate(d.getDate()-1)}return n}
+function markDay(){const t=dk(new Date());if(!days.includes(t)){days.push(t);ls.set('days',days.slice(-120))}}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+const hue=s=>Math.abs([...s].reduce((a,c)=>(a*31+c.charCodeAt(0))|0,7))%360;
+const ico=t=>/تلاو|قرآن|القرآن/.test(t)?'📖':/صلاة/.test(t)?'🕌':/دعاء|أدعية/.test(t)?'🤲':/قصص|سير/.test(t)?'🌙':'✨';
+const media=v=>`<div class="cvr" style="background:linear-gradient(135deg,hsl(${hue(v.title)} 45% 24%),hsl(${(hue(v.title)+40)%360} 50% 10%))">${ico(v.topic)}</div>`+(v.kind==='v'?`<img loading="lazy" src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" onload="this.classList.add('ok')" onerror="imgErr(this)">`:'');
+/* ===== الحالة ===== */
+let tab=ls.get('tab0',0)||'home',fScholar=null,fTopic=null,fGroup=null,query='',fKind='',lim=20;
+const setTab=t=>{tab=t;fTopic=null;lim=20;render(1);scrollTo(0,0)};
+function filtered(){return allVideos().filter(v=>(fGroup==null||v.g===fGroup)&&(!fScholar||v.scholar===fScholar)&&(!fTopic||v.topic===fTopic)&&(fKind===''||(fKind==='f'?!!(favs&&favs[v.scholar]):fKind==='s'?v.short:fKind==='p'?v.kind==='p':!v.short&&v.kind==='v'))&&(!query||(v.title+v.scholar+v.topic).includes(query)))}
+function render(anim){const A=$('#app');
+ $('#nav').style.display=tab==='pick'?'none':'flex';
+ $('#nav').innerHTML=[['home','🏠','الرئيسية'],['explore','🔎','استكشاف'],['saved','❤️','المحفوظات'],['qisas','📖','قصص'],['quran','🕌','القرآن'],['tawba','🌱','تائب'],['more','⚙️','المزيد']].map(([k,i,t])=>`<button class="${tab===k?'on':''}" onclick="${k==='quran'?"location.href='quran.html'":`setTab('${k}')`}"><i>${i}</i>${t}</button>`).join('');
+ ({home,explore,saved:savedTab,tawba,qisas,more,pick})[tab](A);A.classList.remove('pg');if(anim){void A.offsetWidth;A.classList.add('pg')}document.querySelectorAll('.post,.stp,.sol,.dnc').forEach(p=>{p.classList.add('rv');io.observe(p)})}
+const topBar=r=>`<div class="top"><div class="logo">اسمع دين</div><div style="display:flex;align-items:center;gap:10px">${dp?'<button class="inst" onclick="doInstall()">⬇️ تنزيل</button>':''}<span style="color:var(--mut);font-size:13px">${r||''}</span></div></div>`;
+const chips=l=>`<div class="chips">${l.map(([t,on,f])=>`<div class="chip ${on?'on':''}" onclick="${f}">${esc(t)}</div>`).join('')}</div>`;
+const story=(n,on,un)=>`<div class="st ${on?'on':''}" onclick="pickScholar('${esc(n)}')"><div class="ring ${favs&&favs[n]?'fav':un?'':'seen'}" style="position:relative"><div class="av">${avatar(n)}</div>${favs&&favs[n]?'<i class="fv">⭐</i>':''}</div><span>${esc(sname(n))}</span></div>`;
+/* ===== الرئيسية ===== */
+function post(v){const d=watched[v.key],pl=v.real;
+ return `<div class="post ${d?'done':''}"><div class="ph" onclick="pickScholar('${esc(v.scholar)}')"><div class="ring ${d?'seen':''}" style="width:38px;height:38px;padding:2px;margin:0"><div class="av" style="font-size:15px;border-width:2px">${avatar(v.scholar)}</div></div><div class="pn"><b>${esc(sname(v.scholar))}</b><small>${esc(v.topic)}</small></div></div>
+ <div class="th" onclick="tapP('${esc(v.key)}',this)">${media(v)}<div class="pl">${pl?(v.kind==='p'?'📋':'▶'):'🔗'}</div>${v.short?'<span class="bd">⚡ قصير</span>':''}${v.kind==='p'?'<span class="bd">قائمة</span>':''}${!pl?'<span class="bd">محتاج رابط</span>':''}${d?'<span class="bd w">✓ شفته</span>':''}</div>
+ <div class="ac"><button class="s ${saved[v.key]?'on':''}" data-k="${esc(v.key)}" onclick="tgSave('${esc(v.key)}')">${saved[v.key]?'❤️':'🤍'}</button><button class="w ${d?'on':''}" onclick="tgWat('${esc(v.key)}')">✓</button>${pl?`<button onclick="share('${esc(v.key)}')">📤</button>`:''}</div><div class="tt">${esc(v.title)}</div></div>`}
+function home(A){const vids=allVideos(),inG=v=>fGroup==null||v.g===fGroup;
+ const names=DATA.scholars.map(s=>s.name).filter(n=>vids.some(v=>v.scholar===n&&inG(v))).sort((a,b)=>(favs&&favs[b]?1:0)-(favs&&favs[a]?1:0));
+ const list=filtered(),topics=[...new Set(vids.filter(v=>inG(v)&&(!fScholar||v.scholar===fScholar)).map(v=>v.topic))];
+ let head='';
+ if(fScholar){const s=sch(fScholar),n=fScholar,c=vids.filter(v=>v.scholar===n);head=`<div class="hd"><div class="ring ${favs&&favs[n]?'fav':''}"><div class="av">${avatar(n)}</div></div><h2 style="font-family:Amiri,serif;color:var(--gold)">${esc(n)}</h2><small style="color:var(--mut)">${GR[s.g]} — ${c.filter(v=>v.real).length} فيديو</small><div class="row2"><button class="${favs&&favs[n]?'on':''}" onclick="tgFav('${esc(n)}')">${favs&&favs[n]?'⭐ مفضّل':'☆ ضيفه للمفضلين'}</button><button onclick="setPhoto('${esc(n)}')">📷 صورة</button></div></div>`}
+ A.innerHTML=topBar(`🔥 ${streak()} · ${vids.filter(v=>watched[v.key]).length} ✓`)+`<div class="stories"><div class="st ${!fScholar?'on':''}" onclick="pickScholar(null)"><div class="ring"><div class="av">✦</div></div><span>الكل</span></div>${names.map(n=>story(n,fScholar===n,vids.some(v=>v.scholar===n&&!watched[v.key]))).join('')}</div>`+head+
+  `<div class="pbar"><i style="width:${Math.round(100*vids.filter(v=>watched[v.key]).length/vids.length)}%"></i></div>`+(fScholar?`<div class="chips tcs"><div class="tc ${!fTopic?'on':''}" onclick="fTopic=null;lim=20;render(1)"><b>✦</b><span>الكل</span></div>${topics.map(t=>`<div class="tc ${fTopic===t?'on':''}" onclick="fTopic='${esc(t)}';lim=20;render(1)">${secImg(fScholar,t)}<span>${esc(t)}</span></div>`).join('')}</div>`:hero(vids)+chips([['الكل',fKind==='',"fKind='';lim=20;render(1)"],['⭐ مفضلتي',fKind==='f',"fKind='f';lim=20;render(1)"],['⚡ قصيرة',fKind==='s',"fKind='s';lim=20;render(1)"],['📋 قوائم',fKind==='p',"fKind='p';lim=20;render(1)"]]))+
+  (list.length?list.slice(0,lim).map(post).join(''):'<div class="empty">مفيش فيديوهات هنا</div>')+(list.length>lim?'<button class="more" onclick="lim+=20;render()">عرض المزيد</button>':'')+'<button class="fab" onclick="surprise()" aria-label="فاجئني">🎲</button>'}
+function hero(vids){if(query||fKind)return'';const p=vids.filter(v=>v.kind==='v'&&!v.short),f=p.filter(v=>favs&&favs[v.scholar]),l=f.length?f:p,v=l[Math.floor(Date.now()/864e5)%l.length];return `<div class="hero" onclick="openP('${esc(v.key)}')">${media(v)}<div class="hg"><small>🔥 فيديو اليوم${streak()?' — '+streak()+' يوم متتالي':''}</small><b>${esc(v.title)}</b><span>${esc(sname(v.scholar))}</span></div><div class="pl">▶</div></div>`}
+let tt=null,tk=null;
+function tapP(k,el){if(tt&&tk===k){clearTimeout(tt);tt=null;if(!saved[k]){saved[k]=1;ls.set('saved',saved);const b=[...document.querySelectorAll('.s')].find(x=>x.dataset.k===k);b&&(b.textContent='❤️',b.classList.add('on','pop'))}const h=document.createElement('i');h.className='bh';h.textContent='❤️';el.appendChild(h);setTimeout(()=>h.remove(),900);return}tk=k;tt=setTimeout(()=>{tt=null;openP(k)},260)}
+function pickScholar(n){fScholar=n;fTopic=null;lim=20;tab='home';render(1);scrollTo(0,0)}
+/* ===== استكشاف / محفوظات / مزيد ===== */
+function explore(A){const l=filtered();
+ A.innerHTML=topBar()+`<input class="search" id="q" placeholder="ابحث عن عنوان أو شيخ أو موضوع…" value="${esc(query)}">`+chips([['الكل','',"fKind=''"],['فيديوهات','v',"fKind='v'"],['مقاطع قصيرة','s',"fKind='s'"],['قوائم','p',"fKind='p'"]].map(([t,k,f])=>[t,fKind===k,f+';lim=20;render()']))+
+ `<div class="grid">${l.slice(0,lim).map(v=>`<div class="gi ${watched[v.key]?'done':''}" onclick="openP('${esc(v.key)}')">${media(v)}<div class="gt">${esc(v.title)}</div></div>`).join('')}</div>`+(l.length?'':'<div class="empty">مفيش نتائج</div>')+(l.length>lim?'<button class="more" onclick="lim+=30;render()">عرض المزيد</button>':'');
+ $('#q').oninput=e=>{query=e.target.value.trim();lim=20;const p=e.target.selectionStart;render();const q=$('#q');q.focus();q.setSelectionRange(p,p)}}
+function savedTab(A){const l=allVideos().filter(v=>saved[v.key]);A.innerHTML=topBar(l.length+' محفوظ')+(l.length?l.map(post).join(''):'<div class="empty"><div style="font-size:50px">🤍</div>اضغط على القلب في أي فيديو وهيتحفظ هنا</div>')}
+function more(A){const v=allVideos().filter(x=>x.real);
+ A.innerHTML=topBar()+`<div class="sec"><div class="stat"><div><b>${DATA.scholars.length}</b><small>شيخ</small></div><div><b>${v.length}</b><small>فيديو</small></div><div><b>${v.filter(x=>watched[x.key]).length}</b><small>شفتهم</small></div></div><h2>اختصارات</h2>
+ <button class="row" onclick="tab='pick';render(1)">⭐ اختار شيوخك المفضلين</button><button class="row" onclick="surprise()">🎲 فاجئني بفيديو</button><button class="row" onclick="surprise(1)">⚡ مقطع قصير عشوائي</button>${dp?'<button class="row" onclick="doInstall()">⬇️ نزّل التطبيق</button>':''}
+ <button class="row" onclick="if(confirm('تمسح المشاهدات والمحفوظات؟')){watched={};saved={};ls.set('watched',{});ls.set('saved',{});render()}">🗑️ مسح المشاهدات والمحفوظات</button></div>`}
+function surprise(s){const l=allVideos().filter(v=>v.kind==='v'&&(!s||v.short)&&!watched[v.key]);l.length?openP(l[Math.floor(Math.random()*l.length)].key):toast('خلّصت الكل 🎉')}
+/* ===== شيخك المفضل + الصور ===== */
+function pick(A){const f=favs||{};
+ A.innerHTML=`<div class="top"><div class="logo">اسمع دين</div></div><div class="sec"><h2>اختار شيخك المفضل</h2><small style="color:var(--mut)">اختار واحد أو أكتر، وفيديوهاتهم هتظهر لك الأول. اضغط على الصورة لتغييرها.</small></div>
+ <div class="pk">${DATA.scholars.map(s=>`<div class="c ${f[s.name]?'on':''}" onclick="tgPick('${esc(s.name)}')"><div class="ring"><div class="av">${avatar(s.name)}</div></div><div style="margin-top:6px">${esc(sname(s.name))}</div></div>`).join('')}</div>
+ <div style="padding:0 14px 30px"><button class="gold" onclick="donePick()">${Object.keys(f).length?'ابدأ':'تخطّي'}</button></div>`}
+function tgPick(n){favs=favs||{};favs[n]?delete favs[n]:favs[n]=1;ls.set('favs',favs);const y=scrollY;reset();render();scrollTo(0,y)}
+function donePick(){favs=favs||{};ls.set('favs',favs);reset();tab='home';render(1);scrollTo(0,0)}
+function tgFav(n){favs=favs||{};favs[n]?delete favs[n]:favs[n]=1;ls.set('favs',favs);toast(favs[n]?'اتضاف للمفضلين ⭐':'اتشال من المفضلين');reset();render()}
+function setPhoto(n){const i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=()=>{const f=i.files[0];if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas'),m=Math.min(im.width,im.height);c.width=c.height=256;c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,256,256);photos[n]=c.toDataURL('image/jpeg',.8);ls.set('photos',photos);toast('اتحطت الصورة 📷');render()};im.src=URL.createObjectURL(f)};i.click()}
+/* ===== أفعال ===== */
+function tgSave(k,inP){saved[k]?delete saved[k]:saved[k]=1;ls.set('saved',saved);toast(saved[k]?'اتحفظ ❤️':'اتشال من المحفوظات');if(inP)$('#sv').textContent=saved[k]?'❤️ محفوظ':'🤍 احفظ';else{render();const b=[...document.querySelectorAll('.s')].find(x=>x.dataset.k===k);b&&b.classList.add('pop')}}
+function tgWat(k){watched[k]?delete watched[k]:watched[k]=1;ls.set('watched',watched);render()}
+async function share(k){const v=byKey(k),u=v.kind==='v'?'https://youtu.be/'+v.id:'https://www.youtube.com/playlist?list='+v.id;if(navigator.share){try{await navigator.share({title:v.title,url:u})}catch(e){}}else{try{await navigator.clipboard.writeText(u);toast('اتنسخ الرابط')}catch(e){toast(u)}}}
+/* ===== المشغّل ===== */
+let cur=null;
+function openP(k){const v=byKey(k);if(!v)return;
+ if(!v.real){if(confirm('الدرس ده لسه ملوش رابط. أفتح بحث يوتيوب تجيب منه الرابط؟'))window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(v.q),'_blank');const u=prompt('ألصق رابط الفيديو هنا (أو سيبه فاضي)');if(u&&parse(u)){links[k]=u.trim();ls.set('links',links);reset();render();return openP(k)}else if(u)toast('الرابط مش صحيح');return}
+ markDay();cur=v;last=k;ls.set('last',k);document.body.style.overflow='hidden';$('#ov').classList.add('show');$('#ovt').textContent=sname(v.scholar);
+ const go=()=>{if(player&&player.destroy)try{player.destroy()}catch(e){}$('#pbox').innerHTML='<div id="yt"></div>';const pv={autoplay:1,playsinline:1,rel:0},c={playerVars:pv,events:{onStateChange:e=>{if(e.data===0&&v.kind==='v'){watched[v.key]=1;ls.set('watched',watched);playNext()}}}};if(v.kind==='v')c.videoId=v.id;else{pv.listType='playlist';pv.list=v.id}player=new YT.Player('yt',c)};
+ apiReady?go():(pending=go,$('#pbox').innerHTML='<div style="display:grid;place-items:center;color:var(--mut)">جاري التحميل…</div>');
+ const rel=allVideos().filter(x=>x.key!==k&&x.kind==='v'&&!watched[x.key]).sort((a,b)=>(b.scholar===v.scholar)-(a.scholar===v.scholar)||(b.topic===v.topic)-(a.topic===v.topic)||a.ord-b.ord).slice(0,15);
+ $('#oi').innerHTML=`<div style="padding:12px 14px"><div style="font-size:16px;line-height:1.7">${esc(v.title)}</div><small style="color:var(--gold)">${esc(v.scholar)} — ${esc(v.topic)}</small><div style="display:flex;gap:8px;margin-top:10px"><button id="sv" class="gold o" style="margin:0" onclick="tgSave('${esc(k)}',1)">${saved[k]?'❤️ محفوظ':'🤍 احفظ'}</button><button class="gold o" style="margin:0" onclick="share('${esc(k)}')">📤 شارك</button></div></div><div class="sec" style="padding-bottom:4px"><h2>التالي</h2></div>`+rel.map(x=>`<div class="nx" onclick="openP('${esc(x.key)}')"><div class="nm">${media(x)}</div><div class="t">${esc(x.title)}<small>${esc(sname(x.scholar))}</small></div></div>`).join('');$('#ov').scrollTop=0}
+function playNext(){const n=allVideos().find(x=>x.key!==cur.key&&x.kind==='v'&&!watched[x.key]&&x.scholar===cur.scholar)||allVideos().find(x=>x.kind==='v'&&!watched[x.key]);n?openP(n.key):closePlayer()}
+function closePlayer(){if(player&&player.destroy)try{player.destroy()}catch(e){}player=null;$('#ov').classList.remove('show');document.body.style.overflow='';setTimeout(()=>{$('#pbox').innerHTML='<div id="yt"></div>'},400);render()}
+let dp=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;render()});
+async function doInstall(){if(!dp)return;dp.prompt();await dp.userChoice;dp=null;render()}
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+/* ===== تائب 🌱 ===== */
+const TV=/توب|رجوع|ذنوب|تخفف|انتكس|ندم|المعاصي|الخلوات|أرهقت|ويعيد|يتوب/,tvids=()=>allVideos().filter(v=>v.real&&TV.test(v.title+' '+v.topic));
+const MS=[1,3,7,14,30,60,90],ST=[['🚪','أقلع','وقف الذنب فورًا وابعد عن أسبابه ومكانه'],['💧','اندم','ندم صادق من قلبك، مش جلد للنفس'],['🔒','اعزم','انوِ ما ترجعش، ولو وقعت ابدأ تاني'],['🌱','اتبع السيئة الحسنة','صلاة وصدقة واستغفار، والحسنات تمحو السيئات']];
+const SO=[['💧','توضأ فورًا'],['🕌','صلّ ركعتين'],['🚶','غيّر مكانك'],['📞','كلّم صاحب صالح'],['🏃','اشغل نفسك بحركة'],['📿','استغفر ١٠٠ مرة']];
+const so=ls.get('sol',{});
+function tawba(A){const s=ls.get('tstart',null),d=s?Math.floor((Date.now()-s)/864e5):0,nx=MS.find(m=>m>d)||d+30,pc=s?Math.round(360*d/nx):0,tv=tvids();
+ A.innerHTML=`<div class="tw"><div class="rays"></div><div class="sun"></div>${[...Array(12)].map((_,i)=>`<i class="lf" style="left:${8+i*8}%;animation-delay:${i*.6}s;animation-duration:${5+i%4}s">${i%3?'🍃':'✨'}</i>`).join('')}<div class="twt"><h1>باب التوبة مفتوح</h1><div class="vq"><p>﴿لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ﴾</p><p>﴿إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ﴾</p><p>«كل ابن آدم خطّاء، وخير الخطّائين التوّابون»</p></div></div></div>
+ <button class="sosb" onclick="sos()"><i></i>🆘 النفس بتغلبني دلوقتي</button>
+ <div class="dnc"><div class="dr" style="--p:${pc}deg"><div><b id="dn">0</b><small>${s?'يوم نظيف':'ابدأ رحلتك'}</small></div></div><div class="dt">${s?`<div>الهدف الجاي: <b>${nx}</b> يوم 🎯</div><small>السقوط مش النهاية، المهم تقوم وتكمّل.</small><button class="gold o" onclick="if(confirm('تبدأ من جديد؟ ربنا يقبل منك'))startT()">🔄 ابدأ من جديد</button>`:`<div>ابدأ عدّاد أيامك النظيفة</div><button class="gold" onclick="startT()">🌱 ابدأ رحلتي اليوم</button>`}</div></div>
+ <div class="sec"><h2>روشتة التوبة</h2>${ST.map((x,i)=>`<div class="stp"><i style="animation-delay:${i*.3}s">${x[0]}</i><div><b>${x[1]}</b><small>${x[2]}</small></div></div>`).join('')}</div>
+ <div class="sec"><h2>لو النفس غلبتك… اعمل واحدة</h2><div class="sols">${SO.map((x,i)=>`<div class="sol ${so[i]?'on':''}" onclick="tgSol(${i},this)"><i>${x[0]}</i>${x[1]}</div>`).join('')}</div></div>
+ <div class="sec"><h2>فيديوهات التوبة (${tv.length})</h2></div>`+tv.slice(0,lim).map(post).join('')+(tv.length>lim?'<button class="more" onclick="lim+=10;render()">عرض المزيد</button>':'');
+ const e=$('#dn');if(e){let t0=performance.now();const f=n=>{const p=Math.min(1,(n-t0)/1400);e.textContent=Math.round(d*(1-Math.pow(1-p,3)));p<1&&requestAnimationFrame(f)};requestAnimationFrame(f)}
+ if(s&&MS.includes(d)&&ls.get('tcel',0)!==d){ls.set('tcel',d);setTimeout(()=>{confetti();toast('ما شاء الله! '+d+' يوم 🎉')},600)}}
+function startT(){ls.set('tstart',Date.now());ls.set('tcel',0);confetti();toast('بسم الله 🌱');render(1)}
+function tgSol(i,el){so[i]=!so[i];ls.set('sol',so);el.classList.toggle('on',!!so[i]);el.classList.add('pop');setTimeout(()=>el.classList.remove('pop'),400);if(so[i])toast('أحسنت 💪')}
+function confetti(){const c=document.createElement('div');c.className='cf';for(let i=0;i<44;i++){const p=document.createElement('i');p.style.cssText=`left:${Math.random()*100}%;background:hsl(${Math.random()*360} 80% 60%);--x:${(Math.random()-.5)*200}px;animation-delay:${Math.random()*.4}s;animation-duration:${1.6+Math.random()}s`;c.appendChild(p)}document.body.appendChild(c);setTimeout(()=>c.remove(),3200)}
+let tc=0;
+function tas(e){tc++;$('#tcn').textContent=tc;const b=e.currentTarget,r=document.createElement('span'),k=b.getBoundingClientRect();r.className='rp';r.style.left=e.clientX-k.left+'px';r.style.top=e.clientY-k.top+'px';b.appendChild(r);setTimeout(()=>r.remove(),700);navigator.vibrate&&navigator.vibrate(8);if(tc%33===0){toast('اللهم اغفر لي 🤍')}}
+function sos(){let o=$('#sos');if(!o){o=document.createElement('div');o.id='sos';document.body.appendChild(o)}tc=0;
+ o.innerHTML=`<button class="back" onclick="$('#sos').classList.remove('show')">✕</button><div class="sc"><h2>خد نفس… الشعور ده بيعدّي</h2><div class="br"><span class="b1">شهيق</span><span class="b2">زفير</span></div><p>﴿إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ﴾</p><button class="tsb" onclick="tas(event)"><small>أستغفر الله — اضغط</small><b id="tcn">0</b></button><button class="gold" onclick="$('#sos').classList.remove('show');const l=tvids().filter(x=>x.kind==='v'),v=l[Math.floor(Math.random()*l.length)];v&&openP(v.key)">▶ شوف فيديو يرجّعك</button></div>`;requestAnimationFrame(()=>o.classList.add('show'))}
+
+/* ===== قصص القرآن: مشاهد متحركة + فيديو لو موجود ===== */
+const orb=[...Array(11)].map((_,i)=>`<i class="st" style="--a:${i*32.7}deg">⭐</i>`).join('');
+const QS=[
+['sea','فلق البحر','موسى عليه السلام','﴿وَإِذْ فَرَقْنَا بِكُمُ الْبَحْرَ فَأَنجَيْنَاكُمْ وَأَغْرَقْنَا آلَ فِرْعَوْنَ﴾',/موسى|فرعون|البحر/,'<u class="wall l"></u><u class="wall r"></u><u class="pth"></u><i class="sun">☀️</i><i class="fsh f1">🐟</i><i class="fsh f2">🐠</i>'],
+['ark','سفينة نوح','نوح عليه السلام','﴿وَقَالَ ارْكَبُوا فِيهَا بِسْمِ اللَّهِ مَجْرَاهَا وَمُرْسَاهَا﴾',/نوح|السفينة|الطوفان/,'<i class="rain"></i><i class="cld c1">☁️</i><i class="cld c2">☁️</i><i class="ark">🚢</i><u class="wav w1"></u><u class="wav w2"></u>'],
+['fire','نار إبراهيم','إبراهيم عليه السلام','﴿قُلْنَا يَا نَارُ كُونِي بَرْدًا وَسَلَامًا عَلَىٰ إِبْرَاهِيمَ﴾',/إبراهيم|النار/,'<i class="fire">🔥</i><i class="fire f2">🔥</i><i class="snw s1">❄️</i><i class="snw s2">❄️</i><i class="snw s3">❄️</i>'],
+['whale','يونس في بطن الحوت','يونس عليه السلام','﴿فَنَادَىٰ فِي الظُّلُمَاتِ أَن لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ﴾',/يونس|الحوت/,'<u class="glow"></u><i class="whl">🐋</i><i class="bub b1">🫧</i><i class="bub b2">🫧</i><i class="bub b3">🫧</i><p class="cap">لا إله إلا أنت سبحانك</p>'],
+['cave','أصحاب الكهف','الفتية المؤمنون','﴿إِذْ أَوَى الْفِتْيَةُ إِلَى الْكَهْفِ فَقَالُوا رَبَّنَا آتِنَا مِن لَّدُنكَ رَحْمَةً﴾',/الكهف|الفتية/,'<i class="moon">🌙</i><i class="tw t1">⭐</i><i class="tw t2">✨</i><i class="tw t3">⭐</i><u class="cav"></u><i class="zz">💤</i>'],
+['yusuf','رؤيا يوسف','يوسف عليه السلام','﴿إِنِّي رَأَيْتُ أَحَدَ عَشَرَ كَوْكَبًا وَالشَّمْسَ وَالْقَمَرَ رَأَيْتُهُمْ لِي سَاجِدِينَ﴾',/يوسف/,'<i class="sun">☀️</i><i class="moon">🌙</i><div class="orb">'+orb+'</div>'],
+['bird','سليمان والهدهد','سليمان عليه السلام','﴿وَتَفَقَّدَ الطَّيْرَ فَقَالَ مَا لِيَ لَا أَرَى الْهُدْهُدَ﴾',/سليمان|الهدهد/,'<i class="sun">☀️</i><i class="cld c1">☁️</i><i class="cld c2">☁️</i><i class="brd">🐦</i>']];
+function qisas(A){const all=allVideos();
+ A.innerHTML=topBar('📖')+`<div class="sec"><h2>قصص القرآن</h2><small style="color:var(--mut)">اضغط على المشهد يتحرك من جديد، والفيديو بيظهر تحته لو موجود</small></div>`+QS.map(q=>{const vs=all.filter(v=>v.real&&q[4].test(v.title+' '+v.topic));
+  return `<div class="qc stp-r"><div class="scn s-${q[0]}" onclick="rePlay(this,event)">${q[5]}<div class="qt"><b>${q[1]}</b><small>${q[2]}</small></div>${vs.length?`<button class="qp" onclick="event.stopPropagation();openP('${esc(vs[0].key)}')">▶</button>`:''}</div><p class="ay">${q[3]}</p>${vs.length?vs.slice(0,3).map(x=>`<div class="nx" onclick="openP('${esc(x.key)}')"><div class="nm">${media(x)}</div><div class="t">${esc(x.title)}<small>${esc(sname(x.scholar))}</small></div></div>`).join(''):'<small class="nov">🎬 لسه مفيش فيديو — استمتع بالمشهد المتحرك</small>'}</div>`}).join('');
+ document.querySelectorAll('.scn').forEach(x=>ioS.observe(x))}
+const ioS=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('go',e.isIntersecting)),{threshold:.45});
+function rePlay(el,e){el.classList.remove('go');el.classList.add('nr');void el.offsetWidth;el.classList.remove('nr');el.classList.add('go');const k=el.getBoundingClientRect();for(let i=0;i<7;i++){const s=document.createElement('i');s.className='spk';s.textContent=['✨','⭐','💫'][i%3];s.style.cssText=`left:${e.clientX-k.left}px;top:${e.clientY-k.top}px;--x:${(Math.random()-.5)*160}px;--y:${-30-Math.random()*90}px`;el.appendChild(s);setTimeout(()=>s.remove(),900)}navigator.vibrate&&navigator.vibrate(12)}
+if(favs===null)tab='pick';render(1);
+
+</script>
+<script>
+// صور الشيوخ: اكتب اسم الشيخ كما هو في data.js ورابط صورته (أو مسار داخل photos/)
+// مثال: "الشيخ محمد حسان": "photos/hassan.jpg"
+window.PHOTOS={
+};
+
+</script>
+<script>
+(()=>{const g=k=>{try{return localStorage.getItem(k)||''}catch(e){return ''}},s=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const mk=(id,h)=>{let d=document.getElementById(id);if(!d){d=document.createElement('div');d.id=id;d.className='xs';d.onclick=e=>{if(e.target===d)d.classList.remove('on')};document.body.appendChild(d)}d.innerHTML='<div class="in">'+h+'</div>';d.classList.add('on');return d};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+window.xProfile=()=>{const d=mk('xp','<h3>👤 بروفايلك</h3><input id="xn" placeholder="اكتب اسمك" value="'+esc(g('myname'))+'"><input id="xf" type="file" accept="image/*"><button class="g" id="xo">حفظ</button>');
+d.querySelector('#xo').onclick=()=>{s('myname',d.querySelector('#xn').value.trim());const f=d.querySelector('#xf').files[0];const done=()=>{d.classList.remove('on');deco()};if(!f)return done();const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=160;const m=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,160,160);s('myphoto',c.toDataURL('image/jpeg',.8));done()};im.src=URL.createObjectURL(f)}};
+let SP=null;const gs=()=>SP||(SP=(window.claude&&claude.use?claude.use('sample'):Promise.resolve(null)).catch(()=>null));
+window.xAsk=q=>{const d=mk('xa','<h3>🎙️ اسأل شيخك</h3><small style="color:var(--mut)">ذكاء اصطناعي مش مفتي، وللفتاوى الخاصة ارجع لعالم موثوق.</small><input id="xq" placeholder="اكتب سؤالك في الدين…"><button class="g" id="xg">اسأل</button><div class="ans" id="xr">اسأل أي سؤال.</div>');
+const run=async()=>{const t=d.querySelector('#xq').value.trim(),o=d.querySelector('#xr');if(!t)return;o.textContent='جارٍ التفكير…';d.querySelector('#xg').disabled=true;const HIST=window.__xh||(window.__xh=[]);const nm=g('myname'),SYS0='أنت «اسأل شيخك»، مساعد ذكاء اصطناعي يجيب عن الأسئلة الدينية بعربية بسيطة (لهجة مصرية خفيفة) على منهج أهل السنة والجماعة. لا تختلق آية أو حديثاً، وانبّه لخلاف المذاهب، وانصح بسؤال عالم موثوق في الفتاوى الخاصة. التزم بالقرآن والسنة الصحيحة، واذكر اسم السورة ورقم الآية أو راوي الحديث ودرجته إن كنت متأكداً، وإن لم تتأكد قل «الله أعلم» ولا تخمّن. أجب فقط عن الأسئلة الدينية والشرعية، وأي سؤال بعيد عن الدين اعتذر عنه بلطف. اختصر في نحو ٨ أسطر.',SYS=SYS0+(nm?' اسم السائل '+nm+'.':''),p=SYS+' السؤال: '+t;
+const BTN='style="display:inline-block;border-radius:12px;padding:10px 16px;background:var(--gold);color:#1a1405;text-decoration:none;margin:4px 2px;font-weight:700"';
+const norm=x=>x.replace(/[\u064B-\u065F\u0670\u0640]/g,'').replace(/[إأآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه');
+const STOP=new Set(['ازاي','كيف','ماذا','ماهو','هل','ايه','يعني','عن','في','من','على','الي','ان','انا','ده','دي','هو','هي','لو','ما','لما','اللي','او','ممكن','عايز','عاوز','حكم','معني','يجوز','ليه','لماذا']);
+const local=q=>{const w=norm(q).split(/[^\u0621-\u064Aa-z0-9]+/i).filter(x=>x.length>2&&!STOP.has(x)).map(x=>x.replace(/^ال/,'')).filter(x=>x.length>1);if(!w.length)return[];let V=[];try{V=allVideos()}catch(e){}return V.map(v=>{const hs=norm(v.title+' '+v.topic+' '+v.scholar);return[w.filter(x=>hs.includes(x)).length,v]}).filter(x=>x[0]>0).sort((x,y)=>y[0]-x[0]).slice(0,5).map(x=>x[1])};
+const fb=(q,why)=>{const L=local(q),e=encodeURIComponent(q+' (أجب بعربية بسيطة، ولا تختلق آية أو حديثاً، وانبّه لخلاف العلماء إن وُجد)');
+o.innerHTML=(why?'<div>'+why+'</div>':'')+(L.length?'<div style="margin-top:8px"><b>فيديوهات في الموقع عن سؤالك:</b></div>'+L.map(v=>'<div style="margin:6px 0"><a href="#" data-k="'+esc(v.key)+'" style="color:var(--gold)">▶ '+esc(v.title)+'</a> <small style="color:var(--mut)">'+esc(sname(v.scholar))+'</small></div>').join(''):'')+'<div style="margin-top:10px"><b>أو اسأل مباشرة بضغطة واحدة:</b></div><a '+BTN+' target="_blank" rel="noopener" href="https://claude.ai/new?q='+e+'">اسأل Claude ↗</a><a '+BTN+' target="_blank" rel="noopener" href="https://chatgpt.com/?q='+e+'">اسأل ChatGPT ↗</a>';
+o.querySelectorAll('a[data-k]').forEach(x=>x.onclick=ev=>{ev.preventDefault();d.classList.remove('on');openP(x.dataset.k)})};
+try{
+const f=await gs();
+if(f){const r=await f(p,{onText:({text})=>{o.textContent=text}});o.textContent=r.text||o.textContent;return}
+const msgs=[{role:'system',content:SYS}].concat(HIST.slice(-6),[{role:'user',content:t}]);
+const post=async m=>{const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),25000);try{const r=await fetch('https://text.pollinations.ai/openai',{method:'POST',headers:{'Content-Type':'application/json'},signal:ctl.signal,body:JSON.stringify({model:m,messages:msgs})});if(!r.ok)throw new Error('http '+r.status);const j=await r.json(),a=j&&j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content;if(!a)throw new Error('empty');return a}finally{clearTimeout(tm)}};
+let ans='';
+for(const m of ['openai','mistral','llama']){try{ans=await post(m);if(ans)break}catch(_){}}
+if(!ans)throw new Error('no answer');
+o.textContent=ans;HIST.push({role:'user',content:t},{role:'assistant',content:ans});if(HIST.length>12)HIST.splice(0,2);
+}catch(e){fb(t,'المرشد الذكي المجاني مش متاح دلوقتي.')}finally{d.querySelector('#xg').disabled=false}};
+d.querySelector('#xg').onclick=run;d.querySelector('#xq').onkeydown=e=>{if(e.key==='Enter')run()}};
+window.xCol=(q)=>{fGroup=null;fScholar=null;fTopic=null;fKind='';query=q;lim=20;tab='explore';render(1);scrollTo(0,0)};
+function deco(){const t=document.querySelector('#app .top');if(t&&!t.querySelector('#me')){const n=g('myname'),p=g('myphoto'),b=document.createElement('button');b.id='me';b.onclick=xProfile;b.innerHTML='<div class="pf">'+(p?'<img src="'+p+'">':(g('myemoji')||esc((n||'+')[0])))+'</div><div class="nm">'+esc(n||'سجّل اسمك')+'</div>';t.appendChild(b)}
+const A=document.getElementById('app');if(A&&A.querySelector('.top')&&!A.querySelector('.cols')&&tab!=='pick'){const C=[['🌙','رقائق','رقائق'],['🌱','توبة','التوبة'],['🕌','الصلاة','الصلاة'],['📜','قصص الأنبياء','قصص'],['📖','القرآن','تلاوات'],['🤲','دعاء','الدعاء']],d=document.createElement('div');d.className='cols';d.innerHTML=C.map(([i,t,q],k)=>'<button style="--h:'+(k*55+120)+'" onclick="xCol(\''+q+'\')"><span>'+i+'</span>'+t+'</button>').join('');A.querySelector('.top').after(d)}
+const AV=window.allVideos?allVideos():[];document.querySelectorAll('.post,.gi').forEach(p=>{const e=p.querySelector('[data-k]')||p,k=e.dataset.k||((p.getAttribute('onclick')||'').match(/'([^']+)'/)||[])[1],v=AV.find(x=>x.key===k);if(v&&/التوبة|توبة/.test(v.topic))p.classList.add('tw')})}
+if(!document.getElementById('ask')){const b=document.createElement('button');b.id='ask';b.textContent='🎙️ اسأل شيخك';b.onclick=()=>xAsk();document.body.appendChild(b)}
+const R=window.render;window.render=function(){const r=R.apply(this,arguments);try{deco();document.getElementById('ask').style.display=tab==='pick'?'none':''}catch(e){}return r};
+setTimeout(()=>{render();if(!g('myname'))xProfile()},1900)})();
+(()=>{const fx=(x,y,a)=>{a.forEach((t,i)=>{const d=document.createElement('div');d.className='fx';d.textContent=t;d.style.left=x+(Math.random()-.5)*120+'px';d.style.top=y+'px';d.style.animationDelay=i*.04+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),1500)})};
+window.xFx=fx;document.addEventListener('click',e=>{if(e.target.closest('.w'))fx(e.clientX,e.clientY,['✨','🌙','⭐','🤍','✨']);else if(e.target.closest('.s.on,[data-k].on')===null&&e.target.closest('.s,[onclick*=tgSave]'))fx(e.clientX,e.clientY,['❤️','✨'])},true);
+const Z=['صلِّ على النبي ﷺ','أستغفر الله','سبحان الله وبحمده','لا إله إلا الله','الحمد لله','اللهم صلِّ وسلّم على نبينا محمد'];let zi=0,zc=+(()=>{try{return localStorage.getItem('zc')}catch(e){return 0}})()||0;
+const R2=window.render;window.render=function(){const r=R2.apply(this,arguments);try{const A=document.getElementById('app'),t=A.querySelector('.top');if(t&&!A.querySelector('.dk')&&tab!=='pick'){const d=document.createElement('div');d.className='dk';d.innerHTML='<b>'+Z[zi%Z.length]+'</b><button>🤍 سبّح معانا</button><small>رصيدك: <span>'+zc+'</span> ذكر</small>';(A.querySelector('.cols')||t).after(d);d.querySelector('button').onclick=e=>{zc++;try{localStorage.setItem('zc',zc)}catch(e){}d.querySelector('span').textContent=zc;d.querySelector('b').textContent=Z[(++zi)%Z.length];fx(e.clientX,e.clientY-20,[Z[zi%Z.length].slice(0,12)]);if(zc%33===0)fx(innerWidth/2,innerHeight/2,['✨','🌙','⭐','🤍','✨','🌟','💫'])}}
+const P=window.PHOTOS||{};document.querySelectorAll('[onclick*="pickScholar("]').forEach(el=>{const m=(el.getAttribute('onclick')||'').match(/pickScholar\('([^']+)'/),u=m&&P[m[1].replace(/\\'/g,"'")];if(u){const av=el.querySelector('.av');if(av&&!av.querySelector('img.ok')){av.style.backgroundImage='url("'+u+'")';av.style.backgroundSize='cover';av.style.color='transparent'}}})}catch(e){}return r};setInterval(()=>{const b=document.querySelector('.dk b');if(b&&!document.hidden){b.textContent=Z[(++zi)%Z.length];b.style.animation='none';void b.offsetWidth;b.style.animation=''}},9000)})();
+
+</script>
+<script>
+(()=>{const g=k=>{try{return localStorage.getItem(k)||''}catch(e){return ''}},s=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const bg=(p,e,n)=>p?['i','style="background-image:url('+p+')"','']:['','',e||esc((n||'+')[0])];
+window.xProfile=()=>{let ph=g('myphoto'),em=g('myemoji');const d=document.getElementById('xp')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'xp',className:'xs',onclick:e=>{if(e.target.id==='xp')e.target.classList.remove('on')}}));
+d.innerHTML='<div class="in"><h3>✨ شرّفنا بصورتك</h3><small style="color:var(--mut)">هتظهر جنب شيخك المفضل في بروفايلك</small><div class="pav" id="pv"></div><div style="text-align:center"><label class="g">📷 التقط صورة<input id="f1" type="file" accept="image/*" capture="user" hidden></label><label class="g">🖼️ من المعرض<input id="f2" type="file" accept="image/*" hidden></label></div><div class="emo">'+['🌙','🕌','📿','🌿','⭐','🤲','🕋','🌸'].map(x=>'<span>'+x+'</span>').join('')+'</div><input id="xn" placeholder="اسمك" value="'+esc(g('myname'))+'"><button class="g" id="xo">يلا نبدأ 🤍</button></div>';d.classList.add('on');
+const pv=()=>{const a=d.querySelector('#pv');a.className='pav'+(ph?' i':'');a.style.backgroundImage=ph?'url('+ph+')':'';a.textContent=ph?'':(em||esc(((d.querySelector('#xn').value||'+')[0])))};pv();d.querySelector('#xn').oninput=pv;
+d.querySelectorAll('.emo span').forEach(x=>x.onclick=()=>{em=x.textContent;ph='';pv()});
+const rd=f=>{if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=200;const m=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,200,200);ph=c.toDataURL('image/jpeg',.8);pv()};im.src=URL.createObjectURL(f)};d.querySelector('#f1').onchange=e=>rd(e.target.files[0]);d.querySelector('#f2').onchange=e=>rd(e.target.files[0]);
+d.querySelector('#xo').onclick=()=>{s('myname',d.querySelector('#xn').value.trim());s('myphoto',ph);s('myemoji',em);d.classList.remove('on');document.querySelectorAll('#me,.pcard').forEach(x=>x.remove());render()}};
+const rnd=(a,seed)=>{let x=seed;return a.map(v=>[v,(x=(x*9301+49297)%233280)/233280]).sort((p,q)=>p[1]-q[1]).map(p=>p[0])};
+const seed=Math.floor(Date.now()/36e5);
+const T={'رقائق':['🌙','رقائق دينية'],'التوبة':['🌱','للتائبين: باب التوبة مفتوح'],'قصص':['📜','قصص الأنبياء'],'تلاوات':['🎧','تلاوات خاشعة'],'الصلاة':['🕌','خشوع الصلاة'],'الدعاء':['🤲','أدعية تريّح القلب']};
+const card=v=>'<div class="rc" data-k="'+esc(v.key)+'"><div class="im">'+(v.kind==='v'&&v.id?'<img loading="lazy" alt="" src="https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg" onerror="this.remove()">':'')+'🌙</div><b>'+esc(v.title)+'</b><small>'+esc((typeof sname==='function'?sname(v.scholar):v.scholar))+'</small></div>';
+const sec=(t,l)=>l.length?'<h4>'+t+'</h4><div class="rr">'+l.slice(0,10).map(card).join('')+'</div>':'';
+const rails=(ex)=>{const V=allVideos().filter(v=>v.kind==='v'&&v.real&&v.id),F=(typeof favs!=='undefined'&&favs)||{},W=(typeof watched!=='undefined'&&watched)||{},un=V.filter(v=>!W[v.key]);let h='';
+const sug=rnd(un,seed).sort((a,b)=>(F[b.scholar]?1:0)-(F[a.scholar]?1:0));
+if(!ex)h+=sec('🎯 مقترح لك',sug);else h+=sec('🆕 لسه ماشفتوش',rnd(un,seed+7));
+const by=(f)=>rnd(un.filter(f),seed+3);
+Object.entries(T).forEach(([k,[i,t]])=>{h+=sec(i+' '+t,by(v=>v.topic&&v.topic.includes(k)))});
+h+=sec('⚡ مقاطع قصيرة',by(v=>v.short));return h};
+const R3=window.render;window.render=function(){const r=R3.apply(this,arguments);try{const A=document.getElementById('app'),t=A.querySelector('.top');if(!t||tab==='pick')return r;
+if(!A.querySelector('.pcard')){const n=g('myname'),p=g('myphoto'),e=g('myemoji'),F=(typeof favs!=='undefined'&&favs)||{},fn=Object.keys(F).find(k=>F[k]),P=window.PHOTOS||{},a=bg(p,e,n),d=document.createElement('div');d.className='pcard';
+const sh=fn?(P[fn]?'<div class="r i" style="background-image:url('+P[fn]+')"></div>':'<div class="r">'+esc(((typeof sname==='function'?sname(fn):fn)||'ش')[0])+'</div>'):'<div class="r">⭐</div>';
+d.innerHTML='<div class="r '+a[0]+'" '+a[1]+'>'+a[2]+'</div><div class="h">🤍</div>'+sh+'<div class="m"><b>'+esc(n||'ضيفنا الكريم')+(fn?' و '+esc(typeof sname==='function'?sname(fn):fn):'')+'</b>'+(fn?'شيخك المفضل':'اختار شيخك المفضل')+'<br><button>'+(fn?'تعديل':'اختار')+'</button></div>';
+d.querySelector('button').onclick=()=>{tab='pick';render(1)};d.querySelector('.r').onclick=xProfile;t.after(d)}
+if(!A.querySelector('.rails')){const ex=tab==='explore';if(tab==='home'||(ex&&!query)){const d=document.createElement('div');d.className='rails';d.innerHTML=(ex?'<button class="rnd" onclick="surprise()">🎲 فاجئني بدرس</button><div class="exg">'+[['🌙','رقائق','رقائق'],['🌱','توبة','التوبة'],['📖','تفسير','تفسير'],['🕌','سيرة','سيرة'],['🎧','تلاوات','تلاوات'],['🤲','دعاء','الدعاء']].map(([i,tt,q],k)=>'<button style="--h:'+(k*55+110)+'" onclick="xCol(\''+q+'\')"><span>'+i+'</span>'+tt+'</button>').join('')+'</div>':'')+rails(ex);const at=A.querySelector('.dk')||A.querySelector('.cols')||A.querySelector('.pcard')||t;(ex?(A.querySelector('.search')||t):at).after(d)}}}catch(e){console.error(e)}return r};
+document.addEventListener('click',e=>{const c=e.target.closest('.rc');if(c)openP(c.dataset.k)});
+setTimeout(()=>render(),2000)})();
+
+</script>
+<script>
+// ضيف هنا أي شورتس أو مقطع قصير (٥ دقايق تقريبًا) — سطر واحد لكل مقطع:
+// {t:'العنوان', s:'اسم الشيخ', u:'الرابط', d:'٣ د'}
+// الروابط المدعومة: يوتيوب (watch / shorts / youtu.be) — انستجرام (…/reel/CODE أو /p/CODE) — تيك توك (…/@user/video/ID)
+// (روابط تيك توك المختصرة vm.tiktok.com بتفتح خارج التطبيق)
+window.SHORTS=[
+ // {t:'مقطع مؤثر', s:'اسم الشيخ', u:'https://www.instagram.com/reel/XXXXXXXXXXX/', d:'دقيقة'},
+ // {t:'رقائق قصيرة', s:'اسم الشيخ', u:'https://www.tiktok.com/@user/video/1234567890123456789', d:'٥ د'},
+];
+
+</script>
+<script>
+(()=>{const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));let LK={};try{LK=JSON.parse(localStorage.getItem('sl')||'{}')}catch(e){}
+const parse=u=>{u=String(u||'');let m;if(m=u.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/))return{p:'يوتيوب',id:m[1],src:'https://www.youtube-nocookie.com/embed/'+m[1]+'?autoplay=1&mute=1&loop=1&playlist='+m[1]+'&playsinline=1&rel=0',u:'https://www.youtube.com/watch?v='+m[1]};
+if(m=u.match(/instagram\.com\/(?:reel|reels|p|tv)\/([\w-]+)/))return{p:'انستجرام',id:m[1],src:'https://www.instagram.com/reel/'+m[1]+'/embed',u};
+if(m=u.match(/tiktok\.com\/.*?video\/(\d+)/))return{p:'تيك توك',id:m[1],src:'https://www.tiktok.com/embed/v2/'+m[1],u};return{p:'رابط',id:u,src:'',u}};
+const list=()=>{const out=[],seen={};(window.SHORTS||[]).forEach(x=>{const p=parse(x.u);if(!seen[p.id]){seen[p.id]=1;out.push({...p,t:x.t||'مقطع',s:x.s||'',d:x.d||''})}});
+try{allVideos().filter(v=>v.short&&v.kind==='v'&&v.id).forEach(v=>{if(!seen[v.id]){seen[v.id]=1;out.push({...parse('https://youtu.be/'+v.id),t:v.title,s:(typeof sname==='function'?sname(v.scholar):v.scholar),d:'قصير'})}})}catch(e){}
+return out};
+window.xShorts=(start)=>{let d=document.getElementById('sf');if(!d){d=document.createElement('div');d.id='sf';document.body.appendChild(d)}const L=list();
+d.innerHTML='<button class="x">✕</button><div class="tt">⚡ شورتس</div><div class="sl">'+L.map((x,i)=>'<div class="si" data-i="'+i+'"><div class="sv"><div class="em">🌙</div></div><div class="ac"><button class="lk'+(LK[x.id]?' on':'')+'">❤️</button><button class="sh">📤</button><button class="op">↗️</button></div><div class="sm"><i>'+x.p+'</i>'+(x.d?'<i>'+esc(x.d)+'</i>':'')+'<b>'+esc(x.t)+'</b><small>'+esc(x.s)+'</small></div></div>').join('')+'</div>';d.classList.add('on');document.body.style.overflow='hidden';
+const sl=d.querySelector('.sl'),io=new IntersectionObserver(es=>es.forEach(e=>{const el=e.target,x=L[el.dataset.i],v=el.querySelector('.sv');if(e.isIntersecting&&e.intersectionRatio>.6){el.classList.add('act');if(x.src&&!v.querySelector('iframe')){const f=document.createElement('iframe');f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.src=x.src;v.appendChild(f)}}else{el.classList.remove('act');const f=v.querySelector('iframe');if(f)f.remove()}}),{root:sl,threshold:[.6]});
+d.querySelectorAll('.si').forEach((el,i)=>{io.observe(el);const x=L[i],burst=(cx,cy)=>{const h=document.createElement('div');h.className='hb';h.textContent='❤️';h.style.left=cx-45+'px';h.style.top=cy-45+'px';d.appendChild(h);setTimeout(()=>h.remove(),800)},like=()=>{LK[x.id]=!LK[x.id];try{localStorage.setItem('sl',JSON.stringify(LK))}catch(e){}el.querySelector('.lk').classList.toggle('on',!!LK[x.id])};
+let lt=0;el.querySelector('.em').parentNode.addEventListener('dblclick',e=>{burst(e.clientX,e.clientY);if(!LK[x.id])like()});
+el.querySelector('.lk').onclick=e=>{like();if(LK[x.id])burst(e.clientX,e.clientY-40)};el.querySelector('.op').onclick=()=>window.open(x.u,'_blank','noopener');
+el.querySelector('.sh').onclick=async()=>{try{if(navigator.share)await navigator.share({title:x.t,url:x.u});else{await navigator.clipboard.writeText(x.u)}}catch(e){}}});
+d.querySelector('.x').onclick=()=>{d.classList.remove('on');d.innerHTML='';document.body.style.overflow=''};if(start)sl.scrollTop=start*innerHeight;if(!L.length)sl.innerHTML='<div class="si"><div class="sm" style="left:14px;text-align:center"><b>مفيش شورتس لسه</b></div></div>'};
+const R4=window.render;window.render=function(){const r=R4.apply(this,arguments);try{const A=document.getElementById('app'),c=A.querySelector('.cols');if(c&&!c.querySelector('.shb')){const b=document.createElement('button');b.className='shb';b.innerHTML='<span>⚡</span>شورتس';b.onclick=()=>xShorts();c.prepend(b)}}catch(e){}return r};setTimeout(()=>render(),2100)})();
+
+</script>
+<script>
+(()=>{const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const young=()=>{const g0=new Set(DATA.scholars.filter(s=>s.g===0).map(s=>s.name));const v=allVideos().filter(x=>x.real&&x.kind==='v'&&x.id&&g0.has(x.scholar));
+const by={};v.forEach(x=>(by[x.scholar]=by[x.scholar]||[]).push(x));const q=Object.values(by),out=[];for(let i=0;out.length<v.length;i++){q.forEach(a=>{if(a[i])out.push(a[i])});if(i>200)break}
+return out.sort((a,b)=>(b.short?1:0)-(a.short?1:0)||0)};
+const card=(v,i)=>'<div class="vb" data-k="'+esc(v.key)+'" style="animation-delay:'+(i%6)*.06+'s"><div class="im"><img loading="lazy" alt="" src="https://i.ytimg.com/vi/'+v.id+'/hqdefault.jpg" onerror="this.remove()">🌙'+(v.short?'<i>⚡ قصير</i>':'')+'</div><div class="t">'+esc(v.title)+'</div><div class="s">'+esc(typeof sname==='function'?sname(v.scholar):v.scholar)+' · '+esc(v.topic||'')+'</div></div>';
+let n=12,pt='';const R5=window.render;window.render=function(){try{if(tab==='explore'&&pt!=='explore'&&!query){fGroup=null;fScholar=null;fTopic=null;fKind=''}pt=tab}catch(e){}const r=R5.apply(this,arguments);try{const A=document.getElementById('app');if(tab==='explore'&&!query&&!A.querySelector('.xf')){const L=young(),d=document.createElement('div');d.className='xf';const draw=()=>{d.innerHTML='<h4>🔥 مقاطع مؤثرة للشباب</h4><small>من الشيوخ الشباب، متنوّعة ومترتبة عشان متلاقيش نفس الشيخ ورا بعض</small>'+L.slice(0,n).map(card).join('')+(L.length>n?'<button class="more2">عرض المزيد ('+(L.length-n)+')</button>':'');const b=d.querySelector('.more2');if(b)b.onclick=()=>{n+=12;draw()}};draw();const a=A.querySelector('.rails');a?a.after(d):(A.querySelector('.search')||A.querySelector('.top')).after(d)}}catch(e){console.error(e)}return r};
+document.addEventListener('click',e=>{const c=e.target.closest('.vb');if(c)openP(c.dataset.k)});setTimeout(()=>render(),2200)})();
+
+</script>
+<script>
+(()=>{const O=window.openP,F0=window.filtered;
+window.filtered=function(){const r=F0.apply(this,arguments);return(fScholar||query)?r:r.filter(v=>v.real)};
+const E={'رقائق':'🌙','التوبة':'🌱','الصلاة':'🕌','الدعاء':'🤲','قصص الأنبياء':'📜','تلاوات':'🎧','سيرة':'🕋','تفسير':'📖'},esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+window.openP=function(k){const v=byKey(k);if(!v||v.real)return O.apply(this,arguments);
+let d=document.getElementById('xq2');if(!d){d=document.createElement('div');d.id='xq2';d.className='xs';d.onclick=e=>{if(e.target===d)d.classList.remove('on')};document.body.appendChild(d)}
+let h=0;for(const c of v.title)h=(h*31+c.charCodeAt(0))%360;
+d.innerHTML='<div class="in"><div class="qa" style="background:linear-gradient(135deg,hsl('+h+',50%,30%),hsl('+(h+50)+',55%,10%))">'+(E[v.topic]||'🌙')+'</div><h3>'+esc(v.title)+'</h3><small style="color:var(--gold)">'+esc(sname(v.scholar))+' · '+esc(v.topic||'')+'</small><p style="color:var(--mut)">الدرس ده لسه ملوش رابط مباشر. افتح نتايجه على يوتيوب بضغطة، ولو لقيت الفيديو الصق رابطه عشان يتشغّل جوه التطبيق.</p><a class="g" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query='+encodeURIComponent(v.q||v.title)+'">🔎 افتح على يوتيوب</a><button class="g" id="xl">🔗 عندي الرابط</button></div>';
+d.classList.add('on');d.querySelector('#xl').onclick=()=>{d.classList.remove('on');O.call(window,k)}}})();
+
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>
+<script>
+(()=>{const h=document.documentElement;document.addEventListener('visibilitychange',()=>h.classList.toggle('idle',document.hidden));
+addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.xs.on').forEach(x=>x.classList.remove('on'));try{if(document.getElementById('ov')&&document.getElementById('ov').classList.contains('on')&&window.closePlayer)closePlayer()}catch(_){}}});
+const fixA=()=>document.querySelectorAll('.post,.gi,.rc,.vb,.chip').forEach(el=>{if(!el.hasAttribute('tabindex')){el.tabIndex=0;el.setAttribute('role','button')}});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches&&e.target.matches('[role=button]:not(button)')){e.preventDefault();e.target.click()}});
+const R=window.render;if(R){window.render=function(){const r=R.apply(this,arguments);try{fixA()}catch(_){}return r}}
+})();
+</script>
+</body>
+</html>
